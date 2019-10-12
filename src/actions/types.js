@@ -1,0 +1,14 @@
+export const FETCH_INSTRUCTORS = 'FETCH_INSTRUCTORS';
+export const NEW_INSTRUCTOR = 'NEW_INSTRUCTOR';
+export const DELETE_INSTRUCTOR = 'DELETE_INSTRUCTOR';
+
+
+export const FECTCH_STUDENTS = 'FECTCH_STUDENTS';
+export const NEW_STUDENTS = 'NEW_STUDENTS ';
+
+export const FETCH_SESSIONS = 'FETCH_SESSIONS';
+export const NEW_SESSION = 'NEW_SESSION';
+
+export const FETCH_ADMINS = 'FETCH_ADMINS';
+export const NEW_ADMIN = 'NEW_ADMIN';
+
