@@ -4,10 +4,14 @@ import './App.css';
 import Admin from './Admin';
 import NewStudent from './NewStudentForm';
 import NewInstructor from './NewInstructorForm';
-import { Provider } from 'react-redux';
-import store from './Store';
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { Switch,Route, Link } from "react-router-dom";
 import NewStudentForm from './NewStudentForm';
+import NewInstructorForm from './NewInstructorForm';
+import Instructors from './Instructors';
+import Login from './login';
+import Four0Four from './Four0Four';
+
+
 
 
 
@@ -16,16 +20,26 @@ class App extends Component{
 
   render(){
   return (
-    <Provider store={store}>
+   
       <div className="App">
         <header className="App-header">
-          <div>
-            <Admin/>
+          <nav>ADMIN PAGE</nav>
+        </header>
+        <body className="Body-header">
+        <Switch>
+        <div>
+       
+            <Route exact path="/admin" component={Admin}/>
+            <Route exact path="/" component={Login}/>
+            <Route exact path="/newStudent" component={NewStudentForm}/>
+
+            {/* <Route component={Four0Four}/> */}
             <br/>
           </div>
-        </header>
-      </div>
-    </Provider>
+          </Switch>
+        </body>
+        </div>
+      
   );
 }
 }

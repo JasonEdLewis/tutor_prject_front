@@ -11,12 +11,13 @@ class Admin extends Component {
     state = {
         sessions: [],
         display: "",
-        
+        studentInfo: ""
+
 
     }
 
     componentDidMount() {
-      
+
         fetch('http://localhost:3000/sessions')
             .then(resp => resp.json())
             .then(sessions => this.setState({ sessions: sessions }))
@@ -27,43 +28,45 @@ class Admin extends Component {
     }
 
     handleSubmit = (e) => {
+
         e.preventDefault()
-        this.setState({
-            diplay:"new Student"
-        })
-        var rawInput = this.state.studentInfo.split(/\n/).filter(entry => entry !== "" && entry !== " ") 
-        var studentObj = rawInput.filter((attribute, index) => index % 2 === 1 )
-        this.props.history.push('/newStudentForm')
+        this.props.history.push('/newStudent')
+        // this.setState({
+        //     diplay:"new Student"
+        // })
+        // var rawInput = this.state.studentInfo.split(/\n/).filter(entry => entry !== "" && entry !== " ") 
+        // var studentObj = rawInput.filter((attribute, index) => index % 2 === 1 )
 
-        
-        console.log(studentObj)
 
-//         fetch('http://localhost:3000/students',{
-//         method: 'POST', 
-//         headers:{
-//                 'content-type' : 'application/json'
-//     }, 
-//     body : JSON.stringify(newStudent)
-// })
+
+        // console.log(studentObj)
+
+        //         fetch('http://localhost:3000/students',{
+        //         method: 'POST', 
+        //         headers:{
+        //                 'content-type' : 'application/json'
+        //     }, 
+        //     body : JSON.stringify(newStudent)
+        // })
 
     }
 
-SessionClicked=(session)=>{
-    this.setState({
-        diplay: "sessions"
-    })
-}
+    SessionClicked = (session) => {
+        this.setState({
+            diplay: "sessions"
+        })
+    }
 
-    
+
 
     render() {
-      
-        const sessions = this.state.sessions.map(session => (<li key={session.id} onClick={(e)=> console.log(session.id)}>{session.student.name} has {session.subject} with {session.instructor.name} on   {session.date.replace(/-/g,"/")}</li>))
-        
+        console.log("Student info:", this.state.studentInfo)
+        const sessions = this.state.sessions.map(session => (<li key={session.id} onClick={(e) => console.log(session.id)}>{session.student.name} has {session.subject} with {session.instructor.name} on   {session.date.replace(/-/g, "/")}</li>))
+
         return (
             <div>
-               <AdminShow/>
-               {sessions}
+                <AdminShow info={this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} studentState={this.state.studentInfo} />
+                {sessions}
             </div>
         )
     }

@@ -8,13 +8,13 @@
 
 .App-header {
   background-color: #dee4f0;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(133, 7, 133);
 }
 
 .App-link {
@@ -25,4 +25,9 @@ ul{
 }
 .x{
   font-size: 10px;
+}
+.Body-header{
+  color: #666675;
+  font-family: Consolas, "Courier New",
+    monospace;
 }

@@ -13,7 +13,6 @@ export default function (state = initialState, action) {
                 instructors: action.payload
             }
         case NEW_INSTRUCTOR:
-            debugger
             return {
                 ...state,
                 instructors: [action.payload, ...state.instructors]
