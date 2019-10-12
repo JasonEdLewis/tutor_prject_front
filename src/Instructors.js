@@ -11,14 +11,14 @@ class Instructors extends Component {
         this.props.fetchInstructors()
     }
 
-    deleteInstructor = (instruc) => {
-        this.props.deleteInstructor(instruc)
+    deleteInstructor = (id) => {
+        this.props.deleteInstructor(id)
     }
 
     render() {
         // debugger
         console.log("Instructors props: ", this.props)
-        const instructors = this.props.instructors.map(inst => <p>{inst.name} teaches {inst.subject}  <span onClick={() => this.deleteInstructor(inst)} className="x"> ❌ </span>  </p>)
+        const instructors = this.props.instructors.map(inst => <p>{inst.name} teaches {inst.subject}  <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span>  </p>)
         return (
             <div>
 
