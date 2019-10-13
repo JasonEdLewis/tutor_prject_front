@@ -32,7 +32,7 @@ class NewInstructorForm extends Component {
 
     }
     render() {
-        console.log("Instructor form props:",this.props)
+        // console.log("Instructor form props:",this.props)
         return (
             <div>
                 <h2>New Instructor Form</h2>

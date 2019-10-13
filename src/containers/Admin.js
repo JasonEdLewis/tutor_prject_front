@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Instructors from './Instructors';
-import NewInstructor from './NewInstructorForm';
-import newStudentForm from './NewStudentForm';
+import Instructors from '../Instructors';
+import NewInstructor from '../NewInstructorForm';
+import newStudentForm from '../NewStudentForm';
 import { Fragment } from 'react';
-import AdminShow from './components/adminShow';
+import AdminShow from '../components/adminShow';
 
 
 class Admin extends Component {
@@ -30,16 +30,14 @@ class Admin extends Component {
     handleSubmit = (e) => {
 
         e.preventDefault()
-        this.props.history.push('/newStudent')
-        // this.setState({
-        //     diplay:"new Student"
-        // })
-        // var rawInput = this.state.studentInfo.split(/\n/).filter(entry => entry !== "" && entry !== " ") 
-        // var studentObj = rawInput.filter((attribute, index) => index % 2 === 1 )
+        // this.props.history.push('/newStudent')
+       
+        var rawInput = this.state.studentInfo.split(/\n/).filter(entry => entry !== "" && entry !== " ") 
+        var studentObj = rawInput.filter((attribute, index) => index % 2 === 1 )
 
 
 
-        // console.log(studentObj)
+        console.log("Resulting student info:",studentObj)
 
         //         fetch('http://localhost:3000/students',{
         //         method: 'POST', 
@@ -60,7 +58,7 @@ class Admin extends Component {
 
 
     render() {
-        console.log("Student info:", this.state.studentInfo)
+        // console.log("Student info:", this.state.studentInfo)
         const sessions = this.state.sessions.map(session => (<li key={session.id} onClick={(e) => console.log(session.id)}>{session.student.name} has {session.subject} with {session.instructor.name} on   {session.date.replace(/-/g, "/")}</li>))
 
         return (

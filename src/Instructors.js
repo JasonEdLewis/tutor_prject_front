@@ -17,7 +17,7 @@ class Instructors extends Component {
 
     render() {
         // debugger
-        console.log("Instructors props: ", this.props)
+        // console.log("Instructors props: ", this.props)
         const instructors = this.props.instructors.map(inst => <p>{inst.name} teaches {inst.subject}  <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span>  </p>)
         return (
             <div>

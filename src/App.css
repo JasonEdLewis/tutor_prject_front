@@ -27,7 +27,21 @@ ul{
   font-size: 10px;
 }
 .Body-header{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-items: center;
+  justify-content: center;
   color: #666675;
   font-family: Consolas, "Courier New",
     monospace;
+}
+.student-input{
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin:5px;
+  padding: 1px;
+  width: auto;
+  background-color: rgb(244, 245, 248);
 }

@@ -6,7 +6,7 @@ import Instructors from '../Instructors'
 export default function adminShow(props) {
     
     const { info, handleSubmit, handleChange, studentState } = props
-    console.log("Admin show",info.history)
+    // console.log("Admin show",info.history)
     return (
 
         <div>
