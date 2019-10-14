@@ -2,8 +2,16 @@ import React, { Component } from 'react';
 import '../src/App.css'
 
 class NewStudentForm extends Component {
+
+
+    state = {
+
+        students:[]
+    }
+
     render() {
 
+       
         console.log(this.props)
         return (
             <div>

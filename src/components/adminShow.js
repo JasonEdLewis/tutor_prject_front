@@ -9,26 +9,24 @@ export default function adminShow(props) {
     // console.log("Admin show",info.history)
     return (
 
-        <div>
+        <div className="middle">
             <nav><button onClick={()=> info.history.push('/')}>Log Out</button></nav>
              <h1>WELCOME BACK {null}</h1>
                 
                 <ul>{props.sessions}</ul>
                 <div>
-                    <NewInstructor/>
-                    <h2>Our List of Instructors</h2>
-                    <Instructors/>
+                
+                   
+                    
+
+                    <br/>
+                    <br/>
                     <p>Add Students here: </p>
                     <form onSubmit={handleSubmit}>
                         <textarea rows="8" cols="75" type="text" onChange={handleChange} name="studentInfo" value={studentState}> </textarea>
                         <button onSubmit={handleSubmit}>Submit</button>
                     </form>  
                     <h3>Booked Sessions</h3>
-
-                    <br/>
-                    <br/>
-                    
-                   
                     </div>  
         </div>)
     

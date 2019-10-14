@@ -16,23 +16,14 @@ class NewInstructorForm extends Component {
     }
 
     handelSubmit = (e) => {
-
         e.preventDefault()
-
-       //call actions
-       
        this.props.createInstructor(this.state)
-
-        this.setState({
-            name: "",
-            subject: "",
-            specialty: "",
-            hours: "",
-        })
+        this.setState({name: "", subject: "", specialty: "", hours: "" })
+        this.props.history.push('/admin')
 
     }
     render() {
-        // console.log("Instructor form props:",this.props)
+        console.log("Instructor form props:",this.props)
         return (
             <div>
                 <h2>New Instructor Form</h2>

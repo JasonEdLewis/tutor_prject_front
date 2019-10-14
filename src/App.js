@@ -27,16 +27,17 @@ class App extends Component {
         </header>
         </div>
        
-        <body className="Body-header">
+        <body className="Body">
           <Switch>
             <div>
 
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/" component={Login} />
               <Route exact path="/newStudent" component={NewStudentForm} />
-
+              <Route exact path="/newInstructor" component={NewInstructorForm} />
               {/* <Route component={Four0Four}/> */}
               <br />
+              
             </div>
           </Switch>
         </body>
