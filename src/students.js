@@ -23,7 +23,7 @@ class Students extends Component {
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.students.find(stu => stu.id === id)
         // debugger
-        console.log("The Single Student", theStudent)
+        // console.log("The Single Student", theStudent)
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
@@ -39,7 +39,7 @@ class Students extends Component {
     }
 
     render() {
-        // console.log("Students page props:", this.props)
+        console.log("Students page props:", this.props)
         const students = this.props.students.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>
