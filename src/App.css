@@ -22,12 +22,12 @@
 
 .login {
  
-margin:0px 0px -15px 450px;   
+margin:0px 0px -15px 650px;   
 justify-content: justify;
 }
  #login-h1 {
    color: #d30935;
- margin: 0px 450px  ; 
+ margin: 0px 650px  ; 
 }
 .App-link {
   color: #09d3ac;
@@ -41,7 +41,7 @@ ul{
 .Body{
   display: flex;
   padding: 5%;
-  margin-left: -10px;
+  margin-left: 15px;
   color: #666675;
   font-family: Consolas, "Courier New",
     monospace;
@@ -55,15 +55,14 @@ ul{
   width: auto;
   background-color: rgb(244, 245, 248);
 }
-.students-left{
-  /* background-color: red; */
-  /* display: flex; */
-}
+
 
 .Admin-container {
   display: grid;
-  grid-template-columns: 275px 500px 275px ;
+  grid-template-columns: 400px 500px 400px ;
+  column-gap: 15px;
   height:750px;
+  float: left;
   grid-template-areas: 
   
   'students admin instructors'
@@ -72,7 +71,7 @@ ul{
 
 .students{ grid-area: students;
   text-align: center;
-  justify-content: left;
+  margin-left: -50px;
   background-color: #f0dede;
 
 }
@@ -91,7 +90,7 @@ ul{
 }
 .login-nav{
   /* MARGIN:  top, right, bottom, left */
-  margin:-20px 0px 0px 480px;
+  margin:-20px 0px 0px 670px;
 }
 h5{
   margin:0px 0px 0px -50px;

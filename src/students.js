@@ -16,16 +16,25 @@ class Students extends Component {
     handleClick = (studentId) => {
         this.setState({
             clicked: !this.state.clicked,
-            id :studentId,
+            id: studentId,
         })
     }
 
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.students.find(stu => stu.id === id)
-        debugger
-        console.log(theStudent)
+        // debugger
+        console.log("The Single Student", theStudent)
         return (<div>
-            <p onClick={() => this.handleClick(theStudent.id)}>theStudent.name</p>
+            <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
+            <ul>
+                <li>Grade: {theStudent.grade}</li>
+                <li>Guardian: {theStudent.guardian}</li>
+                <li>sessions: {theStudent.sessions}</li>
+                <li>School: {theStudent.school}</li>
+                <li>Dates: {theStudent.date}</li>
+
+
+            </ul>
         </div>)
     }
 
