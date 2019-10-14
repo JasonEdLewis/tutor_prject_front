@@ -18,12 +18,18 @@ import Four0Four from './Four0Four';
 
 class App extends Component {
 
+    state ={
+      loggedIn: true,
+    }
+
   render() {
     return (
       <>
       <div className="App">
         <header className="App-header">
-          <nav>ADMIN PAGE</nav>
+         { this.state.loggedIn ? <nav>Admin Page</nav> :
+          <nav>WELCOME TO ABC TUTORING</nav>
+         }
         </header>
         </div>
        

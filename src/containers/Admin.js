@@ -30,27 +30,44 @@ class Admin extends Component {
     }
 
     fillInSpaces = (arr) => {
+
         const results = []
         for (var i = 0; i < arr.length; i++) {
-            if (i % 2 === 1 && arr[i].includes(":")) {
-                arr.splice(i, 0, "null")
-
+            if (arr[i].endsWith(":") && (i + 1 !== arr.length) && arr[i + 1].endsWith(":")) {
+                results.push(arr[i + 1])
             }
-            else {
-                return i
+            else if (arr[arr.length - 1].endsWith(":") && i === arr.length - 1 && (!results.includes(arr[arr.length - 1]))) {
+                results.push(arr[arr.length - 1])
             }
         }
+        console.log(results)
+        const insertNulls = results.map(result => arr.indexOf(result))
+
+        console.log(insertNulls)
+        insertNulls.forEach((idx, i = 0) => arr.splice(idx + i, 0, "null"), i += 1)
+
+        if (arr.length % 2 === 1 && arr[arr.length - 1].endsWith(":")) {
+            arr.push("null")
+        }
         console.log(arr)
-        return arr
+
+        const valuesForObj = arr.filter((attribute, index) => index % 2 === 1)
+        console.log("Values", valuesForObj)
+        this.makeNewStudentObj(valuesForObj)
     }
+    // 
+
+
 
     makeNewStudentObj = (arr) => {
+        console.log(arr)
         var newStudObj = {}
         const keys = ["name", "school_id", "reason", "date", "hours", "school", "grade", "sped", "counselor_info", "guardian", "address", "home_no", "cell", "email"]
         for (var i = 0; i < arr.length; i++) {
             newStudObj[keys[i]] = arr[i]
-            debugger
+
         }
+        console.log(newStudObj)
         return newStudObj
     }
     handleSubmit = (e) => {
@@ -58,14 +75,11 @@ class Admin extends Component {
         e.preventDefault()
         // this.props.history.push('/newStudent')
         var rawInput = this.state.studentInfo.split(/\n/).filter(entry => entry !== "" && entry !== " ")
-        console.log(rawInput)
 
-        // const filteredStudent =rawInput.forEach((input,index) =>  index %2 ===1 && input.includes(":") ? rawInput.splice(index -1, 0, "null") : input)
-        debugger
+        let cleanInput = rawInput.map(input => input.trim())
 
-        this.fillInSpaces(rawInput)
+        this.fillInSpaces(cleanInput)
 
-        // index % 2 === 1 input.includes(":") splice(index -1, 0, "null")
     }
 
 
@@ -107,7 +121,7 @@ class Admin extends Component {
 
                 <div className="students">
                     <h1>Students</h1>
-                    <Students />
+                    <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} studentState={this.state.studentInfo} />
                 </div >
 
                 <div className="admin">

@@ -20,9 +20,23 @@ class Students extends Component {
         })
     }
 
+    studentQuickForm =(props) =>{ 
+        const { handleSubmit, handleChange, studentInfo} = this.props
+       return (
+           <>
+           <br/>
+           <br/>
+            <h3><strong>Add A New Student: </strong></h3>
+                 <form onSubmit={handleSubmit}>
+                     <textarea rows="8" cols="75" type="text" onChange={handleChange} name="studentInfo" value={studentInfo}> </textarea>
+                     <button onSubmit={handleSubmit}>Submit</button>
+                 </form>  
+                 </>)
+    }
+
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.students.find(stu => stu.id === id)
-        debugger
+        // debugger
         // console.log("The Single Student", theStudent)
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
@@ -43,7 +57,8 @@ class Students extends Component {
         const students = this.props.students.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>
-                {this.state.clicked ? this.singleStudentInfo(this.state.id) : students}
+                {this.state.clicked ? this.singleStudentInfo(this.state.id) : students }
+                { this.state.clicked ? <></> : this.studentQuickForm()}
             </div>
         )
     }
