@@ -22,18 +22,18 @@ class Students extends Component {
 
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.students.find(stu => stu.id === id)
-        // debugger
+        debugger
         // console.log("The Single Student", theStudent)
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
                 <li>Grade: {theStudent.grade}</li>
                 <li>Guardian: {theStudent.guardian}</li>
-                <li>sessions: {theStudent.sessions}</li>
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => <li> sessions: {sess.location} </li>)
+                    
+                    : `${theStudent.name} has no sessions booked`}
                 <li>School: {theStudent.school}</li>
                 <li>Dates: {theStudent.date}</li>
-
-
             </ul>
         </div>)
     }
