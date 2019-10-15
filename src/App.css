@@ -27,7 +27,7 @@ justify-content: justify;
 }
  #login-h1 {
    color: #d30935;
- margin: 0px 650px  ; 
+ margin: 0px 50%  ; 
 }
 .App-link {
   color: #09d3ac;
@@ -40,8 +40,9 @@ ul{
 }
 .Body{
   display: flex;
-  padding: 5%;
-  margin-left: 15px;
+  padding: 0%;
+  margin-left: 15%;
+  margin-top: 5%;
   color: #666675;
   font-family: Consolas, "Courier New",
     monospace;
@@ -95,4 +96,14 @@ ul{
 h5{
   margin:0px 0px 0px -50px;
 
+}
+
+.quick-form{
+  color: #0e0d0d;
+ margin-left: 1.75%;
+}
+
+.new-student-form{
+  margin-left: 35%;
+  width: 35%;
 }

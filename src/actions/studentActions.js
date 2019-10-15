@@ -3,7 +3,7 @@ import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT } from './types';
 
 export const fetchStudents = () => {
     return function (dispatch) {
-        console.log("fetching students")
+        
         fetch('http://localhost:3000/students')
             .then(resp => resp.json())
             .then(students => dispatch({
@@ -15,17 +15,19 @@ export const fetchStudents = () => {
 
 }
 
-export const createStudent = (student) => {
+export const createStudent = (studentInfo) => {
+    console.log("creating student....")
     return function (dispatch) {
-        fetch('http://localhost:3000/students', {
+
+        fetch('http://localhost:3000/students/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                accept: 'application/json'
+                accepts: 'application/json'
             },
-            body: JSON.stringify({ student })
+            body: JSON.stringify(studentInfo)
         })
-            .then(resp => resp.json)
+            .then(resp => resp.json())
             .then(student => dispatch({
                 type: NEW_STUDENT,
                 payload: student
