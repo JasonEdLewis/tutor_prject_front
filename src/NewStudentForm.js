@@ -12,22 +12,22 @@ class NewStudentForm extends Component {
     }
 
 
-handleChange=(e)=>{
-    this.setState({
-        student: {
-        [e.target.name]:e.target.value
-        }
-    })
+    handleChange = (e) => {
+        this.setState({
+            student: {
+                [e.target.name]: e.target.value
+            }
+        })
 
-}
+    }
 
-handleSubmit=(e)=>{
-    e.preventDefault()
-    console.log("Student Form Handle Submit")
-    debugger
-    
-    this.props.createStudent(this.state.student)
-}
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("Student Form Handle Submit")
+debugger
+        this.props.createStudent(this.state.student)
+        this.props.formUnclick()
+    }
     componentDidMount() {
         this.firstCleanOfNewStudent(this.props.newStuInfo)
     }
@@ -59,7 +59,7 @@ handleSubmit=(e)=>{
 
     makeNewStudentObj = (arr) => {
         var newStudObj = {}
-        const keys = ["name", "school_id", "reason", "date", "hours", "school", "grade", "sped", "counselor_info", "guardian", "address", "home_no", "cell", "email"]
+        const keys = ["name", "school_id", "reason", "date", "hours", "school", "grade", "sped", "counselor_info", "guardian", "address", "home_no", "cell", "email", "subject"]
         for (var i = 0; i < arr.length; i++) {
             newStudObj[keys[i]] = arr[i]
 
@@ -76,34 +76,40 @@ handleSubmit=(e)=>{
     }
 
     render() {
-
-       
+    
+       console.log("New Student form props:",this.props)
 
         return (
             <div>
                 <h1>New Student Form</h1>
                 <h3>Student Info</h3>
                 <div>
-                    <form className="new-student-form" handleSubmit={(e)=> console.log(e)}>
+                    <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
                         <label>Name:</label>
-                        <input name="name" placeholder={this.state.student.name} className="student-input" value={this.state.student.name} onChange={this.handleChange} />
+                        <input name="name" placeholder='name' className="student-input" value={this.state.student.name} onChange={this.handleChange} />
                         <label>School id:</label>
                         <input name="school_id" value={this.state.student.school_id} placeholder="SchoolId" className="student-input" onChange={this.handleChange} />
                         <label>Reason:</label>
-                        <input name="reason"  value={this.state.student.reason} placeholder="reason" className="student-input" onChange={this.handleChange} />
+                        <input name="reason" value={this.state.student.reason} placeholder="reason" className="student-input" onChange={this.handleChange} />
                         <label>Start Date:</label>
-                        <input name="date" value={this.state.student.date} type="datetime" placeholder="Start date" className="student-input" onChange={this.handleChange} />
-                        <label>End date:</label>
-                        <input name="" value={this.state.student.date} type="date" placeholder="End date" className="student-input" onChange={this.handleChange} />
-                        <label>Hours:</label>
-                        <input name="hours" value={this.state.student.hours} type="number" min="0" placeholder=" hours" className="student-input" onChange={this.handleChange} />
+                        <input name="date" value={this.state.student.date} type="date" placeholder="Start date" className="student-input" onChange={this.handleChange} />
+                        <label>Hours: </label>
+                        <input name="hours" value={this.state.student.hours} type="number" placeholder="10" className="student-input" onChange={this.handleChange} />
                         <label>School: </label>
-                        <input value={this.state.student.school} placeholder="school" className="student-input" onChange={this.handleChange} />
+                        <input name="school" value={this.state.student.school} placeholder="school" className="student-input" onChange={this.handleChange} />
+                        <label>Grade:</label>
+                        <input name="grade" value={this.state.student.grade} type="number" min="0" max ="12" placeholder=" k - 12" className="student-input" onChange={this.handleChange} />
+                        <label>Subject:</label>
+                        <input name="subject" value={this.state.student.subject} type="text"  placeholder=" subject" className="student-input" onChange={this.handleChange} />
                         <label>SPED: </label>
-                        <input value={this.state.student.sped} type="boolean" placeholder="Special Ed" className="student-input" onChange={this.handleChange} />
+                        <select name="sped " value={this.state.student.sped} type="text" placeholder="Special Ed" className="student-input" onChange={this.handleChange} >
+                            <option value="Yes" > --- </option>
+                            <option value="true" > Yes </option>
+                            <option value="false" > No </option>
+                        </select>
                         <label>Councilor Info:</label>
                         <textarea row="5" col="60" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} />
-                        <br />
+                        {/* <br /> */}
                         <h3>Guardian Info</h3>
                         <label>Name:</label>
                         <input value={this.state.student.guardian} placeholder="guardian" className="student-input" onChange={this.handleChange} />
@@ -115,16 +121,16 @@ handleSubmit=(e)=>{
                         <input value={this.state.student.cell} type="tel" placeholder="Home Phone" className="student-input" onChange={this.handleChange} />
                         <label>Email:</label>
                         <input value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} />
-                        <br />
-                        <br />
-                        <input type="submit" className="student-input" />
+                        {/* <br />
+                        <br /> */}
+                        <input type="submit" className="student-input" onClick={this.handleSubmit}/>
                     </form>
                 </div>
                 <div>
                     <br />
                     <br />
                     <br />
-                    <button onClick={(e)=> console.log(e)}>Back</button>
+                    <button onClick={(e) => console.log(e)}>Back</button>
                 </div>
             </div>
         )
@@ -132,5 +138,3 @@ handleSubmit=(e)=>{
 }
 export default connect(null, { createStudent })(NewStudentForm)
 
-
-//          address home_no cell email

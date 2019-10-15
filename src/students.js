@@ -21,14 +21,17 @@ class Students extends Component {
 
     handleClick = (studentId) => {
         this.setState({
-            clicked: !this.state.clicked,
+            studentClicked: !this.state.studentClicked,
             id: studentId,
         })
     }
+    unclickNewStudentForm=()=>{
+        this.setState({formSubmitted : false, formClicked: !this.state.formClicked })
+    }
     handleSubmit = (e) => {
-        console.log("Plain Students Handle Submit")
+        
         e.preventDefault()
-        debugger
+        console.log("Plain Students Handle Submit")
         this.setState({
             formSubmitted: !this.state.submitted,
             formClicked: !this.state.clicked
@@ -47,7 +50,7 @@ class Students extends Component {
         })
     }
     studentQuickForm = () => {
-        
+
         return (
             <>
                 <br />
@@ -62,7 +65,7 @@ class Students extends Component {
 
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.students.find(stu => stu.id === id)
-       
+
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
@@ -78,13 +81,13 @@ class Students extends Component {
     }
 
     render() {
-       
+
         const students = this.props.students.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
-                {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} /> : <></>}
+                {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit}formUnclick={this.unclickNewStudentForm} /> : <></>}
 
             </div>
         )
