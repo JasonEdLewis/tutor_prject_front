@@ -11,9 +11,7 @@ import '../App.css';
 class Admin extends Component {
 
     state = {
-        sessions: [],
-        display: "",
-       
+        
        
     }
 
@@ -30,7 +28,7 @@ class Admin extends Component {
     render() {
         // console.log("Admin Props:", this.props)
 
-        const session = this.props.sessions.map(session => (<li key={session.id} onClick={()=> this.SessionClicked(session.id)}>{session.student.name} has {session.subject} with {session.instructor.name} on   {session.date.replace(/-/g, "/")}</li>))
+        
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0 ) 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={()=> console.log(student.id)} >Book</button></h3>)
         
@@ -47,12 +45,13 @@ class Admin extends Component {
 
                 <div className="admin">
                     <AdminShow info={this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} user={null}/>
-                    {session}
+                    
+                    <Sessions/>
 
                     <br/>
                     <h3>Students to be Scheduled</h3>
                     {scheduleTheseStudents}
-                    <Sessions/>
+                    
                 </div>
 
                 <div className="instructors">

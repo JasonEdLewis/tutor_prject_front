@@ -37,11 +37,6 @@ class Students extends Component {
             formClicked: !this.state.clicked
         })
 
-        // console.log(e.target.value)
-        // this.setState({
-        //     studentInfo: ''
-        // })
-        // this.props.history.push('/newStudent')
 
     }
     handleChange = (e) => {
