@@ -32,8 +32,18 @@ justify-content: justify;
 .App-link {
   color: #09d3ac;
 }
-ul{
+li{
   list-style: none;
+  text-decoration:none;
+}
+li a:hover {
+  text-decoration:none;
+  color:rgb(185, 3, 3);
+}
+  
+a {
+  text-decoration:none;
+  color: rgba(4, 91, 149, 0.801);
 }
 .x{
   font-size: 10px;

@@ -13,8 +13,9 @@ class NewStudentForm extends Component {
 
 
     handleChange = (e) => {
+        console.log(this.state.student)
         this.setState({
-            student: {
+            student: {...this.state.student, 
                 [e.target.name]: e.target.value
             }
         })
@@ -77,7 +78,7 @@ debugger
 
     render() {
     
-       console.log("New Student form props:",this.props)
+       console.log("New Student From state after santization:",this.state.student)
 
         return (
             <div>
@@ -118,9 +119,9 @@ debugger
                         <label>Cell:</label>
                         <input value={this.state.student.home_no} type="tel" placeholder="Cell Phone" className="student-input" onChange={this.handleChange} />
                         <label>Home Phone:</label>
-                        <input value={this.state.student.cell} type="tel" placeholder="Home Phone" className="student-input" onChange={this.handleChange} />
+                        <input value={this.state.student.cell} type="tel" placeholder="Home Phone" className="student-input" onChange={this.handleChange} name="home_no" />
                         <label>Email:</label>
-                        <input value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} />
+                        <input name="email" value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} />
                         {/* <br />
                         <br /> */}
                         <input type="submit" className="student-input" onClick={this.handleSubmit}/>

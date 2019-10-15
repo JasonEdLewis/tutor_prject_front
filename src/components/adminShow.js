@@ -1,11 +1,12 @@
 import React from 'react';
 import NewInstructor from '../NewInstructorForm';
-import Instructors from '../Instructors'
+import Instructors from '../Instructors';
+import { connect } from 'react-redux'
 
 
 export default function adminShow(props) {
     // debugger
-    const {  handleSubmit, handleChange, studentState, sessions, history } = props.info
+    const { history, user } = props.info
     // console.log("Admin show props",props.info.sessions.session)
     return (
 
