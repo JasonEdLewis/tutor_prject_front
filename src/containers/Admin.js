@@ -29,8 +29,7 @@ class Admin extends Component {
         // console.log("Admin Props:", this.props)
 
         
-        const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0 ) 
-        const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={()=> console.log(student.id)} >Book</button></h3>)
+        
         
 
         
@@ -46,11 +45,12 @@ class Admin extends Component {
                 <div className="admin">
                     <AdminShow info={this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} user={null}/>
                     
-                    <Sessions/>
+                   
 
                     <br/>
-                    <h3>Students to be Scheduled</h3>
-                    {scheduleTheseStudents}
+                    {/* <h3>Students to be Scheduled</h3> */}
+                    {/* {scheduleTheseStudents} */}
+                    <Sessions/>
                     
                 </div>
 

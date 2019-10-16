@@ -14,13 +14,12 @@ export default function adminShow(props) {
             <nav><button onClick={()=> history.push('/')}>Log Out</button></nav>
              <h1>WELCOME BACK {null}</h1>
                 
-                <ul>{props.sessions}</ul>
                 <div>
 
                     <br/>
                     <br/>
                    
-                    <h3>Booked Sessions</h3>
+                    
                     
                     </div>  
         </div>)

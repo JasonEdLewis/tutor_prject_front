@@ -1,44 +1,71 @@
 import React, { Component } from 'react';
-import  { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 
 class NewSession extends Component {
 
+    state = {
+        student_id: "",
+        instructor_id: "",
+        admin_id: "",
+        date: "",
+        time: "",
+        home: "",
+        subject: "",
+        location: "",
+        instruction: "",
+    }
+
+    handleChange = (e) => {
+        debugger
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+
+    }
 
     render() {
+
+        debugger
+        console.log("New Session props: ", this.props, "State:", this.state)
+        const { student } = this.props
         return (
-            
+
+
             <div>
-                <h1 style={{color: "red"}}>This is the new session from</h1>
+                <h1 style={{ color: "red" }}>This is the new session from</h1>
+
                 <select>
-                    <option value={null/* this should populate the student clicked on */}>student</option>
+                    <option value=""> --- </option>
+                    <option name="student_id" value={student.id} onChange={this.handleChange}>{student.name}</option>
                 </select>
                 <select>
-                    <option value={null/* filter the instructors who teach this SUBJECT*/ }>instructor_id</option>
+                    <option value={null/* filter the instructors who teach this SUBJECT*/}>instructor_id</option>
                 </select>
                 <form className="new-sessions">
                     <label>Date:</label>
-                    <input/>
+                    <input />
                     <label>Time:</label>
-                    <input/>
+                    <input />
                     <label>home?:</label>
                     <select>
                         <option value=""> --- </option>
                         <option value={true}>Yes</option>
                         <option value={false} >No</option>
                     </select>
-                    <input/>
+                    <input />
                     <label>Time:</label>
-                    <input/>
+                    <input />
                     <label>Subject:</label>
-                    <input/>
+                    <input />
                     <label>Location:</label>
-                    <input/>
+                    <input />
 
-                    <textarea value={null}/>
-               </form>
+                    <textarea value={null} />
+                </form>
+
             </div>
-            
+
         )
     }
 }
