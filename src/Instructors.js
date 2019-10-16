@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchInstructors, deleteInstructor } from './actions/instructorActions';
 import './App.css';
+import NewInstructorForm from './NewInstructorForm'
 
 
 
 class Instructors extends Component {
+
+    state ={
+        needForm: false,
+    }
 
     componentDidMount() {
 
@@ -16,6 +21,12 @@ class Instructors extends Component {
         this.props.deleteInstructor(id)
     }
 
+    addFormToPage=()=>{
+        this.setState({
+            needForm: !this.state.needForm
+        })
+        
+    }
     render() {
         // debugger
         // console.log("Instructors props: ", this.props)
@@ -24,7 +35,7 @@ class Instructors extends Component {
         return (
             <div>
                 {instructor}
-                <button onClick={()=> history.push('/NewInstructor')}>Add New Instructor</button>
+                {this.state.needForm ? <NewInstructorForm removeForm={this.addFormToPage}/> : <button onClick={this.addFormToPage}>Add New Instructor</button> }
                 <div>
                    
                 </div>

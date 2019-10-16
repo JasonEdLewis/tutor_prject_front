@@ -36,6 +36,8 @@ class NewSession extends Component {
         debugger
         this.props.createSession(this.state)
         this.setState({student_id: "",instructor_id: "",admin_id: 1,date: "",time: "",home: "",subject: this.props.student.subject,location: "",instruction: "",})
+        this.props.history.push('/admin')
+
         // console.log(this.state)
     }
 
@@ -49,7 +51,7 @@ class NewSession extends Component {
 
 
             <div>
-                <h1 style={{ color: "red" }}>This is the new session from</h1>
+                <h2 style={{ color: "red" }}>Book {student.subject} for {student.name}</h2>
                 <form className="new-session-form" onSubmit={this.handleSubmit}>
                 <select onChange={this.handleChange} name="student_id">
                     <option value=""> --- </option>

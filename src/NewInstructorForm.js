@@ -19,11 +19,11 @@ class NewInstructorForm extends Component {
         e.preventDefault()
        this.props.createInstructor(this.state)
         this.setState({name: "", subject: "", specialty: "", hours: "" })
-        this.props.history.push('/admin')
+        this.props.removeForm()
 
     }
     render() {
-        console.log("Instructor form props:",this.props)
+        console.log("New Instructor form props:",this.props)
         return (
             <div>
                 <h2>New Instructor Form</h2>
@@ -34,6 +34,7 @@ class NewInstructorForm extends Component {
                     <input type="text" name="hours" placeholder="hours" value={this.state.hours} onChange={this.handleChange} />
                     <input type="submit" />
                 </form>
+                <button onClick={this.props.removeForm}>Back</button>
             </div>
         )
     }

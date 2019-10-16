@@ -11,14 +11,18 @@ componentDidMount() {
     state = {
         student: {},
         needForm: false,
+        showOneSession: false,
     }
     handleClick=(student)=>{
         // console.log(id)
         this.setState({student , needForm: !this.state.needForm})
     }
+    SessionClicked=(e)=>{
+        this.setState({showOneSession : !this.state.showOneSession})
+    }
 
     render() {
-        // console.log("Sessions props",this.props)
+        console.log("Sessions props",this.props)
 
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0 ) 
 
@@ -33,7 +37,7 @@ componentDidMount() {
         
         
         
-        {this.state.needForm?  <NewSession student={this.state.student}/> : <><h3>Students to be Scheduled</h3> {scheduleTheseStudents}</> }
+        {this.state.needForm?  <NewSession student={this.state.student} history={this.props.history}/> : <><h3>Students to be Scheduled</h3> {studentsInNeed.length === 0 ? <h4 style={{color:"red"}}>There are currently no student to schedule</h4> :scheduleTheseStudents  }</> }
             </div>
         )
     }
