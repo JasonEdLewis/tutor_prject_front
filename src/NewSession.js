@@ -35,6 +35,7 @@ class NewSession extends Component {
         e.preventDefault()
         debugger
         this.props.createSession(this.state)
+        this.setState({student_id: "",instructor_id: "",admin_id: 1,date: "",time: "",home: "",subject: this.props.student.subject,location: "",instruction: "",})
         // console.log(this.state)
     }
 
@@ -105,6 +106,9 @@ instruction
 
 
 :student_id,:instructor_id,:admin_id,:date,:time,:home,:subject,:location,:instruction
+
+
+student_id: "",instructor_id: "",admin_id: 1,date: "",time: "",home: "",subject: this.props.student.subject,location: "",instruction: "",
 
 */
 
