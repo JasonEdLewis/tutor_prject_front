@@ -59,14 +59,14 @@ class Students extends Component {
     }
 
     singleStudentInfo = (id) => {
-        const theStudent = this.props.students.students.find(stu => stu.id === id)
-
+        const theStudent = this.props.students.find(stu => stu.id === id)
+        // const instructors = this.props.students.instructors.find(inst => inst.id === this.props.students.sessions.instructor_id)
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
                 <li>Grade: {theStudent.grade}</li>
                 <li>Guardian: {theStudent.guardian}</li>
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => <li> sessions: {sess.location} </li>)
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.location} </li><li>{/*instructors*/}</li></>))
 
                     : `${theStudent.name} has no sessions booked`}
                 <li>School: {theStudent.school}</li>
@@ -77,7 +77,8 @@ class Students extends Component {
 
     render() {
 
-        const students = this.props.students.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
+            console.group("students.js props")
+        const students = this.props.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
@@ -91,7 +92,7 @@ class Students extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        students: state.students
+        students: state.students.students
     }
 }
 export default connect(mapStateToProps, { fetchStudents, createStudent })(Students)
