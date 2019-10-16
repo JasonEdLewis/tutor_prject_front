@@ -31,9 +31,9 @@ componentDidMount() {
                 <h3>Booked Sessions</h3>
                 {session}
         
-        <h3>Students to be Scheduled</h3>
         
-        {this.state.needForm?  <NewSession student={this.state.student}/> : scheduleTheseStudents }
+        
+        {this.state.needForm?  <NewSession student={this.state.student}/> : <><h3>Students to be Scheduled</h3> {scheduleTheseStudents}</> }
             </div>
         )
     }
