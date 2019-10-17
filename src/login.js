@@ -9,8 +9,12 @@ export default class login extends Component {
         this.props.history.push('/admin')
     }
 
+    handleChange=(e)=>{
+       this.setState({[e.targetname]:e.target.value})
+    }
+
     render() {
-        console.log("Login props:", this.props)
+        console.log("Username:", this.state.username, "Password:",this.state.password )
         return (
             <div >
                 <div >
@@ -22,9 +26,9 @@ export default class login extends Component {
                     <br /><br />
                     <form onSubmit={this.handleSubmit} className="login">
                         <h3>User Name</h3>
-                        <input type="text" name="username" />
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
                         <h3>Password</h3>
-                        <input type="password" name="password" />
+                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                         <br /><br />
                         <input type="submit" />
                         <h5> Forgot password? Resset it  <input type="submit" value="Here" /></h5>

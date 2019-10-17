@@ -9,7 +9,19 @@ class Signup extends Component {
             password:""
         }
 
+
+        handleSubmit = e => {
+          e.preventDefault()
+          this.props.adminFetchPost(this.state)
+          // this.props.history.push('/admin')
+      }
+  
+      handleChange=(e)=>{
+         this.setState({[e.target.name]:e.target.value})
+      }
+
     render() {
+      console.log("Username:", this.state.username, "Password:",this.state.password )
         return (
             <form onSubmit={this.handleSubmit}>
             <h1>New Admin</h1>
