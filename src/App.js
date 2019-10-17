@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Admin from './containers/Admin';
-import NewStudent from './NewStudentForm';
-import NewInstructor from './NewInstructorForm';
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
+import { connect } from 'react-redux';
 import NewStudentForm from './NewStudentForm';
 import NewInstructorForm from './NewInstructorForm';
-import Instructors from './Instructors';
 import Login from './login';
 import Four0Four from './Four0Four';
-import Signup from './Signup'
+import Signup from './Signup';
+import { getProfileFetch } from './actions/adminActions'
 
 
 
@@ -26,7 +24,12 @@ class App extends Component {
   loggedIn = () => {
     this.setState({ loggedIn: !this.state.loggedIn })
   }
+
+  // componentDidMount() {
+  //   this.props.getProfileFetch()
+  // }
   render() {
+    console.log("App props:", this.props)
     return (
       <>
         <div className="App">
@@ -60,4 +63,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { getProfileFetch })(App);

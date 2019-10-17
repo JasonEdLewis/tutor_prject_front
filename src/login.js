@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import './App.css';
+import { connect } from 'react-redux';
+import { adminLoginFetch } from './actions/adminActions'
 
-export default class login extends Component {
 
+class Login extends Component {
+
+    state = {
+        username: '',
+        password: '',
+    }
 
     handleSubmit = e => {
         e.preventDefault()
         this.props.history.push('/admin')
     }
 
-    handleChange=(e)=>{
-       this.setState({[e.targetname]:e.target.value})
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     render() {
-        console.log("Username:", this.state.username, "Password:",this.state.password )
+        console.log("Username:", this.state.username, "Password:", this.state.password)
         return (
             <div >
                 <div >
@@ -26,7 +33,7 @@ export default class login extends Component {
                     <br /><br />
                     <form onSubmit={this.handleSubmit} className="login">
                         <h3>User Name</h3>
-                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange}/>
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                         <h3>Password</h3>
                         <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                         <br /><br />
@@ -40,3 +47,4 @@ export default class login extends Component {
         )
     }
 }
+export default Login
