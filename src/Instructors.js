@@ -8,7 +8,7 @@ import NewInstructorForm from './NewInstructorForm'
 
 class Instructors extends Component {
 
-    state ={
+    state = {
         needForm: false,
     }
 
@@ -21,23 +21,23 @@ class Instructors extends Component {
         this.props.deleteInstructor(id)
     }
 
-    addFormToPage=()=>{
+    addFormToPage = () => {
         this.setState({
             needForm: !this.state.needForm
         })
-        
+
     }
     render() {
         // debugger
         // console.log("Instructors props: ", this.props)
-        const { instructors, history}= this.props
-        const instructor = instructors.map(inst => <p>{inst.name}/{inst.subject}  <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span>  </p>)
+        const { instructors, history } = this.props
+        const instructor = instructors.map(inst => <p>{inst.name}/{inst.subject}/ <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span> <br /><strong>available hours:</strong>{inst.hours}  </p>)
         return (
             <div>
                 {instructor}
-                {this.state.needForm ? <NewInstructorForm removeForm={this.addFormToPage}/> : <button onClick={this.addFormToPage}>Add New Instructor</button> }
+                {this.state.needForm ? <NewInstructorForm removeForm={this.addFormToPage} /> : <button onClick={this.addFormToPage}>Add New Instructor</button>}
                 <div>
-                   
+
                 </div>
             </div>
         )

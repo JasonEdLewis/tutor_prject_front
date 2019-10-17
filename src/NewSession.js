@@ -26,46 +26,54 @@ class NewSession extends Component {
         })
 
     }
-    availableInstructors=()=>{
-       const theInstructor = this.props.instructors.filter(inst => inst.subject === this.props.student.subject)
+    availableInstructors = () => {
+        const theInstructor = this.props.instructors.filter(inst => inst.subject === this.props.student.subject)
         // console.group(theInstructor)
-       return theInstructor.map(intruct=> <option value={intruct.id} >{intruct.name}</option>)
+        return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
     }
-    handleSubmit=(e)=>{
+    handleSubmit = (e) => {
         e.preventDefault()
         debugger
         this.props.createSession(this.state)
-        this.setState({student_id: "",instructor_id: "",admin_id: 1,date: "",time: "",home: "",subject: this.props.student.subject,location: "",instruction: "",})
-        this.props.history.push('/admin')
+        this.setState({ student_id: "", instructor_id: "", admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+        this.props.removeForm()
 
         // console.log(this.state)
     }
 
     render() {
 
-        console.log("New Session state:", this.state)
-        console.log("New Seesion Props: ", this.props)
+        console.log(this.availableInstructors().length)
+
+
+        // console.log("New Session state:", this.state) 
+        // console.log("New Seesion Props: ", this.props)
         const { student } = this.props
-        const { instruction, location, date,time,home } =this.state
+        console.log("Student's subject:", student.subject)
+        const { instruction, location, date, time, home } = this.state
         return (
 
 
             <div>
                 <h2 style={{ color: "red" }}>Book {student.subject} for {student.name}</h2>
                 <form className="new-session-form" onSubmit={this.handleSubmit}>
-                <select onChange={this.handleChange} name="student_id">
-                    <option value=""> --- </option>
-                    <option value={student.id} >{student.name}</option>
-                </select>
-                <select onChange={this.handleChange} name="instructor_id">
-                    <option value=""> --- </option>
-                    {this.availableInstructors()}}
-                </select>
-                
+                    <select onChange={this.handleChange} name="student_id">
+                        <option value=""> --- </option>
+                        <option value={student.id} >{student.name}</option>
+                    </select>
+
+                    {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${student.subject} instructor `}></input>) :
+                        (<select onChange={this.handleChange} name="instructor_id">
+                            <option value=""> --- </option>
+                            {this.availableInstructors()}
+                        </select>
+                        )}
+
+
                     <label>Date:</label>
-                    <input type="date" value={date} name="date" onChange={this.handleChange}/>
+                    <input type="date" value={date} name="date" onChange={this.handleChange} />
                     <label>Time:</label>
-                    <input type="time" value={time} onChange={this.handleChange} name="time"/>
+                    <input type="time" value={time} onChange={this.handleChange} name="time" />
                     <label>home?:</label>
                     <select onChange={this.handleChange} name="home">
                         <option value=""> --- </option>
@@ -73,13 +81,13 @@ class NewSession extends Component {
                         <option value={false} >No</option>
                     </select>
                     <label>Subject:</label>
-                    <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange}/>
-                    {home ? 
-                        (<></>) : 
+                    <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
+                    {home ?
+                        (<></>) :
                         (<><label name="location" value={location} onChange={this.handleChange}>Location:</label>
-                    <input type="text"/></>)}
+                            <input type="text" /></>)}
 
-                    <textarea name="instruction" value={instruction} onChange={this.handleChange}/>
+                    <textarea name="instruction" value={instruction} onChange={this.handleChange} />
                     <input type="submit"></input>
                 </form>
 
@@ -88,12 +96,12 @@ class NewSession extends Component {
         )
     }
 }
-const mapStateToProps =(state)=>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         instructors: state.instructors.instructors
     }
 }
-export default connect(mapStateToProps ,{ createSession })(NewSession)
+export default connect(mapStateToProps, { createSession })(NewSession)
 /*
 
 student_id

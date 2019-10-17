@@ -14,9 +14,7 @@ export default class login extends Component {
         return (
             <div >
                 <div >
-                    <nav className="login-nav">
-                        <button><a href="/registration">Register</a></button>
-                    </nav>
+                    <button className="login-nav"><a href="/registration">Register</a></button>
                     <br /><br />
                 </div>
                 <div>
@@ -26,7 +24,7 @@ export default class login extends Component {
                         <h3>User Name</h3>
                         <input type="text" name="username" />
                         <h3>Password</h3>
-                        <input type="password" name="password"  />
+                        <input type="password" name="password" />
                         <br /><br />
                         <input type="submit" />
                         <h5> Forgot password? Resset it  <input type="submit" value="Here" /></h5>
@@ -38,11 +36,3 @@ export default class login extends Component {
         )
     }
 }
-
-
-//                      <h3>User Name</h3>
-//                     <input type="text" id="username"name="username" />
-//                     <h3>Password</h3>
-//                     <input type="password" name="password"/>
-//                     <br/><br/>
-//                     

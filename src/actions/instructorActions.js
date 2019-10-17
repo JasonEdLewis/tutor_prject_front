@@ -17,6 +17,10 @@ export const fetchInstructors = () => {
 
 export const createInstructor = (instructData) => {
     return function (dispatch) {
+        dispatch({
+            type: NEW_INSTRUCTOR,
+            payload: instructData
+        })
         fetch('http://localhost:3000/instructors/', {
             method: 'POST',
             headers: {
@@ -24,22 +28,19 @@ export const createInstructor = (instructData) => {
                 accepts: 'application/json'
             },
             body: JSON.stringify(instructData)
-        }).then(resp => resp.json())
-            .then(instructor => dispatch({
-                type: NEW_INSTRUCTOR,
-                payload: instructor
-            }))
+        })
     }
 }
 
 export const deleteInstructor = (id) => {
     return function (dispatch) {
-        fetch(`http://localhost:3000/instructors/${id}`, {
-            method: 'DELETE'
-        })
         dispatch({
             type: DELETE_INSTRUCTOR,
             payload: id
         })
+        fetch(`http://localhost:3000/instructors/${id}`, {
+            method: 'DELETE'
+        })
+
     }
 }

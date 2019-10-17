@@ -22,12 +22,20 @@
 
 .login {
  
-margin:0px 0px -15px 650px;   
+margin:0% 0% 0% 100%;   
 justify-content: justify;
+width: 90%;
+height: 90%;
 }
  #login-h1 {
    color: #d30935;
- margin: 0px 50%  ; 
+ margin: 0% 100% ; 
+ /* position: absolute; */
+}
+.login-nav{
+  /* MARGIN:  top, right, bottom, left */
+  margin:-20px 0px 0px 600px;
+  /* position: absolute; */
 }
 .App-link {
   color: #09d3ac;
@@ -99,10 +107,7 @@ a {
   justify-content: left;
 
 }
-.login-nav{
-  /* MARGIN:  top, right, bottom, left */
-  margin:-20px 0px 0px 675px;
-}
+
 h5{
   margin:0px 0px 0px -50px;
 
@@ -123,4 +128,10 @@ h5{
   width: 35%;
   
   
+}
+.new-instructor-form{
+  display: block; 
+  margin-left: 20%;
+  width: 65%;
+  padding: 1%;
 }

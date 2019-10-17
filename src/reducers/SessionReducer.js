@@ -2,7 +2,7 @@ import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from '../actions/types';
 
 const initialState = {
     sessions: [],
-    session: {}
+    // session: {}
 
 };
 
@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         case NEW_SESSION:
             return {
                 ...state,
-                session: [action.payload, ...state.sessions]
+                sessions: [action.payload, ...state.sessions]
             }
         case EDIT_SESSION:
             // this type must come with 2 parameters; the atribute that needs editing and the new value of the attribute

@@ -10,6 +10,7 @@ import NewInstructorForm from './NewInstructorForm';
 import Instructors from './Instructors';
 import Login from './login';
 import Four0Four from './Four0Four';
+import Signup from './Signup'
 
 
 
@@ -18,21 +19,24 @@ import Four0Four from './Four0Four';
 
 class App extends Component {
 
-    state ={
-      loggedIn: true,
-    }
+  state = {
+    loggedIn: true,
+  }
 
+  loggedIn = () => {
+    this.setState({ loggedIn: !this.state.loggedIn })
+  }
   render() {
     return (
       <>
-      <div className="App">
-        <header className="App-header">
-         { this.state.loggedIn ? <nav>Admin Page</nav> :
-          <nav>WELCOME TO ABC TUTORING</nav>
-         }
-        </header>
+        <div className="App">
+          <header className="App-header">
+            {this.state.loggedIn ? <nav>Admin Page</nav> :
+              <nav>WELCOME TO ABC TUTORING</nav>
+            }
+          </header>
         </div>
-       
+
         <body className="Body">
           <Switch>
             <div>
@@ -41,11 +45,14 @@ class App extends Component {
               <Route exact path="/" component={Login} />
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />
+              <Route exact path="/signup" component={Signup} />
+
               {/* <Route component={Four0Four}/> */}
               <br />
-              
+
             </div>
           </Switch>
+
         </body>
       </>
 
