@@ -21,8 +21,9 @@ class Login extends Component {
         e.preventDefault()
         // debugger
         this.props.adminLoginFetch(this.state)
-        .then(resp => resp.json())
-        .then(data =>{ if (data.token) {
+        console.log(localStorage.token)
+
+        if (this.props.login.loggedId) {
 
             this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
 
@@ -31,8 +32,7 @@ class Login extends Component {
             this.setState({ wrongCreds: true, username: "", password: "" })
             setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
         }
-    })
-}
+    }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
