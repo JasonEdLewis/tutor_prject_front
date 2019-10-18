@@ -22,7 +22,7 @@ componentDidMount() {
     }
 
     render() {
-        console.log("Sessions props",this.props)
+        // console.log("Sessions props",this.props)
 
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0 ) 
 

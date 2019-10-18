@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Admin from './containers/Admin';
+import Profile from './containers/Profile';
 import { Switch, Route } from "react-router-dom";
 import { connect } from 'react-redux';
 import NewStudentForm from './NewStudentForm';
@@ -25,9 +25,7 @@ class App extends Component {
     this.setState({ loggedIn: !this.state.loggedIn })
   }
 
-  // componentDidMount() {
-  //   this.props.getProfileFetch()
-  // }
+  
   render() {
     // console.log("App props:", this.props)
     return (
@@ -44,7 +42,7 @@ class App extends Component {
           <Switch>
             <div>
 
-              <Route exact path="/admin" component={Admin} />
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/" component={Login} />
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />

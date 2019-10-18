@@ -22,6 +22,7 @@ export const adminFetchPost = (admin) => {
         if (data.message) {
           return
         } else {
+
           localStorage.setItem("token", data.token)
           dispatch(loginAdmin(data.admin))
         }
@@ -34,7 +35,7 @@ export const adminFetchPost = (admin) => {
 
 
 export const adminLoginFetch = (info) => {
-  // debugger
+
   return dispatch => {
     return fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
@@ -46,15 +47,15 @@ export const adminLoginFetch = (info) => {
     })
       .then(resp => resp.json())
       .then(data => {
-        debugger
+
         console.log("data after login fetch:", data)
         if (data.message) {
-          // debugger
+          //   
           // Here you should have logic to handle invalid login credentials.
           // This assumes your Rails API will return a JSON object with a key of
           // 'message' if there is an error
         } else {
-          debugger
+
           localStorage.setItem("token", data.token)
           dispatch(loginAdmin(data.admin))
         }
@@ -63,6 +64,7 @@ export const adminLoginFetch = (info) => {
 }
 
 export const getProfileFetch = () => {
+  //   
   return dispatch => {
     const token = localStorage.token;
     if (token) {
@@ -71,7 +73,7 @@ export const getProfileFetch = () => {
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `${token}`
         }
       })
         .then(resp => resp.json())
@@ -81,7 +83,8 @@ export const getProfileFetch = () => {
             // If this happens, you may want to remove the invalid token.
             localStorage.removeItem("token")
           } else {
-            dispatch(loginAdmin(data.admin))
+            console.log(data)
+            dispatch(loginAdmin(data))
           }
         })
     }

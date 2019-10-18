@@ -3,12 +3,18 @@ import Instructors from '../Instructors';
 import Students from '../students';
 import Sessions from '../sessions';
 import { connect } from 'react-redux';
-
+import { getProfileFetch } from '../actions/adminActions';
 import AdminShow from '../components/adminShow';
 import '../App.css';
 
 
-class Admin extends Component {
+class Profile extends Component {
+
+
+
+componentDidMount() {
+    this.props.getProfileFetch()
+}
 
     SessionClicked = (session) => {
         console.log(session)
@@ -20,7 +26,7 @@ class Admin extends Component {
 
 
     render() {
-   
+        console.log("profile props",this.props)
         return (
             <div className="Admin-container">
 
@@ -49,11 +55,12 @@ const mapStateToProps = (state) => {
         sessions: state.sessions.sessions,
         students: state.students.students,
         instructors: state.instructors.instructors,
+        login: state.login.currentAdmin
     }
 }
 
 
-export default connect(mapStateToProps,null)(Admin)
+export default connect(mapStateToProps, { getProfileFetch } )(Profile)
 
 /*
 const keys =["name","school_id","reason","date","hours","school","grade","sped","counselor_info","guardian","address","home_no","cell","email", "subject"]

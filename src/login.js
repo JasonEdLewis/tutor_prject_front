@@ -15,7 +15,7 @@ class Login extends Component {
 
 
     componentDidMount() {
-        localStorage.token ? this.props.history.push('/admin') : this.props.history.push('/')
+        localStorage.token ? this.props.history.push('/profile') : this.props.history.push('/')
     }
     handleSubmit = e => {
         e.preventDefault()
@@ -24,7 +24,7 @@ class Login extends Component {
         console.log(localStorage.token)
         if (localStorage.token) {
            
-            this.props.history.push('/admin')
+            this.props.history.push('/profile')
             this.setState({ wrongCreds: false, username: "", password: "" })
         }
         else {
