@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 export default function adminShow(props) {
     // debugger
-    const { history, user, login } = props.info
+    const { history, admin } = props.info
     // console.log("Admin show props",props.info.sessions.session)
     return (
 
@@ -16,7 +16,7 @@ export default function adminShow(props) {
                 localStorage.clear()
                 console.log("Local storage After logout",localStorage.token)
         }}>Log Out</button></nav>
-             <h1>WELCOME BACK {login.username}</h1>
+             <h1>WELCOME BACK {admin.username}</h1>
                 
                 <div>
                     

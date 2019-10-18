@@ -22,14 +22,15 @@
 
 .login {
  
-margin:0% 0% 0% 275%;   
+margin:0% 0% 0% 250%;   
 justify-content: justify;
-width: 90%;
-height: 90%;
+width: 100%;
+height: 100%;
+
 }
  #login-h1 {
    color: #d30935;
- margin: 0% 275% ; 
+ margin: 0% 250% ; 
  /* position: absolute; */
 }
 

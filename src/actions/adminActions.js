@@ -1,11 +1,13 @@
 import React from 'react';
 
 
-
-
 const loginAdmin = (adminObj) => ({
   type: 'LOGIN_ADMIN',
   payload: adminObj
+})
+const showError = (message) => ({
+  type: "ERRORS",
+  payload: message
 })
 
 export const adminFetchPost = (admin) => {
@@ -45,21 +47,6 @@ export const adminLoginFetch = (info) => {
       },
       body: JSON.stringify(info)
     })
-      .then(resp => resp.json())
-      .then(data => {
-
-        console.log("data after login fetch:", data)
-        if (data.message) {
-          //   
-          // Here you should have logic to handle invalid login credentials.
-          // This assumes your Rails API will return a JSON object with a key of
-          // 'message' if there is an error
-        } else {
-
-          localStorage.setItem("token", data.token)
-          dispatch(loginAdmin(data.admin))
-        }
-      })
   }
 }
 

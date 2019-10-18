@@ -21,17 +21,18 @@ class Login extends Component {
         e.preventDefault()
         // debugger
         this.props.adminLoginFetch(this.state)
-        console.log(localStorage.token)
-        if (localStorage.token) {
-           
-            this.props.history.push('/profile')
-            this.setState({ wrongCreds: false, username: "", password: "" })
+        .then(resp => resp.json())
+        .then(data =>{ if (data.token) {
+
+            this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
+
         }
         else {
             this.setState({ wrongCreds: true, username: "", password: "" })
             setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
         }
-    }
+    })
+}
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -40,13 +41,13 @@ class Login extends Component {
     render() {
         const { wrongCreds } = this.state
         // console.log("Username:", this.state.username, "Password:", this.state.password)
-        // console.log("Login props",this.props)
+        console.log("Login props", this.props)
         return (
             <div >
                 <div >
-                <div >
-                    {wrongCreds ? <p className="wrong-login">Please Enter a Valid Username &\or Password</p> 
-                    : <></>}
+                    <div >
+                        {wrongCreds ? <p className="wrong-login">Please Enter a Valid Username &\or Password</p>
+                            : <></>}
                     </div>
                     {/* <button className="login-nav"><a href="/registration">Register</a></button> */}
                     <br /><br />
@@ -55,15 +56,15 @@ class Login extends Component {
                     <h1 id="login-h1" className="login" >LOGIN</h1>
                     <br /><br />
                     <form onSubmit={this.handleSubmit} className="login">
-                        <h3>User Name</h3>
-                        <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-                        <h3>Password</h3>
-                        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                        <h1>User Name</h1>
+                        <input style={{ width: "60%" }} type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                        <h1>Password</h1>
+                        <input style={{ width: "60%" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                         <br /><br />
                         <input type="submit" />
-                        <h5> Forgot password? Resset it  <input type="submit" value="Here" /></h5>
+                        <h4> Forgot password? Resset it  <input type="submit" value="Here" /></h4>
                     </form>
-                   
+
                 </div>
             </div>
 
@@ -71,4 +72,10 @@ class Login extends Component {
         )
     }
 }
-export default connect(null, { adminLoginFetch })(Login)
+const mapStateToProps = (state) => {
+    return {
+        login: state.login
+    }
+
+}
+export default connect(mapStateToProps, { adminLoginFetch })(Login)

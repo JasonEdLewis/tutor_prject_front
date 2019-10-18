@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
         sessions: state.sessions.sessions,
         students: state.students.students,
         instructors: state.instructors.instructors,
-        login: state.login.currentAdmin
+        admin: state.login.currentAdmin
     }
 }
 
