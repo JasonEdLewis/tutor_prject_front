@@ -29,7 +29,7 @@ class App extends Component {
   //   this.props.getProfileFetch()
   // }
   render() {
-    console.log("App props:", this.props)
+    // console.log("App props:", this.props)
     return (
       <>
         <div className="App">

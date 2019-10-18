@@ -48,7 +48,7 @@ const mapStateToProps = (state) => {
     return {
         sessions: state.sessions.sessions,
         students: state.students.students,
-        instructors: state.instructors.instructors
+        instructors: state.instructors.instructors,
     }
 }
 

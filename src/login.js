@@ -9,11 +9,28 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
+
     }
 
+
+
+    componentDidMount() {
+        localStorage.token ? this.props.history.push('/admin') : this.props.history.push('/')
+    }
     handleSubmit = e => {
         e.preventDefault()
-        this.props.history.push('/admin')
+        // debugger
+        this.props.adminLoginFetch(this.state)
+        console.log(localStorage.token)
+        if (localStorage.token) {
+           
+            this.props.history.push('/admin')
+            this.setState({ wrongCreds: false, username: "", password: "" })
+        }
+        else {
+            this.setState({ wrongCreds: true, username: "", password: "" })
+            setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
+        }
     }
 
     handleChange = (e) => {
@@ -21,11 +38,17 @@ class Login extends Component {
     }
 
     render() {
-        console.log("Username:", this.state.username, "Password:", this.state.password)
+        const { wrongCreds } = this.state
+        // console.log("Username:", this.state.username, "Password:", this.state.password)
+        // console.log("Login props",this.props)
         return (
             <div >
                 <div >
-                    <button className="login-nav"><a href="/registration">Register</a></button>
+                <div >
+                    {wrongCreds ? <p className="wrong-login">Please Enter a Valid Username &\or Password</p> 
+                    : <></>}
+                    </div>
+                    {/* <button className="login-nav"><a href="/registration">Register</a></button> */}
                     <br /><br />
                 </div>
                 <div>
@@ -40,6 +63,7 @@ class Login extends Component {
                         <input type="submit" />
                         <h5> Forgot password? Resset it  <input type="submit" value="Here" /></h5>
                     </form>
+                   
                 </div>
             </div>
 
@@ -47,4 +71,4 @@ class Login extends Component {
         )
     }
 }
-export default Login
+export default connect(null, { adminLoginFetch })(Login)

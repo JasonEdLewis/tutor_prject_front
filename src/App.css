@@ -22,20 +22,24 @@
 
 .login {
  
-margin:0% 0% 0% 100%;   
+margin:0% 0% 0% 275%;   
 justify-content: justify;
 width: 90%;
 height: 90%;
 }
  #login-h1 {
    color: #d30935;
- margin: 0% 100% ; 
+ margin: 0% 275% ; 
  /* position: absolute; */
 }
-.login-nav{
-  /* MARGIN:  top, right, bottom, left */
-  margin:-20px 0px 0px 600px;
-  /* position: absolute; */
+
+.wrong-login{
+  color: #d30935;
+  margin-left: 60%;
+  width: 100%;
+  font-size: 100%;
+  font-weight: 1400;
+  position: relative;
 }
 .App-link {
   color: #09d3ac;

@@ -11,15 +11,14 @@ export default function adminShow(props) {
     return (
 
         <div className="middle">
-            <nav><button onClick={()=> history.push('/')}>Log Out</button></nav>
+            <nav><button onClick={()=> {
+                history.push('/')
+                localStorage.clear()
+                console.log("Local storage After logout",localStorage.token)
+        }}>Log Out</button></nav>
              <h1>WELCOME BACK {null}</h1>
                 
                 <div>
-
-                    <br/>
-                    <br/>
-                   
-                    
                     
                     </div>  
         </div>)
