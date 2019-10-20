@@ -60,6 +60,7 @@ const mapStateToProps = (state) => {
 }
 
 
+
 export default connect(mapStateToProps, { getProfileFetch } )(Profile)
 
 /*

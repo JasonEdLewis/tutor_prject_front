@@ -18,16 +18,14 @@ import { getProfileFetch } from './actions/adminActions'
 class App extends Component {
 
   state = {
-    loggedIn: true,
+    // loggedIn: true,
   }
 
-  loggedIn = () => {
-    this.setState({ loggedIn: !this.state.loggedIn })
-  }
+
 
   
   render() {
-    // console.log("App props:", this.props)
+    console.log("App props:", this.props, localStorage.token) 
     return (
       <>
         <div className="App">
@@ -42,7 +40,7 @@ class App extends Component {
           <Switch>
             <div>
               <Route exact path="/" component={Login} />
-              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile" component={Profile} /> 
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />
               <Route exact path="/signup" component={Signup} />
@@ -57,6 +55,11 @@ class App extends Component {
       </>
 
     );
+  }
+}
+const mapStateToProps=(state)=>{
+  return {
+    login: state.login
   }
 }
 

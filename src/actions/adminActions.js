@@ -49,15 +49,15 @@ export const adminLoginFetch = (info) => {
     })
       .then(resp => resp.json())
       .then(data => {
-        
         console.log("data after login fetch:", data.admin)
-        if (data.token) {
-          dispatch(loginAdmin(data.admin))
-          localStorage.setItem("token", data.token)
-        } else {
-          dispatch(showError(data.message))
-        }
-      })
+        dispatch(loginAdmin(data.admin))
+        localStorage.setItem("token", data.token)
+      }
+      ).catch((data) => {
+        showError(data.message)
+        console.log(data.message)
+      }
+      )
   }
 }
 

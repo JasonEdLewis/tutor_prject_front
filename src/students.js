@@ -25,11 +25,11 @@ class Students extends Component {
             id: studentId,
         })
     }
-    unclickNewStudentForm=()=>{
-        this.setState({formSubmitted : false, formClicked: !this.state.formClicked })
+    unclickNewStudentForm = () => {
+        this.setState({ formSubmitted: false, formClicked: !this.state.formClicked })
     }
     handleSubmit = (e) => {
-        
+
         e.preventDefault()
         console.log("Plain Students Handle Submit")
         this.setState({
@@ -66,24 +66,24 @@ class Students extends Component {
             <ul>
                 <li>Grade: {theStudent.grade}</li>
                 <li>Guardian: {theStudent.guardian}</li>
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.location} </li><li>{/*instructors*/}</li></>))
-
-                    : `${theStudent.name} has no sessions booked`}
                 <li>School: {theStudent.school}</li>
-                <li>Dates: {theStudent.date}</li>
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.subject} </li><li>Dates: {sess.date}</li></>))
+                : `${theStudent.name} has no sessions booked`}
+                
+                
             </ul>
         </div>)
     }
 
     render() {
 
-            console.group("students.js props")
+        console.group("students.js props", this.props)
         const students = this.props.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
-                {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit}formUnclick={this.unclickNewStudentForm} /> : <></>}
+                {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
 
             </div>
         )

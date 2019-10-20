@@ -2,8 +2,7 @@ import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from '../actions/types';
 
 const initialState = {
     sessions: [],
-    // session: {}
-
+    
 };
 
 export default function (state = initialState, action) {

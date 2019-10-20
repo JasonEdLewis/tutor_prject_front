@@ -2,7 +2,6 @@ import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR } from '../actions
 
 const initialState = {
     instructors: [],
-    instructor: {}
 };
 
 export default function (state = initialState, action) {

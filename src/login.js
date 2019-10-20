@@ -15,12 +15,15 @@ class Login extends Component {
 
 
     componentDidMount() {
-        localStorage.token ? this.props.history.push('/profile') : this.props.history.push('/')
+        if (localStorage.token){this.props.history.push('/profile') }
     }
     handleSubmit = e => {
         e.preventDefault()
         // debugger
-        this.props.adminLoginFetch(this.state)
+        this.props.login(this.state)
+        .then(()=>{
+            this.props.history.push('/profile')
+        })
         console.log(localStorage.token)
 
         if (this.props.login.loggedId) {
@@ -29,8 +32,10 @@ class Login extends Component {
 
         }
         else {
+            
             this.setState({ wrongCreds: true, username: "", password: "" })
             setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
+            
         }
     }
 
@@ -46,7 +51,7 @@ class Login extends Component {
             <div >
                 <div >
                     <div >
-                        {wrongCreds ? <p className="wrong-login">Please Enter a Valid Username &\or Password</p>
+                        {wrongCreds ? <p className="wrong-login">{this.props.login.errorMessages}</p>
                             : <></>}
                     </div>
                     {/* <button className="login-nav"><a href="/registration">Register</a></button> */}
@@ -78,4 +83,7 @@ const mapStateToProps = (state) => {
     }
 
 }
-export default connect(mapStateToProps, { adminLoginFetch })(Login)
+const mapDispatchToProps = {
+    login : adminLoginFetch
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Login)
