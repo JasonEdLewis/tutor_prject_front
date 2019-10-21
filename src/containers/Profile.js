@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { getProfileFetch } from '../actions/adminActions';
 import AdminShow from '../components/adminShow';
 import '../App.css';
+import Nav from '../components/nav'
 
 
 class Profile extends Component {
@@ -29,7 +30,9 @@ componentDidMount() {
         console.log("profile props",this.props)
         return (
             <div className="Admin-container">
-
+                <div className="nav">
+                    <Nav history={this.props.history}/>
+                </div>
                 <div className="students">
                     <h1>Students</h1>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange}  history={this.props.history}/>

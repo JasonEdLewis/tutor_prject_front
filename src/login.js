@@ -15,15 +15,15 @@ class Login extends Component {
 
 
     componentDidMount() {
-        if (localStorage.token){this.props.history.push('/profile') }
+        if (localStorage.token) { this.props.history.push('/profile') }
     }
     handleSubmit = e => {
         e.preventDefault()
         // debugger
         this.props.login(this.state)
-        .then(()=>{
-            this.props.history.push('/profile')
-        })
+            .then(() => {
+               
+           
         console.log(localStorage.token)
 
         if (this.props.login.loggedId) {
@@ -32,12 +32,13 @@ class Login extends Component {
 
         }
         else {
-            
+
             this.setState({ wrongCreds: true, username: "", password: "" })
             setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
-            
+
         }
-    }
+    })
+}
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -84,6 +85,6 @@ const mapStateToProps = (state) => {
 
 }
 const mapDispatchToProps = {
-    login : adminLoginFetch
+    login: adminLoginFetch
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

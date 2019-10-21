@@ -8,7 +8,9 @@ import NewInstructorForm from './NewInstructorForm';
 import Login from './login';
 import Four0Four from './Four0Four';
 import Signup from './Signup';
-import { getProfileFetch } from './actions/adminActions'
+import { getProfileFetch } from './actions/adminActions';
+import Resources from './components/resources'
+
 
 
 
@@ -18,7 +20,7 @@ import { getProfileFetch } from './actions/adminActions'
 class App extends Component {
 
   state = {
-    // loggedIn: true,
+    loggedIn: true,
   }
 
 
@@ -29,8 +31,9 @@ class App extends Component {
     return (
       <>
         <div className="App">
-          <header className="App-header">
-            {this.state.loggedIn ? <nav>Admin Page</nav> :
+         <header className="App-header"> 
+         
+            { this.state.loggedIn ? <nav>Admin Page</nav> :
               <nav>WELCOME TO ABC TUTORING</nav>
             }
           </header>
@@ -43,6 +46,7 @@ class App extends Component {
               <Route exact path="/profile" component={Profile} /> 
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />
+              <Route exact path="/resources" component={Resources}/>
               <Route exact path="/signup" component={Signup} />
 
               {/* <Route component={Four0Four}/> */}

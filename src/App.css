@@ -1,3 +1,9 @@
+/* #root{
+  background-color: #ddebfc;
+  background-image: url("https://www.transparenttextures.com/patterns/cross-stripes.png");
+
+
+} */
 .App {
   text-align: center;
 }
@@ -19,13 +25,41 @@
   font-size: calc(10px + 2vmin);
   color: rgb(133, 7, 133);
 }
+ 
 
+.nav li {
+  display: inline-flex;
+ flex-direction: row;
+ font-size: 2.5vh;
+ font-style: inherit;
+ font-weight: bolder;
+ font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ margin-left: 8%;
+}
+
+.nav li a {
+  color: rgb(6, 1, 70);
+  text-align: center;
+  padding: 10px 100px;
+  text-decoration: none;
+ 
+}
+
+.nav li a:hover {
+  background-color: rgba(233, 225, 225, 0.356);
+
+
+}
+.nav li a:visited {
+  color: #020b16;
+}
 .login {
  
 margin:0% 0% 0% 250%;   
 justify-content: justify;
 width: 100%;
 height: 100%;
+z-index: 1.1;
 
 }
  #login-h1 {
@@ -46,6 +80,7 @@ height: 100%;
   color: #09d3ac;
 }
 li{
+  display: flex;
   list-style: none;
   text-decoration:none;
 }
@@ -62,10 +97,9 @@ a {
   font-size: 10px;
 }
 .Body{
-  display: flex;
+  display: inline-flexbox;
   padding: 0%;
-  margin-left: 15%;
-  margin-top: 5%;
+
   color: #666675;
   font-family: Consolas, "Courier New",
     monospace;
@@ -83,19 +117,24 @@ a {
 
 .Admin-container {
   display: grid;
-  grid-template-columns: 400px 500px 400px ;
+  grid-template-columns: 4fr 5fr 4fr ;
+  grid-template-rows: 1fr 14fr;
   column-gap: 15px;
-  height:750px;
-  float: left;
+  height:100vh;
   grid-template-areas: 
-  
-  'students admin instructors'
+                      'nav nav nav'
+                      'students admin instructors'
                       
 }
 
+.nav {
+  grid-area: nav;
+  margin: 0vh;
+
+}
 .students{ grid-area: students;
   text-align: center;
-  margin-left: -50px;
+ 
   background-color: #f0dede;
 
 }
@@ -112,6 +151,7 @@ a {
   justify-content: left;
 
 }
+
 
 h5{
   margin:0px 0px 0px -50px;
@@ -139,4 +179,16 @@ h5{
   margin-left: 20%;
   width: 65%;
   padding: 1%;
+}
+
+/* Resources Page */
+
+.resources{
+  display: inline;
+  text-align: center;
+}
+.resources button {
+  align-self: auto;
+  text-align: center;
+  background-color: lightcoral;
 }
