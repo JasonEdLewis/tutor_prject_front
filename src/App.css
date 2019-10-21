@@ -1,11 +1,12 @@
-/* #root{
+#root{
   background-color: #ddebfc;
   background-image: url("https://www.transparenttextures.com/patterns/cross-stripes.png");
 
 
-} */
+}
 .App {
   text-align: center;
+ 
 }
 
 .App-logo {
@@ -23,7 +24,9 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: rgb(133, 7, 133);
+  color: rgb(97, 5, 5);
+  font-family: inherit;
+  
 }
  
 
@@ -53,29 +56,7 @@
 .nav li a:visited {
   color: #020b16;
 }
-.login {
- 
-margin:0% 0% 0% 250%;   
-justify-content: justify;
-width: 100%;
-height: 100%;
-z-index: 1.1;
 
-}
- #login-h1 {
-   color: #d30935;
- margin: 0% 250% ; 
- /* position: absolute; */
-}
-
-.wrong-login{
-  color: #d30935;
-  margin-left: 60%;
-  width: 100%;
-  font-size: 100%;
-  font-weight: 1400;
-  position: relative;
-}
 .App-link {
   color: #09d3ac;
 }
@@ -114,6 +95,7 @@ a {
   background-color: rgb(244, 245, 248);
 }
 
+/* Profile  */
 
 .Admin-container {
   display: grid;
@@ -145,7 +127,8 @@ a {
   background-color: #dee4f0;
   text-align: center;
 }
-.instructors { grid-area: instructors ;
+.instructors { 
+  grid-area: instructors ;
   background-color: #e2f0de;
   text-align: center;
   justify-content: left;
@@ -181,14 +164,3 @@ h5{
   padding: 1%;
 }
 
-/* Resources Page */
-
-.resources{
-  display: inline;
-  text-align: center;
-}
-.resources button {
-  align-self: auto;
-  text-align: center;
-  background-color: lightcoral;
-}

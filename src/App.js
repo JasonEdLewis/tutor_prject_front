@@ -13,10 +13,6 @@ import Resources from './components/resources'
 
 
 
-
-
-
-
 class App extends Component {
 
   state = {
@@ -25,16 +21,16 @@ class App extends Component {
 
 
 
-  
+
   render() {
-    console.log("App props:", this.props, localStorage.token) 
+    console.log("App props:", this.props, localStorage.token)
     return (
       <>
         <div className="App">
-         <header className="App-header"> 
-         
-            { this.state.loggedIn ? <nav>Admin Page</nav> :
-              <nav>WELCOME TO ABC TUTORING</nav>
+          <header className="App-header">
+
+            {localStorage.token ? <h1>Admin Page</h1> :
+              <h3>HOME INSTRUCTION SUPPORT</h3>
             }
           </header>
         </div>
@@ -43,13 +39,12 @@ class App extends Component {
           <Switch>
             <div>
               <Route exact path="/" component={Login} />
-              <Route exact path="/profile" component={Profile} /> 
+              <Route exact path="/profile" component={Profile} />
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />
-              <Route exact path="/resources" component={Resources}/>
+              <Route exact path="/resources" component={Resources} />
               <Route exact path="/signup" component={Signup} />
-
-              {/* <Route component={Four0Four}/> */}
+              {/* <Route component={Login}/> */}
               <br />
 
             </div>
@@ -61,10 +56,10 @@ class App extends Component {
     );
   }
 }
-const mapStateToProps=(state)=>{
+const mapStateToProps = (state) => {
   return {
     login: state.login
   }
 }
 
-export default connect(null, { getProfileFetch })(App);
+export default connect(mapStateToProps, { getProfileFetch })(App);

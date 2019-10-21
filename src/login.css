@@ -1,0 +1,28 @@
+.login-div {
+    margin:10% 0% 0% 45%;   
+    /* justify-self: center; */
+    width: 100vw;
+    height: 100vh;
+    z-index:0.9;
+    
+    color: rgb(0, 0, 0);
+    
+    }
+     #login-h1 {
+     color: #d30935;
+     margin: 0% 0% ; 
+     position: absolute;
+    }
+    
+    .wrong-login{
+      color: #d30935;
+      margin-left: 60%;
+      width: 100%;
+      font-size: 100%;
+      font-weight: 1400;
+      position: relative;
+    }
+    .login-div .login{
+       /* background-color: #d30935; */
+       width: 15vw;
+    }

@@ -1,0 +1,31 @@
+/* Resources Page */
+
+.resources{
+    /* display: inline; */
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fbfbfb;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    grid-template-areas: 
+                        'stu inst'
+                    
+    
+    ;
+  
+  }
+  .resources button {
+    align-self: auto;
+    text-align: center;
+    background-color: lightcoral;
+  
+  }
+  .stu-resources{
+      grid-area: stu;
+      background-color: cadetblue;
+  }
+  .inst-resources{
+      grid-area: inst;
+      background-color: blue;
+  }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './login.css';
 import { connect } from 'react-redux';
 import { adminLoginFetch } from './actions/adminActions'
 
@@ -22,23 +22,22 @@ class Login extends Component {
         // debugger
         this.props.login(this.state)
             .then(() => {
-               
-           
-        console.log(localStorage.token)
 
-        if (this.props.login.loggedId) {
+                console.log(localStorage.token)
 
-            this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
+                if (this.props.login.loggedId) {
 
-        }
-        else {
+                    this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
 
-            this.setState({ wrongCreds: true, username: "", password: "" })
-            setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
+                }
+                else {
 
-        }
-    })
-}
+                    this.setState({ wrongCreds: true, username: "", password: "" })
+                    setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
+
+                }
+            })
+    }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
@@ -49,7 +48,7 @@ class Login extends Component {
         // console.log("Username:", this.state.username, "Password:", this.state.password)
         console.log("Login props", this.props)
         return (
-            <div >
+            <div className="login-div">
                 <div >
                     <div >
                         {wrongCreds ? <p className="wrong-login">{this.props.login.errorMessages}</p>
@@ -58,8 +57,8 @@ class Login extends Component {
                     {/* <button className="login-nav"><a href="/registration">Register</a></button> */}
                     <br /><br />
                 </div>
-                <div>
-                    <h1 id="login-h1" className="login" >LOGIN</h1>
+                <div className="login">
+                    <h1 id="login-h1"  >LOGIN</h1>
                     <br /><br />
                     <form onSubmit={this.handleSubmit} className="login">
                         <h1>User Name</h1>
@@ -68,7 +67,7 @@ class Login extends Component {
                         <input style={{ width: "60%" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                         <br /><br />
                         <input type="submit" />
-                        <h4> Forgot password? Resset it  <input type="submit" value="Here" /></h4>
+                        <h4> Forgot password? Reset it  <input type="submit" value="Here" /></h4>
                     </form>
 
                 </div>
