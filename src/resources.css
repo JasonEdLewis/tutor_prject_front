@@ -3,14 +3,20 @@
 .resources{
     /* display: inline; */
     text-align: center;
-    width: 100vw;
+    width: 80vw;
     height: 100vh;
     background-color: #fbfbfb;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr 4fr;
+    grid-column-gap: 50px;
+    grid-row-gap: 0px;
+    margin-left: 7.5vw;
+    margin-right: 0vw;
     grid-template-areas: 
+                        'header header'
                         'stu inst'
-                    
+                        'stu inst'
     
     ;
   
@@ -21,11 +27,17 @@
     background-color: lightcoral;
   
   }
+  .resources-header{
+    grid-area: header;
+  }
   .stu-resources{
       grid-area: stu;
+      margin-left: 1.5vw;
       background-color: cadetblue;
   }
   .inst-resources{
       grid-area: inst;
+      margin-right: 1.5vw;
       background-color: blue;
+      color: blanchedalmond;
   }

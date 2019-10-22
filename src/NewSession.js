@@ -33,10 +33,10 @@ class NewSession extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault()
-        debugger
         this.props.createSession(this.state)
-        this.setState({ student_id: "", instructor_id: "", admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
         this.props.removeForm()
+        this.setState({ student_id: "", instructor_id: "", admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+
 
         // console.log(this.state)
     }
