@@ -77,7 +77,6 @@ class Students extends Component {
 
     render() {
 
-        console.group("students.js props", this.props)
         const students = this.props.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
         return (
             <div>

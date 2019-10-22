@@ -1,10 +1,18 @@
 import React from 'react';
 import '../resources.css';
-import { Link } from 'react-router-dom';
+import Headers from './headers'
+
+
 
 export default function resources(props) {
+    // debugger
+    console.log("resources props:",props)
+    const { history }= props
     return (
         <div className="resources">
+            <div className="main-headers">
+            <Headers history={history}/>
+            </div>
             <div className=" resources-header">
             <h1>Welcome to the Resources Page</h1>
             <p><h4>Here is where you will find all of the resources you need for students, administrators and tutors alike.</h4></p>

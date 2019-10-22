@@ -100,10 +100,12 @@ a {
 .Admin-container {
   display: grid;
   grid-template-columns: 4fr 5fr 4fr ;
-  grid-template-rows: 1fr 14fr;
-  column-gap: 15px;
+  grid-template-rows: 1fr 1fr 4fr;
+  column-gap: 20px;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
   height:100vh;
-  grid-template-areas: 
+  grid-template-areas: 'headers headers headers'
                       'nav nav nav'
                       'students admin instructors'
                       
@@ -134,7 +136,9 @@ a {
   justify-content: left;
 
 }
-
+.header-component {
+  grid-area: headers;
+}
 
 h5{
   margin:0px 0px 0px -50px;

@@ -19,22 +19,10 @@ class App extends Component {
     loggedIn: true,
   }
 
-
-
-
   render() {
-    console.log("App props:", this.props, localStorage.token)
+    console.log("App props:", this.props)
     return (
-      <>
-        <div className="App">
-          <header className="App-header">
-
-            {localStorage.token ? <h1>Admin Page</h1> :
-              <h3>HOME INSTRUCTION SUPPORT</h3>
-            }
-          </header>
-        </div>
-
+      <div>
         <body className="Body">
           <Switch>
             <div>
@@ -51,7 +39,7 @@ class App extends Component {
           </Switch>
 
         </body>
-      </>
+      </div>
 
     );
   }

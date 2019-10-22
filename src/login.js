@@ -9,10 +9,9 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
+        
 
     }
-
-
 
     componentDidMount() {
         if (localStorage.token) { this.props.history.push('/profile') }
@@ -20,13 +19,14 @@ class Login extends Component {
     handleSubmit = e => {
         e.preventDefault()
         // debugger
+        
         this.props.login(this.state)
             .then(() => {
-
-                console.log(localStorage.token)
+                
+                console.log("Loggin Token",localStorage.token)
 
                 if (this.props.login.loggedId) {
-
+                    this.setState({loggedIn : true})
                     this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
 
                 }
@@ -45,8 +45,7 @@ class Login extends Component {
 
     render() {
         const { wrongCreds } = this.state
-        // console.log("Username:", this.state.username, "Password:", this.state.password)
-        console.log("Login props", this.props)
+
         return (
             <div className="login-div">
                 <div >
@@ -79,7 +78,7 @@ class Login extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        login: state.login
+        loggedIn: state.login
     }
 
 }

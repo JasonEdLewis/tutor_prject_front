@@ -4,15 +4,14 @@ import Students from '../students';
 import Sessions from '../sessions';
 import { connect } from 'react-redux';
 import { getProfileFetch } from '../actions/adminActions';
-import AdminShow from '../components/adminShow';
+import Headers from '../components/headers';
 import '../App.css';
 import Nav from '../components/nav'
 
 
 class Profile extends Component {
 
-
-
+    
 componentDidMount() {
     this.props.getProfileFetch()
 }
@@ -28,25 +27,26 @@ componentDidMount() {
 
     render() {
         console.log("profile props",this.props)
+        const { admin, history} = this.props
         return (
             <div className="Admin-container">
+                <Headers propsFromProfile={this.props} loggedIn={true}/>
                 <div className="nav">
-                    <Nav history={this.props.history}/>
+                    <Nav history={history}/>
                 </div>
                 <div className="students">
                     <h1>Students</h1>
-                    <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange}  history={this.props.history}/>
+                    <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange}  history={history}/>
                 </div >
 
                 <div className="admin">
-                    <AdminShow info={this.props} handleChange={this.handleChange} handleSubmit={this.handleSubmit} user={null}/>
-                    <br/>
-                    <Sessions history={this.props.history}/>
+                <h1>WELCOME BACK {admin.username}</h1>
+                    <Sessions history={history}/>
                 </div>
 
                 <div className="instructors">
                     <h1>Instructors</h1>
-                    <Instructors history={this.props.history} />
+                    <Instructors history={history} />
                 </div>
 
             </div>

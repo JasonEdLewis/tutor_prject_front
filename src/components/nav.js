@@ -10,7 +10,7 @@ export default function Nav(props) {
         <nav >
         <ul>
             <li><Link to="/resources">Resources</Link></li> 
-            <li><a href="#news">Add Admin</a></li>
+            {/* <li><a href="#news">Add Admin</a></li> */}
             <li><span onClick={()=> {
                 history.push('/')
                 localStorage.clear()

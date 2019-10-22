@@ -8,12 +8,13 @@
     background-color: #fbfbfb;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 1fr 4fr;
+    grid-template-rows: 0.5fr 0.5fr 3fr;
     grid-column-gap: 50px;
     grid-row-gap: 0px;
     margin-left: 7.5vw;
     margin-right: 0vw;
     grid-template-areas: 
+                        'main main'
                         'header header'
                         'stu inst'
                         'stu inst'
@@ -27,17 +28,28 @@
     background-color: lightcoral;
   
   }
+  .main-headers {
+    grid-area: main;
+    height: 10vh;
+    margin-top: 2.5vh;
+    background-color: blueviolet;
+  }
   .resources-header{
     grid-area: header;
+    /* background-color: blue; */
+    height: 5vh;
   }
   .stu-resources{
       grid-area: stu;
       margin-left: 1.5vw;
+      height: 50vh;
       background-color: cadetblue;
   }
   .inst-resources{
       grid-area: inst;
       margin-right: 1.5vw;
+      height: 50vh;
       background-color: blue;
       color: blanchedalmond;
   }
+  
