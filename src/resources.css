@@ -23,9 +23,15 @@
   
   }
   .resources button {
-    align-self: auto;
-    text-align: center;
-    background-color: lightcoral;
+    grid-area: drop;
+  width: 7.5vw;
+  height: 5vh;
+  margin-left:20vw;
+  margin-top: 5vh;
+  border-radius: .5em;
+  font-size: 1em;
+  z-index: 1.5;
+  background-color: crimson;
   
   }
   .main-headers {
@@ -42,13 +48,13 @@
   .stu-resources{
       grid-area: stu;
       margin-left: 1.5vw;
-      height: 50vh;
+      height: 74vh;
       background-color: cadetblue;
   }
   .inst-resources{
       grid-area: inst;
       margin-right: 1.5vw;
-      height: 50vh;
+      height: 74vh;
       background-color: blue;
       color: blanchedalmond;
   }

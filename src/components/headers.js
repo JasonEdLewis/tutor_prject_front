@@ -12,7 +12,7 @@ class Headers extends Component {
                     {(() => {
                         switch (true) {
                             case loggedIn:
-                                return (<h1>Admin Page</h1>)
+                                return (<h1>ADMIN PAGE</h1>)
                             case history.location.pathname === "/resources":
                                 return (<h1>RESOURCES PAGE</h1>)
                             default:

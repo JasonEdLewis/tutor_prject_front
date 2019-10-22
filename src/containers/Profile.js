@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { getProfileFetch } from '../actions/adminActions';
 import Headers from '../components/headers';
 import '../App.css';
-import Nav from '../components/nav'
+import Dropdown from '../components/dropdown'
 
 
 class Profile extends Component {
@@ -26,14 +26,13 @@ componentDidMount() {
 
 
     render() {
-        console.log("profile props",this.props)
+        console.log("Drop props",this.props)
         const { admin, history} = this.props
         return (
             <div className="Admin-container">
+
+                <Dropdown history={history} className="dropdown"/>
                 <Headers propsFromProfile={this.props} loggedIn={true}/>
-                <div className="nav">
-                    <Nav history={history}/>
-                </div>
                 <div className="students">
                     <h1>Students</h1>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange}  history={history}/>

@@ -1,6 +1,7 @@
 import React from 'react';
 import '../resources.css';
 import Headers from './headers'
+import Dropdown from './dropdown';
 
 
 
@@ -11,7 +12,7 @@ export default function resources(props) {
     return (
         <div className="resources">
             <div className="main-headers">
-            <Headers history={history}/>
+            <Dropdown history={history}/>
             </div>
             <div className=" resources-header">
             <h1>Welcome to the Resources Page</h1>
