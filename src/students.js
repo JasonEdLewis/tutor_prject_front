@@ -68,23 +68,27 @@ class Students extends Component {
                 <li>Guardian: {theStudent.guardian}</li>
                 <li>School: {theStudent.school}</li>
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.subject} </li><li>Dates: {sess.date}</li></>))
-                : `${theStudent.name} has no sessions booked`}
-                
-                
+                    : `${theStudent.name} has no sessions booked`}
+
+
             </ul>
         </div>)
     }
+   
 
     render() {
 
-        const students = this.props.students.map(stu => <p onClick={() => this.handleClick(stu.id)}><strong>Name:</strong>{stu.name} <br /><strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p>)
+        const students = this.props.students.map(stu => {
+          return  <> <p  onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} <strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p></>
+        })
         return (
             <div>
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
                 {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
-
+                
             </div>
+           
         )
     }
 

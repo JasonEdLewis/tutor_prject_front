@@ -36,16 +36,20 @@ export const adminFetchPost = (admin) => {
 
 
 
-export const adminLoginFetch = (info) => {
+export const adminLoginFetch = (username, password) => {
 
   return dispatch => {
+    debugger
     return fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(info)
+      body: JSON.stringify({
+        username: username,
+        password: password
+      })
     })
       .then(resp => resp.json())
       .then(data => {

@@ -106,7 +106,7 @@ a {
   border-color: rgb(172, 170, 170);;
   font-size: 1em;
   z-index: 1.5;
-  font-family: cursive;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 1900;
   background-color: rgb(248, 212, 212);
   
@@ -115,6 +115,7 @@ a {
   text-align: center;
   background-color: #f0dede;
   border-radius: .5em;
+  font-size: 1.5em;
 
 }
 .admin { 
@@ -124,6 +125,7 @@ a {
   background-color: #dee4f0;
   text-align: center;
   border-radius: .5em;
+  font-size: 1.5em;
 }
 .instructors { 
   grid-area: instructors ;
@@ -131,6 +133,7 @@ a {
   text-align: center;
   justify-content: left;
   border-radius: .5em;
+  font-size: 1.6em;
 
 }
 .header-component {

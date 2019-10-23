@@ -1,22 +1,22 @@
- 
- const initialState = {
+
+const initialState = {
 
     currentAdmin: {},
     loggedIn: false,
-    errorMessages: ""
+    error: ""
 
- }
+}
 
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case "LOGIN_ADMIN":
-            return {... state, currentAdmin: action.payload, loggedIn:true }
+            return { ...state, currentAdmin: action.payload, loggedIn: true }
         case "ERROR":
-            return{...state, errorMessages: action.payload}
-    
+            return { ...state, error: action.payload }
+
         default:
-           return state;
+            return state;
     }
-    
+
 }

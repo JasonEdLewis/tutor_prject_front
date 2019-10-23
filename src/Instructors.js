@@ -31,7 +31,7 @@ class Instructors extends Component {
         // debugger
         // console.log("Instructors props: ", this.props)
         const { instructors, history } = this.props
-        const instructor = instructors.map(inst => <p>{inst.name}/{inst.subject}/ <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span> <br /><strong>available hours:</strong>{inst.hours}  </p>)
+        const instructor = instructors.map(inst => <p><strong>{inst.name}</strong>/{inst.subject}: <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span> <br /><strong>available hours:</strong>{inst.hours}  </p>)
         return (
             <div>
                 {instructor}

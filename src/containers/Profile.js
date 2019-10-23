@@ -36,6 +36,7 @@ componentDidMount() {
                 <div className="students">
                     <h1>Students</h1>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange}  history={history}/>
+                    <> <p className="booked">Booked: ✅   |  Needs Booking:❗️</p></> 
                 </div >
 
                 <div className="admin">

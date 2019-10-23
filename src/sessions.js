@@ -37,7 +37,7 @@ class Sessions extends Component {
 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
-        const session = this.props.sessions.map(session => (<><ul key={session.id} onClick={() => this.SessionClicked(session.id)}><li ><strong>{session.student.name}: has</strong> <li> {session.subject} </li> with {session.instructor.name} on  {session.date.replace(/-/g, "/")}</li></ul></>))
+        const session = this.props.sessions.map(session => (<><div key={session.id} onClick={() => this.SessionClicked(session.id)}><strong>{session.student.name}:</strong> </div><p> {session.subject} with {session.instructor.name} on  {session.date.replace(/-/g, "/")}</p></>))
 
         return (
             <div>
