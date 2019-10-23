@@ -16,7 +16,7 @@ import Resources from './components/resources'
 class App extends Component {
 
   state = {
-    loggedIn: true,
+    loggedIn: false,
   }
 
   render() {
@@ -32,7 +32,6 @@ class App extends Component {
               <Route exact path="/newInstructor" component={NewInstructorForm} />
               <Route exact path="/resources" component={Resources} />
               <Route exact path="/signup" component={Signup} />
-              {/* <Route component={Login}/> */}
               <br />
 
             </div>

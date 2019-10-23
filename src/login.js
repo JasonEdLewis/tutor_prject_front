@@ -54,16 +54,16 @@ class Login extends Component {
                         <br /><br />
                     </div>
                     <div className="login">
-                        <h1 id="login-h1"  >LOGIN</h1>
+                        <h1 id="login-h1" style={{fontSize:"2.5em"}} >LOGIN</h1>
                         <br /><br />
                         <form onSubmit={this.handleSubmit} className="login">
                             <h1>User Name</h1>
-                            <input style={{ width: "60%" }} type="text" name="username" value={this.state.username} onChange={this.handleChange} />
+                            <input style={{ width: "60%", fontSize:"2em", borderRadius:".25em"}} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
                             <h1>Password</h1>
-                            <input style={{ width: "60%" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} />
+                            <input classname="login-inputs" style={{ width: "60%", fontSize:"2em", borderRadius:".25em"}} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"/>
                             <br /><br />
-                            <input type="submit" />
-                            <h4> Forgot password? Reset it  <input type="submit" value="Here" /></h4>
+                            <input type="submit" style={{ width: "40%", fontSize:"1.2em", borderRadius:".25em"}}/>
+                            <h4> Forgot password? Reset it  <input type="submit" value="Here" style={{ width: "30%", fontSize:"1em", borderRadius:".25em"}}/></h4>
                         </form>
 
                     </div>

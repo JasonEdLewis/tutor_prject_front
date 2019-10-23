@@ -12,6 +12,7 @@
      color: #d30935;
      margin: 0% 0% ; 
      position: absolute;
+     
     }
     
     .wrong-login{
@@ -25,4 +26,9 @@
     .login-div .login{
        /* background-color: #d30935; */
        width: 15vw;
+    }
+    .login-inputs {
+       width: 60%; 
+       font-size:2em;
+        border-radius:.25em
     }
