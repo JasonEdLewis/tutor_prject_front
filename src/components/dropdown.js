@@ -21,7 +21,7 @@ export default class Dropdown extends Component {
     return (
       <div className="dropdown">
         <button onClick={this.showMenu} className="drop-btn">
-          |  M | E | N | U |
+            M  E  N  U 
           </button>
 
         {

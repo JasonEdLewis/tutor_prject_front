@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './login.css';
 import { connect } from 'react-redux';
-import { adminLoginFetch } from './actions/adminActions'
+import { adminLoginFetch } from './actions/adminActions';
+import Headers from './components/headers'
 
 
 class Login extends Component {
@@ -9,8 +10,6 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
-        
-
     }
 
     componentDidMount() {
@@ -18,42 +17,37 @@ class Login extends Component {
     }
     handleSubmit = e => {
         e.preventDefault()
-        // debugger
-        
         this.props.login(this.state)
             .then(() => {
-                
-                console.log("Loggin Token",localStorage.token)
 
                 if (this.props.login.loggedId) {
                     this.setState({loggedIn : true})
                     this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
-
                 }
                 else {
-
                     this.setState({ wrongCreds: true, username: "", password: "" })
                     setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
-
                 }
             })
     }
 
-    handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
+    handleChange = (e) => { this.setState({ [e.target.name]: e.target.value })}
 
     render() {
         const { wrongCreds } = this.state
-
+            console.log(this.props)
         return (
+            <>
+            <div>
+            <Headers history={this.props}/>
+            </div>
             <div className="login-div">
                 <div >
                     <div >
                         {wrongCreds ? <p className="wrong-login">{this.props.login.errorMessages}</p>
                             : <></>}
                     </div>
-                    {/* <button className="login-nav"><a href="/registration">Register</a></button> */}
+                
                     <br /><br />
                 </div>
                 <div className="login">
@@ -71,7 +65,7 @@ class Login extends Component {
 
                 </div>
             </div>
-
+            </>
 
         )
     }

@@ -10,8 +10,13 @@ export default function resources(props) {
     console.log("resources props:",props)
     const { history }= props
     return (
+        <>
+        <div className="header-for-resources" >
+        <Headers history={history} />
+        </div>
         <div className="resources">
             <div className="main-headers">
+           
             <Dropdown history={history}/>
             </div>
             <div className=" resources-header">
@@ -26,9 +31,10 @@ export default function resources(props) {
                 <h1>Instructor Resources</h1>
             </div>
             <div>
-        <button onClick={() => props.history.push('/profile')}>Back</button>
+       
         </div>
         </div>
+        </>
         
     )
 }
