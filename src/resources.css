@@ -65,6 +65,12 @@
       margin-right: 1.5vw;
       height: 74vh;
       background-color: blue;
-      color: blanchedalmond;
+      color: white;
   }
-  
+
+  a{
+     color: white;
+  }
+  a:hoover {
+    color:pink
+  }

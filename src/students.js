@@ -53,7 +53,7 @@ class Students extends Component {
                 <h3><strong>Add A New Student: </strong></h3>
                 <form className="quick-form" onSubmit={this.handleSubmit}>
                     <textarea rows="8" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
-                    <button >Submit</button>
+                    <br/><button >Submit</button>
                 </form>
             </>)
     }

@@ -29,6 +29,9 @@ export default function resources(props) {
             </div>
             <div className="inst-resources">
                 <h1>Instructor Resources</h1>
+                <h2><a href="https://drive.google.com/file/d/0B_ZbftnTEqRSQm4yOHczWG1RaWs/view?usp=sharing">High School Handbook</a></h2>
+                <h2><a href="https://drive.google.com/file/d/0B_ZbftnTEqRSMlZvUEVRdEIzdlE/view?usp=sharing">Tutor Notes</a></h2>
+                <h2><a href="https://drive.google.com/file/d/0B_ZbftnTEqRSc0pQU0lYY0ppZ3M/view?usp=sharing">Attendance Forms</a></h2>
             </div>
             <div>
        
