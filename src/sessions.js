@@ -29,6 +29,8 @@ class Sessions extends Component {
         return <div class="panel"> <p>Lorem ipsum...</p> </div>
     }
     }
+
+  
     render() {
         // console.log("Sessions props",this.props)
        
@@ -41,7 +43,6 @@ class Sessions extends Component {
         const time = session.date.replace(/-/g, "/").slice(11,16)
         const date = session.date.replace(/-/g, "/").split("T")[0]
         const timeInt = parseInt(time)
-        console.log("date", date, "time",time, "Integer of time",timeInt )
         return (<><div key={session.id} onClick={() => this.SessionClicked(session.id)}><strong>{session.student.name}:</strong> </div><p> {session.subject} with {session.instructor.name} on {date} at {timeInt >= 12 ? `${time}pm` : `${time}am`}</p></>)
 })
 

@@ -27,7 +27,7 @@ class NewSession extends Component {
 
     }
     availableInstructors = () => {
-        const theInstructor = this.props.instructors.filter(inst => inst.subject === this.props.student.subject)
+        const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
         // console.group(theInstructor)
         return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
     }

@@ -53,42 +53,60 @@ class Students extends Component {
                 <h3><strong>Add A New Student: </strong></h3>
                 <form className="quick-form" onSubmit={this.handleSubmit}>
                     <textarea rows="8" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
-                    <br/><button >Submit</button>
+                    <br /><button >Submit</button>
                 </form>
             </>)
+    }
+    hasSession = (student) => {
+        if (student.sessions.length > 0) {
+            student.sessions.map(sess => {
+                const time = sess.date.replace(/-/g, "/").slice(11, 16)
+                const date = sess.date.replace(/-/g, "/").split("T")[0]
+                const timeInt = parseInt(time)
+
+                const garbage = <li>`Date:${date} Time:${time}`</li>
+                console.log("Its mod 5 and Jack has to do this for me", garbage)
+                return garbage
+            })
+        }
+        else {
+            const status = <li>`${student.name} has no sessions booked....`</li>
+            return status
+        }
+
     }
 
     singleStudentInfo = (id) => {
         const theStudent = this.props.students.find(stu => stu.id === id)
-        // const instructors = this.props.students.instructors.find(inst => inst.id === this.props.students.sessions.instructor_id)
+
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
                 <li>Grade: {theStudent.grade}</li>
                 <li>Guardian: {theStudent.guardian}</li>
                 <li>School: {theStudent.school}</li>
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.subject} </li><li>Dates: {sess.date}</li></>))
-                    : `${theStudent.name} has no sessions booked`}
-
-
+                {this.hasSession(theStudent)}
+                {/* {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.subject} </li><li>Dates: {sess.date}</li></>))
+                    : `${theStudent.name} has no sessions booked`} */}
             </ul>
         </div>)
     }
-   
+
 
     render() {
 
+        console.log("Students props", this.props)
         const students = this.props.students.map(stu => {
-          return  <> <p  onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} <strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p></>
+            return <> <p onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} <strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p></>
         })
         return (
             <div>
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
                 {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
-                
+
             </div>
-           
+
         )
     }
 
