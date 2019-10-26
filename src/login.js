@@ -26,7 +26,7 @@ class Login extends Component {
                     this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
                 }
                 else {
-                    debugger
+                  
                     this.setState({ wrongCreds: true, username: "", password: "" })
                     this.props.history.push('/')
                     setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
@@ -54,15 +54,15 @@ class Login extends Component {
                         <br /><br />
                     </div>
                     <div className="login">
-                        <h1 id="login-h1" style={{fontSize:"2.5em"}} >LOGIN</h1>
+                        <h1 id="login-h1" style={{fontSize:"3em"}} >LOGIN</h1>
                         <br /><br />
                         <form onSubmit={this.handleSubmit} className="login">
                             <h1>User Name</h1>
-                            <input style={{ width: "60%", fontSize:"2em", borderRadius:".25em"}} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
+                            <input style={{ width: "60%", fontSize:"1.25em", borderRadius:".25em"}} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
                             <h1>Password</h1>
-                            <input classname="login-inputs" style={{ width: "60%", fontSize:"2em", borderRadius:".25em"}} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"/>
+                            <input classname="login-inputs" style={{ width: "60%", fontSize:"1.25em", borderRadius:".25em"}} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"/>
                             <br /><br />
-                            <input type="submit" style={{ width: "40%", fontSize:"1.2em", borderRadius:".25em"}}/>
+                            <input type="submit" style={{ width: "30%", fontSize:"1em", borderRadius:".25em", borderColor:"grey"}}/>
                             <h4> Forgot password? Reset it  <input type="submit" value="Here" style={{ width: "30%", fontSize:"1em", borderRadius:".25em"}}/></h4>
                         </form>
 

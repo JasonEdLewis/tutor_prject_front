@@ -12,11 +12,11 @@ class Headers extends Component {
                     {(() => {
                         switch (true) {
                             case loggedIn:
-                                return (<h1>ADMIN PAGE</h1>)
+                                return (<h1 style={{marginLeft: "5vw"}}>ADMIN PAGE</h1>)
                             case history.location.pathname === "/resources":
                                 return (<h1>RESOURCES PAGE</h1>)
                             default:
-                                return (<h1>HOME INSTRUCTION SUPPORT</h1>)
+                                return (<h1 style={{marginLeft: "10vw"}}>ABC TUTORING</h1>)
                         }
                     })()}
                 </header>

@@ -66,3 +66,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+10/26/19
+START BACK IN INSTRUCTOR REDUCER ON LINE 25. GO BACK TO THE REDUX LABS ON EDITING A MODEL ACTIONS

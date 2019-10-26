@@ -75,19 +75,30 @@ class Students extends Component {
         }
 
     }
+    sessionsIds=()=>{
+      return this.props.students.sessions.map(sess=> sess.id)
+    }
+    instructor=(sessionId)=>{
+        let stud
+        return  this.props.students.find(stud => stud.instructors.find( inst=> inst.id === sessionId))
+       
+    }
 
     singleStudentInfo = (id) => {
+        let sess
         const theStudent = this.props.students.find(stu => stu.id === id)
+        // const instructor = this.props.students.find(stud.instructor.find( inst=> inst.id === this.props.student.instructor.id))
 
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
-                <li>Grade: {theStudent.grade}</li>
-                <li>Guardian: {theStudent.guardian}</li>
-                <li>School: {theStudent.school}</li>
-                {this.hasSession(theStudent)}
-                {/* {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li> sessions: {sess.subject} </li><li>Dates: {sess.date}</li></>))
-                    : `${theStudent.name} has no sessions booked`} */}
+                <li><strong>Grade</strong>: {theStudent.grade}th</li>
+                <li><strong>Guardian:</strong> {theStudent.guardian}</li>
+                <li><strong>School:</strong> {theStudent.school}</li>
+                {/* {this.hasSession(theStudent)} */}
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong>{sess.date.replace(/-/g, "/").slice(11, 16)} am</li><strong>Instructor:</strong>{this.instructor(sess.id).name
+                }</>))
+                    : `${theStudent.name} has no sessions booked`}
             </ul>
         </div>)
     }
@@ -97,7 +108,7 @@ class Students extends Component {
 
         console.log("Students props", this.props)
         const students = this.props.students.map(stu => {
-            return <> <p onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} <strong>Grade:</strong> {stu.grade}th <br /><strong>School:</strong>{stu.school}</p></>
+            return <> <p onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
         })
         return (
             <div>

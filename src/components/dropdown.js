@@ -20,7 +20,8 @@ export default class Dropdown extends Component {
     const { history } = this.props
     return (
       <div className="dropdown">
-        <button onClick={this.showMenu} className="drop-btn">
+        <button onClick={()=> { localStorage.clear(); history.push('/') }} className="drop-btn"> LOGOUT </button>
+        {/* <button onClick={this.showMenu} className="drop-btn">
             M  E  N  U 
           </button>
 
@@ -36,7 +37,7 @@ export default class Dropdown extends Component {
             : (
               null
             )
-        }
+        } */}
       </div>
     );
   }

@@ -39,7 +39,7 @@ export const adminFetchPost = (admin) => {
 export const adminLoginFetch = (username, password) => {
 
   return dispatch => {
-    debugger
+   
     return fetch("http://localhost:3000/api/v1/login", {
       method: "POST",
       headers: {

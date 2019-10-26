@@ -2,7 +2,7 @@ import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from '../actions/types';
 
 const initialState = {
     sessions: [],
-    
+
 };
 
 export default function (state = initialState, action) {
@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
             // this type must come with 2 parameters; the atribute that needs editing and the new value of the attribute
             const idx = state.session.findIndex(session => session.id !== action.payload)
             let session = state.sesisons[idx]
+            debugger
             return [
                 ...state.sessions.slice(0, idx),
                 Object.assign({}, session, { attribute: action.payload }),

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSession } from './actions/sessionActions';
+import { reduceInstructorsHoursBasedOnSession } from './actions/instructorActions';
 import './App.css';
 
 
@@ -34,6 +35,7 @@ class NewSession extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.createSession(this.state)
+        this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id)
         this.props.removeForm()
         this.setState({ student_id: "", instructor_id: "", admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
 
@@ -57,19 +59,19 @@ class NewSession extends Component {
             <div>
                 <h2 style={{ color: "red" }}>Book {student.subject} for {student.name}</h2>
                 <form className="new-session-form" onSubmit={this.handleSubmit}>
-                    <select onChange={this.handleChange} name="student_id">
+                    Student: <select onChange={this.handleChange} name="student_id">
                         <option value=""> --- </option>
                         <option value={student.id} >{student.name}</option>
                     </select>
-
+                    <br />
                     {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${student.subject} instructor `}></input>) :
-                        (<select onChange={this.handleChange} name="instructor_id">
+                        (<> Instructor: <select onChange={this.handleChange} name="instructor_id">
                             <option value=""> --- </option>
                             {this.availableInstructors()}
-                        </select>
+                        </select></>
                         )}
 
-
+                    <br />
                     <label>Date:</label>
                     <input type="date" value={date} name="date" onChange={this.handleChange} />
                     <label>Time:</label>
@@ -79,16 +81,20 @@ class NewSession extends Component {
                         <option value=""> --- </option>
                         <option value={true}>Yes</option>
                         <option value={false} >No</option>
-                    </select>
+                    </select><br />
                     <label>Subject:</label>
                     <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
                     {home ?
                         (<></>) :
                         (<><label name="location" value={location} onChange={this.handleChange}>Location:</label>
                             <input type="text" /></>)}
-
+                    <br />
+                    Notes:
                     <textarea name="instruction" value={instruction} onChange={this.handleChange} />
+                    <br />
                     <input type="submit"></input>
+                    <br />
+                    <button onClick={() => this.props.removeForm()}>Cancel</button>
                 </form>
 
             </div>
@@ -101,7 +107,7 @@ const mapStateToProps = (state) => {
         instructors: state.instructors.instructors
     }
 }
-export default connect(mapStateToProps, { createSession })(NewSession)
+export default connect(mapStateToProps, { createSession, reduceInstructorsHoursBasedOnSession })(NewSession)
 /*
 
 student_id
