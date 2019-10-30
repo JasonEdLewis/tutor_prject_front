@@ -9,7 +9,7 @@ import './App.css';
 class NewSession extends Component {
 
     state = {
-        student_id: "",
+        student_id: 0,
         instructor_id: "",
         admin_id: 1,
         date: "",
@@ -18,6 +18,7 @@ class NewSession extends Component {
         subject: this.props.student.subject,
         location: "",
         instruction: "",
+
     }
 
     handleChange = (e) => {
@@ -35,9 +36,10 @@ class NewSession extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.createSession(this.state)
-        this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id)
+        const instHours = this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2
+        this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id, instHours)
         this.props.removeForm()
-        this.setState({ student_id: "", instructor_id: "", admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+        this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
 
 
         // console.log(this.state)
