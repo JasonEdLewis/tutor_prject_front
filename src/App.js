@@ -8,7 +8,6 @@ import NewInstructorForm from './NewInstructorForm';
 import Login from './login';
 import Four0Four from './Four0Four';
 import Signup from './Signup';
-import { getProfileFetch } from './actions/adminActions';
 import Resources from './components/resources'
 
 
@@ -53,4 +52,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getProfileFetch })(App);
+export default connect(mapStateToProps, null)(App);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './login.css';
 import { connect } from 'react-redux';
-import { adminLoginFetch } from './actions/adminActions';
+import {logginFetch}from './actions/logginActions'
+import { profileAdmin, profileSuccess } from './actions/adminActions'
 import Headers from './components/headers'
 
 
@@ -10,35 +11,51 @@ class Login extends Component {
     state = {
         username: '',
         password: '',
+        isLoading: false,
         wrongCreds: null
     }
 
     componentDidMount() {
-        if (localStorage.token) { this.props.history.push('/profile') }
+        const { history } = this.props
+        localStorage.token === undefined ? history.push('/') : history.push('/profile')
     }
-    handleSubmit = e => {
-        e.preventDefault()
-        this.props.login(this.state.username, this.state.password)
-            .then(() => {
+   
 
-                if (this.props.login.loggedId) {
-                    this.setState({ loggedIn: true })
-                    this.setState({ wrongCreds: false, username: "", password: "" }, () => { this.props.history.push('/profile') })
+
+    handleSubmit = (e) => {
+        e.preventDefault()
+        this.setState({ requsting: !this.state.requsting })
+        this.props.logginFetch(this.state).then(data => {
+
+            this.setState({ username: "", password: "" });
+
+           localStorage.setItem("token", data.token)
+           const token = localStorage.token
+            this.props.profileAdmin(token).then(admin => {
+                this.setState({ requsting: this.props.admin.requesting })
+                if (this.props.admin.username !== 'undefined') {
+                    this.props.profileSuccess(admin)
+                    this.setState({ requsting: this.props.admin.requesting })
+                    this.props.history.push('/profile')
                 }
                 else {
-                  
-                    this.setState({ wrongCreds: true, username: "", password: "" })
-                    this.props.history.push('/')
-                    setTimeout(() => { this.setState({ wrongCreds: false }) }, 3000)
+                    this.setState({ error: !this.state.error })
                 }
+
             })
+
+
+        })
+        // console.log(this.props.admin.username)
+        // localStorage.token !== "undefined" ? this.props.history.push('/profile') : this.props.history.push('/') 
     }
+
 
     handleChange = (e) => { this.setState({ [e.target.name]: e.target.value }) }
 
     render() {
         const { wrongCreds } = this.state
-        console.log(this.props)
+        console.log("Project login props:",this.props)
         return (
             <>
                 <div>
@@ -54,16 +71,17 @@ class Login extends Component {
                         <br /><br />
                     </div>
                     <div className="login">
-                        <h1 id="login-h1" style={{fontSize:"3em"}} >LOGIN</h1>
+                        <h1 id="login-h1" style={{ fontSize: "3em" }} >LOGIN</h1>
                         <br /><br />
                         <form onSubmit={this.handleSubmit} className="login">
                             <h1>User Name</h1>
-                            <input style={{ width: "60%", fontSize:"1.25em", borderRadius:".25em"}} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
+                            <input style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
+                            {this.state.isLoading ? <h1>Loggin you in....</h1> : "" }
                             <h1>Password</h1>
-                            <input classname="login-inputs" style={{ width: "60%", fontSize:"1.25em", borderRadius:".25em"}} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password"/>
+                            <input classname="login-inputs" style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password" />
                             <br /><br />
-                            <input type="submit" style={{ width: "30%", fontSize:"1em", borderRadius:".25em", borderColor:"grey"}}/>
-                            <h4> Forgot password? Reset it  <input type="submit" value="Here" style={{ width: "30%", fontSize:"1em", borderRadius:".25em"}}/></h4>
+                            <input type="submit" style={{ width: "30%", fontSize: "1em", borderRadius: ".25em", borderColor: "grey" }} />
+                            <h4> Forgot password? Reset it  <input type="submit" value="Here" style={{ width: "30%", fontSize: "1em", borderRadius: ".25em" }} /></h4>
                         </form>
 
                     </div>
@@ -75,11 +93,10 @@ class Login extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.login
+        loggedIn: state.login,
+        admin: state.admin
     }
 
 }
-const mapDispatchToProps = {
-    login: adminLoginFetch
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+
+export default connect(mapStateToProps, {logginFetch, profileAdmin, profileSuccess })(Login)

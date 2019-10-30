@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { adminFetchPost } from './actions/adminActions';
+// import { adminFetchPost } from './actions/adminActions';
 
 class Signup extends Component {
 
@@ -12,7 +12,7 @@ class Signup extends Component {
 
         handleSubmit = e => {
           e.preventDefault()
-          this.props.adminFetchPost(this.state)
+          // this.props.adminFetchPost(this.state)
           // this.props.history.push('/admin')
       }
   
@@ -48,4 +48,4 @@ class Signup extends Component {
     }
 }
 
-export default connect(null, {adminFetchPost})(Signup)
+export default connect()(Signup)

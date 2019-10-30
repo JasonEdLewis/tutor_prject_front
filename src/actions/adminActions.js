@@ -1,94 +1,38 @@
 import React from 'react';
+import { PROFILE_REQUEST, PROFILE_SUCCESS, PROFILE_FAILED } from './types'
 
 
-const loginAdmin = (adminObj) => ({
-  type: 'LOGIN_ADMIN',
-  payload: adminObj
-})
-const showError = (message) => ({
-  type: "ERRORS",
-  payload: message
-})
+export const profileRequested = () => ({ type: PROFILE_REQUEST, requesting: true });
 
-export const adminFetchPost = (admin) => {
-  return dispatch => {
-    return fetch('http://localhost:3000/api/v1/admins/', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify({ admin })
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data.message) {
-          return
-        } else {
+export const profileSuccess = (admin) => ({ type: PROFILE_SUCCESS, payload: admin });
 
-          localStorage.setItem("token", data.token)
-          dispatch(loginAdmin(data.admin))
+const profileFailed = (error) => ({ type: PROFILE_FAILED, payload: error });
+
+export const profileAdmin = (token) => {
+
+    return async dispatch => {
+
+        dispatch(profileRequested())
+        try {
+
+            let responce = await fetch('http://localhost:3000/api/v1/profile', {
+                method: "GET",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': `${token}`
+                }
+            })
+            return responce.json()
+
+
         }
-      })
-  }
-
-}
-
-
-
-
-export const adminLoginFetch = (username, password) => {
-
-  return dispatch => {
-   
-    return fetch("http://localhost:3000/api/v1/login", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        username: username,
-        password: password
-      })
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        console.log("data after login fetch:", data.admin)
-        dispatch(loginAdmin(data.admin))
-        localStorage.setItem("token", data.token)
-      }
-      ).catch((data) => {
-        showError(data.message)
-        console.log(data.message)
-      }
-      )
-  }
-}
-
-export const getProfileFetch = () => {
-  //   
-  return dispatch => {
-    const token = localStorage.token;
-    if (token) {
-      return fetch("http://localhost:3000/api/v1/profile", {
-        method: "GET",
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-          'Authorization': `${token}`
+        catch (error) {
+            dispatch(profileFailed(error))
         }
-      })
-        .then(resp => resp.json())
-        .then(data => {
-          if (data.message) {
-            // An error will occur if the token is invalid.
-            // If this happens, you may want to remove the invalid token.
-            localStorage.removeItem("token")
-          } else {
-            console.log(data)
-            dispatch(loginAdmin(data))
-          }
-        })
+
     }
-  }
 }
+
+
+
