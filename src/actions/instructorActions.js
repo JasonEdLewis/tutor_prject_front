@@ -36,19 +36,22 @@ export const createInstructor = (instructData) => {
     }
 }
 
-export const reduceInstructorsHoursBasedOnSession = (instructData, id) => {
+export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
     return function (dispatch) {
+        // debugger
         dispatch({
             type: REDUCE_HOURS,
-            payload: instructData
+            payload: id
         })
-        fetch(`apiUrl${id}`, {
+        fetch(`http://localhost:3000/instructors/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
                 accepts: 'application/json'
             },
-            body: JSON.stringify(instructData)
+            body: JSON.stringify({
+                hours
+            })
 
         })
     }
