@@ -16,20 +16,21 @@ export default function (state = initialState, action) {
                 ...state,
                 instructors: [action.payload, ...state.instructors]
             }
-            case DELETE_INSTRUCTOR:
-                const theInsts = state.instructors.filter(inst => inst.id !== action.payload)
-                return{
-                    ...state,
-                    instructors: theInsts
-                }
-            case REDUCE_HOURS:
-                const idx= state.instructors.findIndex(inst=> inst.id === action.payload)
-                const instructor = state.instructors[idx]
-                return [
-                    ...state.instructors.slice(0, idx),
-                    Object.assign({}, instructor, { hours: instructor.hours - 2 }),
-                    ...state.instructors.slice(idx + 1)
-                ]
+        case DELETE_INSTRUCTOR:
+            const theInsts = state.instructors.filter(inst => inst.id !== action.payload)
+            return {
+                ...state,
+                instructors: theInsts
+            }
+        case REDUCE_HOURS:
+            const idx = state.instructors.findIndex(inst => inst.id === action.payload)
+            const instructor = state.instructors[idx]
+            debugger
+            return [
+                ...state.instructors.slice(0, idx),
+                Object.assign({}, instructor, { hours: 2 }),
+                ...state.instructors.slice(idx + 1)
+            ]
         default:
             return state
     }
