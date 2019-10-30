@@ -23,12 +23,12 @@ export default function (state = initialState, action) {
                 instructors: theInsts
             }
         case REDUCE_HOURS:
-            const idx = state.instructors.findIndex(inst => inst.id === action.payload)
+            const idx = state.instructors.findIndex(inst => inst.id === parseInt(action.payload))
             const instructor = state.instructors[idx]
-            debugger
+            console.log(idx)
             return [
                 ...state.instructors.slice(0, idx),
-                Object.assign({}, instructor, { hours: 2 }),
+                Object.assign({}, instructor, { hours: instructor.hours - 2 }),
                 ...state.instructors.slice(idx + 1)
             ]
         default:
