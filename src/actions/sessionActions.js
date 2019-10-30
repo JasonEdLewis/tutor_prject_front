@@ -1,4 +1,5 @@
 import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from './types'
+import { async } from 'q'
 
 export const fetchSessions = () => {
 
@@ -15,9 +16,8 @@ export const fetchSessions = () => {
 }
 
 export const createSession = (session) => {
-    return (dispatch) => {
-
-
+   
+    return async dispatch => {
 
         fetch('http://localhost:3000/sessions', {
             method: 'POST',

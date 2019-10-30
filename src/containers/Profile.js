@@ -35,8 +35,10 @@ class Profile extends Component {
                 <Headers propsFromProfile={this.props} loggedIn={true} />
                 <div className="students">
                     <h1>Students</h1>
+                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: "1px 1px #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: "2px 2px #bcc0c4"}}>Needs Booking:❗️</strong></p></>
+                    <br/>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
-                    <> <p className="booked">Booked: ✅   |  Needs Booking:❗️</p></>
+                  
                 </div >
 
                 <div className="admin">

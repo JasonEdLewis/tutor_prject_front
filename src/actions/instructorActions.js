@@ -25,7 +25,7 @@ export const createInstructor = (instructData) => {
             type: NEW_INSTRUCTOR,
             payload: instructData
         })
-        fetch(apiUrl + 'instructors/', {
+        fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -39,18 +39,18 @@ export const createInstructor = (instructData) => {
 export const reduceInstructorsHoursBasedOnSession = (instructData, id) => {
     return function (dispatch) {
         dispatch({
-            type:REDUCE_HOURS,
+            type: REDUCE_HOURS,
             payload: instructData
         })
-        fetch(`apiUrl${id}`,{
-         method: 'PATCH',
-         headers:{
-         'content-type':'application/json',
-         accepts: 'application/json'
-         },
-         body:JSON.stringify(instructData)
+        fetch(`apiUrl${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accepts: 'application/json'
+            },
+            body: JSON.stringify(instructData)
 
-        } )
+        })
     }
 }
 
