@@ -13,7 +13,7 @@ class Profile extends Component {
 
 
     componentDidMount() {
-        // this.props.getProfileFetch()
+       
     }
 
     SessionClicked = (session) => {
@@ -35,7 +35,7 @@ class Profile extends Component {
                 <Headers propsFromProfile={this.props} loggedIn={true} />
                 <div className="students">
                     <h1 style={{textShadow: "2px 1px #006600"}}>Students</h1>
-                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: "1px 1px #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: "2px 2px #bcc0c4"}}>Needs Booking:❗️</strong></p></>
+                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: "1px 1px #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: "2px 2px #bcc0c4"}}>BOOK NOW:❗️</strong></p></>
                     <br/>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
                   

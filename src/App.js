@@ -19,8 +19,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // localStorage.clear()
-    // this.props.history.push('/')
+    localStorage.clear()
+  
   }
   render() {
     console.log("App props:", this.props)
