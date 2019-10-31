@@ -19,7 +19,7 @@ export const createSession = (session) => {
    
     return async dispatch => {
 
-        fetch('http://localhost:3000/sessions', {
+       const responce = await fetch('http://localhost:3000/sessions', {
             method: 'POST',
             headers: {
                 "content-type": "application/json",

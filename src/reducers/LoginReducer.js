@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 
->>>>>>> c5cd792a8aa1f8e9ba6ff0d1e416308184373753
 import { REQUEST_LOGGIN, SUCCESS_LOGGIN, FAILED_LOGGIN } from '../actions/types';
 
 const initialState = {

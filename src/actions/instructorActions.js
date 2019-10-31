@@ -2,13 +2,11 @@ import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS } fr
 
 
 
-const apiUrl = 'http://localhost:3000/instructors/'
-
 export const fetchInstructors = () => {
 
     return function (dispatch) {
 
-        fetch(apiUrl)
+        fetch('http://localhost:3000/instructors')
             .then(resp => resp.json())
             .then(instructors => dispatch({
                 type: FETCH_INSTRUCTORS,
@@ -25,7 +23,7 @@ export const createInstructor = (instructData) => {
             type: NEW_INSTRUCTOR,
             payload: instructData
         })
-        fetch(apiUrl, {
+        fetch('http://localhost:3000/instructors/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -63,7 +61,7 @@ export const deleteInstructor = (id) => {
             type: DELETE_INSTRUCTOR,
             payload: id
         })
-        fetch(`apiUrl${id}`, {
+        fetch(`http://localhost:3000/instructors/${id}`, {
             method: 'DELETE'
         })
 
