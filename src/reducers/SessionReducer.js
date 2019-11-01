@@ -8,6 +8,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_SESSIONS:
+            debugger
             return {
                 ...state,
                 sessions: action.payload
