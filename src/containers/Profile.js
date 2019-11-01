@@ -12,20 +12,6 @@ import Dropdown from '../components/dropdown'
 class Profile extends Component {
 
 
-    // componentDidMount() {
-       
-    //    if(this.props.login.loggedIn === false){ this.props.history.push('/')}
-    // }
-
-    // SessionClicked = (session) => {
-    //     console.log(session)
-    //     this.setState({
-
-    //         diplay: "sessions" stretch goal
-    //     })
-    // }
-
-
     render() {
         console.log("Profile props", this.props)
         const { admin, history } = this.props

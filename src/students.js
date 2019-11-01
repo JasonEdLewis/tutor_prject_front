@@ -52,7 +52,7 @@ class Students extends Component {
                 <br />
                 <h3><strong>Add A New Student: </strong></h3>
                 <form className="quick-form" onSubmit={this.handleSubmit}>
-                    <textarea rows="8" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
+                    <textarea rows="30" cols="80" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
                     <br /><button >Submit</button>
                 </form>
             </>)
@@ -80,7 +80,7 @@ class Students extends Component {
     }
     instructor=(sessionId)=>{
         let stud
-        return  this.props.students.find(stud => stud.instructors.find( inst=> inst.id === sessionId))
+        return  this.props.students.find(stud => stud.instructors.find( inst=> inst.id === sessionId)).name
        
     }
 
@@ -96,8 +96,7 @@ class Students extends Component {
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong>{sess.date.replace(/-/g, "/").slice(11, 16)} am</li><strong>Instructor:</strong>{this.instructor(sess.id).name
-                }</>))
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><strong>Instructor:</strong>{this.instructor(sess.id)}</>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
         </div>)
@@ -108,7 +107,7 @@ class Students extends Component {
 
         console.log("Students props", this.props)
         const students = this.props.students.map(stu => {
-            return <> <p onClick={() => this.handleClick(stu.id)}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
+            return <> <p onClick={() => this.handleClick(stu.id)} style={{textShadow: ".02vh .02vh #717375"}}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
         })
         return (
             <div>

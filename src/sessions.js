@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSessions } from './actions/sessionActions';
 import NewSession from './NewSession';
-import './sessions.css'
+import './sessions.css';
+import editSession from './components/sessionEditForm'
+import emojicons  from './components/emojicons'
 
 
 class Sessions extends Component {
@@ -13,37 +15,19 @@ class Sessions extends Component {
 
     state = {
         student: {},
+        session:{},
         needForm: false,
         showOneSession: false,
         active: true,
-        sessionId:""
+        sessionId:"",
+        editSessionForm: false,
     }
-    handleClick = (student) => {
+    handleClick = (student,session) => {
         // console.log(id)
-        this.setState({ student, needForm: !this.state.needForm })
+        this.setState({ student,session, needForm: !this.state.needForm })
     }
-    subjectEmojicon =(subject)=>{
-            switch(subject) {  
-            case 'math': 
-            return <span className="emojicons" > 🤓 </span>;          
-            case 'science' ||'biology':           
-            return <span className="emojicons"> 🧪 </span>; 
-            case 'biology':           
-            return <span className="emojicons">   🧬 </span>;           
-            case 'english':            
-            return <span  className="emojicons"> 📕 </span>; 
-            case 'social studies':            
-            return <span className="emojicons" > 🌍 </span>; 
-            case 'film':            
-            return <span className="emojicons" > 🎬 </span>; 
-            case 'writing':            
-            return <span className="emojicons" > 📝  </span>; 
-            case 'music':            
-            return <span style={{fontSize:"1rem"}}> 𝄢 </span>;           
-            default:           
-             return null;}    
-            }
-    
+ 
+  
 
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId:id })
@@ -58,13 +42,15 @@ class Sessions extends Component {
     singleSession = (id) => {
         const session = this.props.sessions.find(sess => sess.id === id)
         const time = this.timeAndDate(session)
-        const emoji = this.subjectEmojicon(session.subject)
+        const emoji =  emojicons(session.subject)
         return (<div 
         onClick={() => this.toggleOneSession(session.id)} 
-        className="each-session"><br /><div key={session.id} >
-            {emoji}
-            <strong>Student: </strong> {session.student.name}</div>
-            <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<br/><button onClick={()=> console.log(session.id)}>Edit</button></div>)
+        className="one-session"><p key={session.id} >
+            <p>{emoji}</p>
+            <strong>Student: </strong> {session.student.name}</p>
+            <p > <strong>Subject: </strong>{session.subject}</p> <p><strong>Instructor:</strong> {session.instructor.name}</p><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<p><strong>Location:</strong> {session.location}</p><button onClick={()=> this.handleClick(session)}>Edit</button><br/><br/>
+            {this.state.needForm ? <NewSession session={this.state.session}/> : <></>}
+            </div>)
     }
     activatePanels = () => {
         console.log(this.state.active)
@@ -84,8 +70,9 @@ class Sessions extends Component {
 
         const theSessions = this.props.sessions.map(session => {
 
-            return (<><div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{this.subjectEmojicon(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
-                <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br /></div></>)
+            return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{ emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
+                <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br />
+                </div>)
         })
 
         return (
