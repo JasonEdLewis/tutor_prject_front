@@ -24,7 +24,6 @@ export const createSession = (session) => {
     return async dispatch => {
         dispatch(dispatchNewSession(session))
         try{
-            debugger
         const responce = await fetch('http://localhost:3000/sessions', {
             method: 'POST',
             headers: {
