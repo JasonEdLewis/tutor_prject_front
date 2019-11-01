@@ -24,13 +24,13 @@ class Sessions extends Component {
     }
     handleClick = (student, session) => {
         // console.log(id)
-        this.setState({ student, session, needForm: !this.state.needForm })
+        this.setState({ student, needForm: !this.state.needForm, editSessionForm: false, showOneSession: false })
     }
 
 
-doWeNeedEditForm=()=>{
-    this.setState({editSessionForm: !this.state.editSessionForm})
-}
+    doWeNeedEditForm = () => {
+        this.setState({ editSessionForm: !this.state.editSessionForm })
+    }
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
     }
@@ -52,7 +52,7 @@ doWeNeedEditForm=()=>{
                 <strong>Student: </strong> {session.student.name}</p>
             <p > <strong>Subject: </strong>{session.subject}</p> <p><strong>Instructor:</strong> {session.instructor.name}</p><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<p><strong>Location:</strong> {session.location}</p>
         </div><button onClick={() => this.doWeNeedEditForm()}>Edit</button><br /><br />
-            {this.state.editSessionForm ? <EditSession session={this.state.session, this.state.editSessionForm} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm}/> : <></>}</div>)
+            {this.state.editSessionForm ? <EditSession session={this.state.session, this.state.editSessionForm} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
     }
     activatePanels = () => {
         console.log(this.state.active)
@@ -64,7 +64,7 @@ doWeNeedEditForm=()=>{
 
     render() {
         // console.log("Sessions props", this.props)
-            console.group("editSessionForm:",this.state.editSessionForm)
+        console.group("editSessionForm:", this.state.editSessionForm)
 
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0)
 

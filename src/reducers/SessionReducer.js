@@ -13,10 +13,9 @@ export default function (state = initialState, action) {
                 sessions: action.payload
             }
         case NEW_SESSION:
-            debugger
             return {
                 ...state,
-                sessions: [action.payload, ...state.sessions]
+                sessions: [...state.sessions, action.payload]
             }
         case EDIT_SESSION:
             // this type must come with 2 parameters; the atribute that needs editing and the new value of the attribute
