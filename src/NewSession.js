@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSession } from './actions/sessionActions';
 import { reduceInstructorsHoursBasedOnSession } from './actions/instructorActions';
-import './App.css';
+import './sessions.css';
 
 
 
@@ -19,6 +19,7 @@ class NewSession extends Component {
         subject: this.props.student.subject,
         location: "",
         instruction: "",
+        edit:false
 
     }
 
@@ -28,6 +29,9 @@ class NewSession extends Component {
             [e.target.name]: e.target.value
         })
 
+    }
+    isEdit=()=>{
+        this.setState({edit: !this.state.edit})
     }
     availableInstructors = () => {
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
@@ -50,9 +54,9 @@ class NewSession extends Component {
 
         console.log(this.availableInstructors().length)
 
-
+        
         // console.log("New Session state:", this.state) 
-        // console.log("New Seesion Props: ", this.props)
+        console.log("New Seesion Props: ", this.props)
         const { student } = this.props
         console.log("Student's subject:", student.subject)
         const { instruction, location, date, time, home } = this.state

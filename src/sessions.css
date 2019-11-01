@@ -14,7 +14,13 @@
   .active, .accordion:hover {
     background-color: #ccc;
   }
-  
+  .new-session-form{
+    display: block; 
+    margin-left: 35%;
+    width: 35%;
+    
+    
+  }
   /* Style the accordion panel. Note: hidden by default */
   .panel {
     padding: 0 18px;
@@ -47,3 +53,14 @@
    text-shadow: .08vh .06vh rgb(10, 11, 17);
    margin: auto;
   }
+
+  .edit-session-form {
+    display: block; 
+    margin-left: 32%;
+    margin-bottom: 15%;
+    width: 35%;    
+
+  }
+ .edit-session-form input{
+  color: rgb(153, 145, 145);
+ }

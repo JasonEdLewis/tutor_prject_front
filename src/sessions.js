@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { fetchSessions } from './actions/sessionActions';
 import NewSession from './NewSession';
 import './sessions.css';
-import editSession from './components/sessionEditForm'
-import emojicons  from './components/emojicons'
+import EditSession from './components/sessionEditForm'
+import emojicons from './components/emojicons'
 
 
 class Sessions extends Component {
@@ -15,22 +15,22 @@ class Sessions extends Component {
 
     state = {
         student: {},
-        session:{},
+        session: {},
         needForm: false,
         showOneSession: false,
         active: true,
-        sessionId:"",
+        sessionId: "",
         editSessionForm: false,
     }
-    handleClick = (student,session) => {
+    handleClick = (student, session) => {
         // console.log(id)
-        this.setState({ student,session, needForm: !this.state.needForm })
+        this.setState({ student, session, needForm: !this.state.needForm })
     }
- 
-  
+
+
 
     toggleOneSession = (id) => {
-        this.setState({ showOneSession: !this.state.showOneSession, sessionId:id })
+        this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
     }
     timeAndDate = (sess) => {
         const theTime = sess.time.replace(/-/g, "/").slice(11, 16)
@@ -42,15 +42,15 @@ class Sessions extends Component {
     singleSession = (id) => {
         const session = this.props.sessions.find(sess => sess.id === id)
         const time = this.timeAndDate(session)
-        const emoji =  emojicons(session.subject)
-        return (<div 
-        onClick={() => this.toggleOneSession(session.id)} 
-        className="one-session"><p key={session.id} >
-            <p>{emoji}</p>
-            <strong>Student: </strong> {session.student.name}</p>
-            <p > <strong>Subject: </strong>{session.subject}</p> <p><strong>Instructor:</strong> {session.instructor.name}</p><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<p><strong>Location:</strong> {session.location}</p><button onClick={()=> this.handleClick(session)}>Edit</button><br/><br/>
-            {this.state.needForm ? <NewSession session={this.state.session}/> : <></>}
-            </div>)
+        const emoji = emojicons(session.subject)
+        return (<div className="one-session"><div
+            onClick={() => this.toggleOneSession(session.id)}
+        ><p key={session.id} >
+                <p>{emoji}</p>
+                <strong>Student: </strong> {session.student.name}</p>
+            <p > <strong>Subject: </strong>{session.subject}</p> <p><strong>Instructor:</strong> {session.instructor.name}</p><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<p><strong>Location:</strong> {session.location}</p><button onClick={() => this.handleClick(session)}>Edit</button><br /><br />
+        </div>
+            { <EditSession session={this.state.session, this.state.editSessionForm} student={session.student} />}</div>)
     }
     activatePanels = () => {
         console.log(this.state.active)
@@ -70,9 +70,9 @@ class Sessions extends Component {
 
         const theSessions = this.props.sessions.map(session => {
 
-            return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{ emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
+            return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
                 <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br />
-                </div>)
+            </div>)
         })
 
         return (
