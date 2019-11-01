@@ -9,6 +9,7 @@ import './App.css';
 class NewSession extends Component {
 
     state = {
+        session:{},
         student_id: 0,
         instructor_id: "",
         admin_id: 1,
