@@ -12,17 +12,18 @@ import Dropdown from '../components/dropdown'
 class Profile extends Component {
 
 
-    componentDidMount() {
+    // componentDidMount() {
        
-    }
+    //    if(this.props.login.loggedIn === false){ this.props.history.push('/')}
+    // }
 
-    SessionClicked = (session) => {
-        console.log(session)
-        this.setState({
+    // SessionClicked = (session) => {
+    //     console.log(session)
+    //     this.setState({
 
-            // diplay: "sessions" stretch goal
-        })
-    }
+    //         diplay: "sessions" stretch goal
+    //     })
+    // }
 
 
     render() {
@@ -35,14 +36,14 @@ class Profile extends Component {
                 <Headers propsFromProfile={this.props} loggedIn={true} />
                 <div className="students">
                     <h1 style={{textShadow: "2px 1px #006600"}}>Students</h1>
-                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: "1px 1px #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: "2px 2px #bcc0c4"}}>BOOK NOW:❗️</strong></p></>
+                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: ".05vh .05vh #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize:"1.35em"}}>BOOK NOW:❗️</strong></p></>
                     <br/>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
                   
                 </div >
 
                 <div className="admin">
-                    <h1>WELCOME BACK {admin.username}</h1>
+                    <h1>WELCOME BACK {admin.currentAdmin.username}</h1>
                     <Sessions history={history} />
                 </div>
 
@@ -60,7 +61,8 @@ const mapStateToProps = (state) => {
         sessions: state.sessions.sessions,
         students: state.students.students,
         instructors: state.instructors.instructors,
-        admin: state.admin.currentAdmin
+        admin: state.admin,
+        login: state.login
     }
 }
 

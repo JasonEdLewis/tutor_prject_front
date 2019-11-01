@@ -17,6 +17,36 @@ export const fetchInstructors = () => {
 
 
 
+// export const logginFetch =(admin)=>{
+//     return async dispatch => {
+//         dispatch(logginRequest(admin))
+//         try{ 
+//             let data
+//            let responce = await fetch(myApi, {
+//                 method: 'POST',
+//                 headers: {
+//                     "content-type": "application/json",
+//                 },
+//                 body: JSON.stringify(admin)
+//             })
+//            data = responce.json(); 
+//            return data
+//         } 
+//         catch(error){
+//             dispatch(logginFail(error))
+//         };
+       
+     
+//     }
+
+// }
+
+
+
+
+
+
+
 export const createInstructor = (instructData) => {
     return function (dispatch) {
         dispatch({

@@ -4,7 +4,7 @@ import { PROFILE_REQUEST, PROFILE_SUCCESS, PROFILE_FAILED } from '../actions/typ
 const initialState = {
     currentAdmin: {},
     requesting: null,
-    errorMessage: ""
+    errorMessage: "",
 }
 const AdminReducer = (state = initialState, action) => {
     switch (action.type) {

@@ -22,3 +22,21 @@
     display: none;
     overflow: hidden;
   }
+
+  .each-session{
+  /* background-color: black; */
+  background-color:rgb(255, 255, 255, .5);
+  border-style: dotted;
+  border-color: rgb(165, 165, 165);
+  border-spacing: .1rem ;
+  border-width: .01em;
+  content: normal;
+  border-collapse: separate;
+  margin-top: .1em;
+  margin-right: .1em;
+  }
+
+  .emojicons {
+    position: -webkit-sticky;
+    font-size : 2rem;
+  }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './login.css';
 import { connect } from 'react-redux';
-import {logginFetch}from './actions/logginActions'
-import { profileAdmin, profileSuccess } from './actions/adminActions'
+import {logginFetch}from './actions/logginActions';
+import {logginSucess}  from './actions/logginActions';
+import { profileAdmin, profileSuccess } from './actions/adminActions';
 import Headers from './components/headers'
 
 
@@ -15,14 +16,11 @@ class Login extends Component {
         wrongCreds: null
     }
 
-    componentDidMount() {
-        const { history } = this.props
-        localStorage.token === undefined ? history.push('/') : history.push('/profile')
-    }
    
 
 
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         this.setState({ requsting: !this.state.requsting })
         this.props.logginFetch(this.state).then(data => {
@@ -33,10 +31,15 @@ class Login extends Component {
            const token = localStorage.token
             this.props.profileAdmin(token).then(admin => {
                 this.setState({ requsting: this.props.admin.requesting })
-                if (this.props.admin.username !== 'undefined') {
+               
+                if (admin.username !== undefined) {
                     this.props.profileSuccess(admin)
+                    this.props.logginSucess()
+                
                     this.setState({ requsting: this.props.admin.requesting })
                     this.props.history.push('/profile')
+                   
+                   
                 }
                 else {
                     this.setState({ error: !this.state.error })
@@ -99,4 +102,4 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps, {logginFetch, profileAdmin, profileSuccess })(Login)
+export default connect(mapStateToProps, {logginFetch, profileAdmin, profileSuccess, logginSucess })(Login)

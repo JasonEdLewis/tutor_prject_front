@@ -8,8 +8,8 @@ export const profileSuccess = (admin) => ({ type: PROFILE_SUCCESS, payload: admi
 
 const profileFailed = (error) => ({ type: PROFILE_FAILED, payload: error });
 
-export const profileAdmin = (token) => {
 
+export const profileAdmin = (token) => {
     return async dispatch => {
 
         dispatch(profileRequested())
