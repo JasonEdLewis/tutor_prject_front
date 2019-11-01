@@ -14,22 +14,24 @@ import Resources from './components/resources'
 
 class App extends Component {
 
-  state = {
-    loggedIn: false,
+  componentDidMount(){
+    console.log("App Mounting again")
   }
 
-  componentDidMount() {
-    localStorage.clear()
-  
-  }
+
+
+
   render() {
     console.log("App props:", this.props)
+    
     return (
       <div>
         <body className="Body">
           <Switch>
             <div>
-              <Route exact path="/" component={Login} />
+              <Route exact path="/"
+                render={routerProps => <Login {...routerProps} AppLoggedIn={this.loggedInState} />}
+              />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />

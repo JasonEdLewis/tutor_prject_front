@@ -18,26 +18,26 @@ export const fetchSessions = () => {
 
 }
 
-const dispatchNewSession =(session)=>({ type: NEW_SESSION, payload: session})
+const dispatchNewSession = (session) => ({ type: NEW_SESSION, payload: session })
 export const createSession = (session) => {
 
     return async dispatch => {
         dispatch(dispatchNewSession(session))
-        try{
-        const responce = await fetch('http://localhost:3000/sessions', {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json",
-                accept: "application/json"
-            },
-            body: JSON.stringify({ session })
-        })
-        
-    }
-    catch(error){
-        console.log(error)
-    }
-        
+        try {
+            const responce = await fetch('http://localhost:3000/sessions', {
+                method: 'POST',
+                headers: {
+                    "content-type": "application/json",
+                    accept: "application/json"
+                },
+                body: JSON.stringify(session)
+            })
+
+        }
+        catch (error) {
+            console.log(error)
+        }
+
     }
 }
 

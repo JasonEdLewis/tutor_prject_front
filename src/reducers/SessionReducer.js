@@ -13,6 +13,7 @@ export default function (state = initialState, action) {
                 sessions: action.payload
             }
         case NEW_SESSION:
+            debugger
             return {
                 ...state,
                 sessions: [action.payload, ...state.sessions]
