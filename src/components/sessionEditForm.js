@@ -12,7 +12,7 @@ import { connect } from 'react-redux'
     admin_id: 1,
     date: "",
     time: "",
-    home: "",
+    home: false,
     subject: this.props.student.subject,
     location: "",
     instruction: "",
@@ -33,7 +33,7 @@ import { connect } from 'react-redux'
         return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
     }
     render() {
-        const {student, subject} =this.props
+        const {student, session} =this.props
         console.log("Edit Sess",this.props)
         return (
             <div className="edit-session-form">
@@ -48,11 +48,30 @@ import { connect } from 'react-redux'
                             {this.availableInstructors()}
                         </select></>
                         )}
-                <input type="text" onChange={this.handleChange} name="subject" value={subject}/>
-                <input type="text"onChange={this.handleChange} name="" value={null}/>
-                <input type="text"onChange={this.handleChange} name="" value={null}/>
-                <br/>
-                <input type="submit"/>
+                <input type="text" onChange={this.handleChange} name="subject" value={student.subject}/>
+                <label>Date:</label>
+                    <input type="date" value={this.state.date} name="date" onChange={this.handleChange} placeholder={session.date} />
+                    <label>Time:</label>
+                    <input type="time" value={session.time} onChange={this.handleChange} name="time" />
+                    <label>home?:</label>
+                    <select onChange={this.handleChange} name="home">
+                        <option value=""> --- </option>
+                        <option value={true}>Yes</option>
+                        <option value={false} >No</option>
+                    </select><br />
+                    <label>Subject:</label>
+                    <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
+                    {this.state.home ?
+                        (<></>) :
+                        (<><label name="location" value={session.location} onChange={this.handleChange}>Location:</label>
+                            <input type="text" /></>)}
+                    <br />
+                    Notes:
+                    <textarea name="instruction" value={session.instruction} onChange={this.handleChange} />
+                    <br />
+                    <input style={{color: "black"}}type="submit"></input>
+                    <br />
+                    <button onClick={() => this.props.doWeNeedEditForm()}>Cancel</button>
                 </form>
             </div>
         )
