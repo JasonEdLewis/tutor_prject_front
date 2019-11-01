@@ -9,7 +9,6 @@ import './sessions.css';
 class NewSession extends Component {
 
     state = {
-        session:{},
         student_id: 0,
         instructor_id: "",
         admin_id: 1,
@@ -19,7 +18,7 @@ class NewSession extends Component {
         subject: this.props.student.subject,
         location: "",
         instruction: "",
-        edit:false
+        edit: false
 
     }
 
@@ -30,8 +29,8 @@ class NewSession extends Component {
         })
 
     }
-    isEdit=()=>{
-        this.setState({edit: !this.state.edit})
+    isEdit = () => {
+        this.setState({ edit: !this.state.edit })
     }
     availableInstructors = () => {
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
@@ -54,7 +53,7 @@ class NewSession extends Component {
 
         console.log(this.availableInstructors().length)
 
-        
+
         // console.log("New Session state:", this.state) 
         console.log("New Seesion Props: ", this.props)
         const { student } = this.props
