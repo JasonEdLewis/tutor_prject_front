@@ -18,13 +18,13 @@ export default function (state = initialState, action) {
                 sessions: [...state.sessions, action.payload]
             }
         case EDIT_SESSION:
-            // this type must come with 2 parameters; the atribute that needs editing and the new value of the attribute
-            const idx = state.session.findIndex(session => session.id !== action.payload)
+
+            const idx = state.session.findIndex(session => session.id === action.payload.id)
             let session = state.sesisons[idx]
-            debugger
+
             return [
                 ...state.sessions.slice(0, idx),
-                Object.assign({}, session, { attribute: action.payload }),
+                Object.assign({}, session, { session: action.payload }),
                 ...state.sessions.slice(idx + 1)
             ];
 
@@ -35,17 +35,3 @@ export default function (state = initialState, action) {
 
 
 }
-
-
-
-/* editing an instance
- let idx = state.findIndex(quote => quote.id === action.quoteId);
-let quote =state[idx]
-
-
-/*return [
-...state.slice(0, idx),
-  Object.assign({}, quote, { votes: quote.votes - 1 }),
-...state.slice(idx + 1)
- ];
- */

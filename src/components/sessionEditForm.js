@@ -1,58 +1,59 @@
 import React, { Component } from 'react';
 import '../sessions.css';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { editSession } from '../actions/sessionActions'
 
- class SessionEditForm extends Component {
+class SessionEditForm extends Component {
 
-    state ={
-    session:{},
-    name:'',
-    student_id: 0,
-    instructor_id: "",
-    admin_id: 1,
-    date: "",
-    time: "",
-    home: false,
-    subject: this.props.student.subject,
-    location: "",
-    instruction: "",
+    state = {
+        id: this.props.session.id,
+        student_id: this.props.student.id,
+        instructor_id: "",
+        admin_id: 1,
+        date: "",
+        time: "",
+        home: false,
+        subject: this.props.student.subject,
+        location: "",
+        instruction: "",
     }
 
-    handleSubmit=(e)=>{
+    handleSubmit = (e) => {
         e.preventDefault()
         console.log(e)
+        this.props.editSession(this.state)
+
     }
-    handleChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value})
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value })
     }
 
 
     availableInstructors = () => {
-        const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
+        const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.session.subject.toLowerCase() || inst.specialty.toLowerCase() === this.props.session.subject.toLowerCase())
         // console.group(theInstructor)
         return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
     }
     render() {
-        const {student, session} =this.props
-        console.log("Edit Sess",this.props)
+        const { student, session } = this.props
+        console.log("Edit Sess", this.props)
         return (
             <div className="edit-session-form">
                 <form onSubmit={this.handleSubmit}>
-                <input type="number" name="student_id" value={student.id} hidden="true"/>
-
                     <label>Student:</label>
-                <input type="text" onChange={this.handleChange} name="name" value={null} placeholder={student.name}/>
-                {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${student.subject} instructor `}></input>) :
+                    <input type="text" onChange={this.handleChange} value={null} placeholder={student.name} />
+                    {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${session.subject} instructor `}></input>) :
                         (<> Instructor: <select onChange={this.handleChange} name="instructor_id">
                             <option value=""> --- </option>
                             {this.availableInstructors()}
                         </select></>
                         )}
-                <input type="text" onChange={this.handleChange} name="subject" value={student.subject}/>
-                <label>Date:</label>
+                    <label>Subject:</label>
+                    <input type="text" onChange={this.handleChange} name="subject" value={session.subject} />
+                    <label>Date:</label>
                     <input type="date" value={this.state.date} name="date" onChange={this.handleChange} placeholder={session.date} />
                     <label>Time:</label>
-                    <input type="time" value={session.time} onChange={this.handleChange} name="time" />
+                    <input type="time" value={this.state.time} onChange={this.handleChange} name="time" placeholder={this.props.time} />
                     <label>home?:</label>
                     <select onChange={this.handleChange} name="home">
                         <option value=""> --- </option>
@@ -67,9 +68,9 @@ import { connect } from 'react-redux'
                             <input type="text" /></>)}
                     <br />
                     Notes:
-                    <textarea name="instruction" value={session.instruction} onChange={this.handleChange} />
+                    <textarea name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
                     <br />
-                    <input style={{color: "black"}}type="submit"></input>
+                    <input style={{ color: "black" }} type="submit"></input>
                     <br />
                     <button onClick={() => this.props.doWeNeedEditForm()}>Cancel</button>
                 </form>
@@ -77,9 +78,9 @@ import { connect } from 'react-redux'
         )
     }
 }
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return {
-        instructors : state.instructors.instructors
+        instructors: state.instructors.instructors
     }
 }
-export default connect(mapStateToProps)(SessionEditForm)
+export default connect(mapStateToProps, { editSession })(SessionEditForm)

@@ -49,10 +49,18 @@ class Sessions extends Component {
             onClick={() => this.toggleOneSession(session.id)}
         ><p key={session.id} >
                 <p>{emoji}</p>
-                <strong>Student: </strong> {session.student.name}</p>
-            <p > <strong>Subject: </strong>{session.subject}</p> <p><strong>Instructor:</strong> {session.instructor.name}</p><strong>Date: </strong>{time.date} <br /> <strong>Time: </strong>{time.newTime}<p><strong>Location:</strong> {session.location}</p>
-        </div><button onClick={() => this.doWeNeedEditForm()}>Edit</button><br /><br />
-            {this.state.editSessionForm ? <EditSession session={this.state.session, this.state.editSessionForm} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
+                <strong>Student:
+                </strong> {session.student.name}</p>
+            <p>
+                <strong>Subject: </strong>{session.subject}</p>
+            <p><strong>Instructor:</strong> {session.instructor.name}</p>
+            <strong>Date: </strong>{time.date} <br />
+            <strong>Time: </strong>{time.newTime}
+            <p><strong>Location:</strong> {
+                session.location}</p>
+        </div>
+            {this.state.editSessionForm ? <></> : <><button onClick={() => this.doWeNeedEditForm()}>Edit</button> <br /> <br /></>}
+            {this.state.editSessionForm ? <EditSession session={session} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
     }
     activatePanels = () => {
         console.log(this.state.active)
@@ -71,7 +79,6 @@ class Sessions extends Component {
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
         const theSessions = this.props.sessions.map(session => {
-
             return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
                 <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br />
             </div>)

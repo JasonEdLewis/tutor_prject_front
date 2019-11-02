@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import NewStudentForm from './NewStudentForm';
 import NewInstructorForm from './NewInstructorForm';
 import Login from './login';
-import Four0Four from './Four0Four';
 import Signup from './Signup';
 import Resources from './components/resources'
 
@@ -14,7 +13,7 @@ import Resources from './components/resources'
 
 class App extends Component {
 
-  componentDidMount(){
+  componentDidMount() {
     console.log("App Mounting again")
   }
 
@@ -23,24 +22,22 @@ class App extends Component {
 
   render() {
     console.log("App props:", this.props)
-    
+
     return (
       <div>
         <body className="Body">
-          <Switch>
             <div>
-              <Route exact path="/"
-                render={routerProps => <Login {...routerProps} AppLoggedIn={this.loggedInState} />}
-              />
+            <Switch>
+              <Route exact path="/" component={Login}/>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/newStudent" component={NewStudentForm} />
               <Route exact path="/newInstructor" component={NewInstructorForm} />
               <Route exact path="/resources" component={Resources} />
               <Route exact path="/signup" component={Signup} />
-              <br />
+              </Switch>
 
             </div>
-          </Switch>
+          
 
         </body>
       </div>
