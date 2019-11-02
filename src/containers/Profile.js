@@ -10,7 +10,10 @@ import Dropdown from '../components/dropdown'
 
 
 class Profile extends Component {
-
+    state ={
+        username:this.props.admin.currentAdmin.username,
+        admin_id:this.props.admin.currentAdmin.id
+    }
 
     render() {
         console.log("Profile props", this.props)
@@ -29,7 +32,7 @@ class Profile extends Component {
                 </div >
 
                 <div className="admin">
-                    <h1>WELCOME BACK {admin.currentAdmin.username}</h1>
+                    <h1>WELCOME BACK {this.state.username}</h1>
                     <Sessions history={history} />
                 </div>
 

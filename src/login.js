@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './login.css';
 import { connect } from 'react-redux';
-import {logginFetch}from './actions/logginActions';
-import {logginSucess}  from './actions/logginActions';
+import { logginFetch } from './actions/logginActions';
+import { logginSucess } from './actions/logginActions';
 import { profileAdmin, profileSuccess } from './actions/adminActions';
 import Headers from './components/headers'
 
@@ -16,41 +16,33 @@ class Login extends Component {
         wrongCreds: null
     }
 
-   
-
-
     handleSubmit = (e) => {
-        debugger
+
         e.preventDefault()
         this.setState({ requsting: !this.state.requsting })
         this.props.logginFetch(this.state).then(data => {
 
-            this.setState({ username: "", password: "" });
+            // this.setState({ username: "", password: "" });
 
-           localStorage.setItem("token", data.token)
-           const token = localStorage.token
+            localStorage.setItem("token", data.token)
+            const token = localStorage.token
             this.props.profileAdmin(token).then(admin => {
-                this.setState({ requsting: this.props.admin.requesting })
-               
+                this.setState({ requsting: this.props.admin.requesting, username: admin.username })
+                debugger
                 if (admin.username !== undefined) {
                     this.props.profileSuccess(admin)
-                    this.props.logginSucess()
-                
-                    this.setState({ requsting: this.props.admin.requesting })
+                    this.props.logginSucess(admin)
+
+                    this.setState({ isLoading: this.props.admin.requesting })
                     this.props.history.push('/profile')
-                   
-                   
+
                 }
                 else {
                     this.setState({ error: !this.state.error })
                 }
-
             })
-
-
         })
-        // console.log(this.props.admin.username)
-        // localStorage.token !== "undefined" ? this.props.history.push('/profile') : this.props.history.push('/') 
+
     }
 
 
@@ -58,7 +50,7 @@ class Login extends Component {
 
     render() {
         const { wrongCreds } = this.state
-        console.log("Project login props:",this.props)
+        console.log("Project login props:", this.props)
         return (
             <>
                 <div>
@@ -79,7 +71,7 @@ class Login extends Component {
                         <form onSubmit={this.handleSubmit} className="login">
                             <h1>User Name</h1>
                             <input style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
-                            {this.state.isLoading ? <h1>Loggin you in....</h1> : "" }
+                            {this.state.isLoading ? <h1>Loggin you in....</h1> : ""}
                             <h1>Password</h1>
                             <input classname="login-inputs" style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password" />
                             <br /><br />
@@ -102,4 +94,4 @@ const mapStateToProps = (state) => {
 
 }
 
-export default connect(mapStateToProps, {logginFetch, profileAdmin, profileSuccess, logginSucess })(Login)
+export default connect(mapStateToProps, { logginFetch, profileAdmin, profileSuccess, logginSucess })(Login)
