@@ -1,29 +1,26 @@
 import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from './types'
-import { async } from 'q'
-
-
 
 
 export const fetchSessions = () => {
 
-    return function (dispatch) {
-        fetch('http://localhost:3000/sessions')
-            .then(resp => resp.json())
-            .then(sessions => dispatch({
-                type: FETCH_SESSIONS,
-                payload: sessions
-            }
-            ))
+    return async function (dispatch) {
+        const resp = await fetch('http://localhost:3000/sessions')
+        const sessions = await resp.json()
+        return dispatch({
+            type: FETCH_SESSIONS,
+            payload: sessions
+        })
     }
-
 }
 
 const dispatchNewSession = (session) => ({ type: NEW_SESSION, payload: session })
 export const createSession = (session) => {
 
     return async dispatch => {
+
         dispatch(dispatchNewSession(session))
         try {
+            let data
             const responce = await fetch('http://localhost:3000/sessions', {
                 method: 'POST',
                 headers: {
@@ -32,6 +29,9 @@ export const createSession = (session) => {
                 },
                 body: JSON.stringify(session)
             })
+            data = responce.json()
+
+            return data
 
         }
         catch (error) {
@@ -40,29 +40,26 @@ export const createSession = (session) => {
 
     }
 }
+export const editSession = (session) => {
+
+    return function (dispatch) {
+        return fetch(`http://localhost:3000/sessions/${session.id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accept: 'application/json'
+            },
+            body: JSON.stringify(session)
+        }
+        ).then(resp => resp.json()).then(
+            dispatch({
+                type: EDIT_SESSION,
+                payload: session
+            })
+        )
+    }
+
+}
 
 
-// export const profileAdmin = (token) => {
-//     return async dispatch => {
 
-//         dispatch(profileRequested())
-//         try {
-
-//             let responce = await fetch('http://localhost:3000/api/v1/profile', {
-//                 method: "GET",
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                     'Accept': 'application/json',
-//                     'Authorization': `${token}`
-//                 }
-//             })
-//             return responce.json()
-
-
-//         }
-//         catch (error) {
-//             dispatch(profileFailed(error))
-//         }
-
-//     }
-// }
