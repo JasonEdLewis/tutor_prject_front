@@ -13,8 +13,8 @@ class Login extends Component {
         username: '',
         password: '',
         isLoading: false,
-        wrongCreds: true,
-        errorMessage: "HELLO"
+        wrongCreds: false,
+        errorMessage: ""
 
     }
 
@@ -48,10 +48,10 @@ class Login extends Component {
 
     handleChange = (e) => { this.setState({ [e.target.name]: e.target.value }) }
     renderErrorMessage = () => {
-        // setTimeout(() => this.setState({ wrongCreds: false }), 2000)
-        return <p classname="wrong-login" >{this.state.errorMessage}</p>
+        setTimeout(() => this.setState({ wrongCreds: false, username: "", password:"" }), 2000)
+        return <p className="wrong-login" >Please enter valid Email or Password...</p>
     }
-    // 
+    // {this.state.errorMessage}
 
 
     render() {
@@ -63,10 +63,12 @@ class Login extends Component {
                     <Headers history={this.props} />
                 </div>
                 <div >{wrongCreds ? this.renderErrorMessage() : null}</div>
-                <div className="login-div">
+                <div className={wrongCreds ? "login-div no-login": "login-div"}>
                     <div className="login">
-                        <h1 id="login-h1" style={{ fontSize: "3em" }} >LOGIN</h1>
-                        <br /><br />
+                        <h1 id={ wrongCreds ? "no-login-h1" :"login-h1"} >LOGIN</h1>
+                        {/* {wrongCreds ? <></> : <br />} */}
+                        {/* {wrongCreds ? <></> : <br />} */}
+
                         <form onSubmit={this.handleSubmit} className="login">
                             <h1>User Name</h1>
                             <input style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="text" name="username" value={this.state.username} onChange={this.handleChange} placeholder="username" />
