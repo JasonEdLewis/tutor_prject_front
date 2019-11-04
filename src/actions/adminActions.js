@@ -10,27 +10,33 @@ const profileFailed = (error) => ({ type: PROFILE_FAILED, payload: error });
 
 
 export const profileAdmin = (token) => {
-    return async dispatch => {
+    debugger
+    if (token !== undefined) {
+        return async dispatch => {
 
-        dispatch(profileRequested())
-        try {
+            dispatch(profileRequested())
+            try {
 
-            let responce = await fetch('http://localhost:3000/api/v1/profile', {
-                method: "GET",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Authorization': `${token}`
-                }
-            })
-            return responce.json()
+                let responce = await fetch('http://localhost:3000/api/v1/profile', {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                        'Authorization': `${token}`
+                    }
+                })
+                return responce.json()
 
+
+            }
+            catch (error) {
+                dispatch(profileFailed(error))
+            }
 
         }
-        catch (error) {
-            dispatch(profileFailed(error))
-        }
+    } else {
 
+        profileFailed("Please enter valid username or password..")
     }
 }
 

@@ -8,7 +8,7 @@ const initialState = {
     token: "",
     errorMessage: "",
     requesting: false,
-    loggedIn:null
+    loggedIn: null
 }
 
 const LogginReducer = (state = initialState, action) => {
@@ -19,7 +19,7 @@ const LogginReducer = (state = initialState, action) => {
             return { ...state, requesting: false, errorMessage: action.payload };
         case SUCCESS_LOGGIN:
             debugger
-            return { ...state, currentAdmin: action.payload, username: action.payload.username,loggedIn:true };
+            return { ...state, currentAdmin: action.payload, username: action.payload.username, loggedIn: true };
 
         default:
             return state;

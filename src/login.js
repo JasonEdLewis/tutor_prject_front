@@ -13,7 +13,9 @@ class Login extends Component {
         username: '',
         password: '',
         isLoading: false,
-        wrongCreds: null
+        wrongCreds: true,
+        errorMessage: "HELLO"
+
     }
 
     handleSubmit = (e) => {
@@ -21,50 +23,47 @@ class Login extends Component {
         e.preventDefault()
         this.setState({ requsting: !this.state.requsting })
         this.props.logginFetch(this.state).then(data => {
-
-            // this.setState({ username: "", password: "" });
-
-            localStorage.setItem("token", data.token)
-            const token = localStorage.token
-            this.props.profileAdmin(token).then(admin => {
-                this.setState({ requsting: this.props.admin.requesting, username: admin.username })
-                debugger
-                if (admin.username !== undefined) {
+            if (data.error) {
+                this.setState({ wrongCreds: true, errorMessage: data.error })
+            }
+            else {
+                localStorage.setItem("token", data.token)
+                const token = localStorage.token
+                this.props.profileAdmin(token).then(admin => {
+                    this.setState({ requsting: this.props.admin.requesting, username: admin.username })
                     this.props.profileSuccess(admin)
                     this.props.logginSucess(admin)
 
                     this.setState({ isLoading: this.props.admin.requesting })
                     this.props.history.push('/profile')
 
-                }
-                else {
-                    this.setState({ error: !this.state.error })
-                }
-            })
+                })
+            }
+
+
         })
 
     }
 
 
     handleChange = (e) => { this.setState({ [e.target.name]: e.target.value }) }
+    renderErrorMessage = () => {
+        // setTimeout(() => this.setState({ wrongCreds: false }), 2000)
+        return <p classname="wrong-login" >{this.state.errorMessage}</p>
+    }
+    // 
+
 
     render() {
-        const { wrongCreds } = this.state
+        const { wrongCreds, errorMessage } = this.state
         console.log("Project login props:", this.props)
         return (
             <>
                 <div>
                     <Headers history={this.props} />
                 </div>
+                <div >{wrongCreds ? this.renderErrorMessage() : null}</div>
                 <div className="login-div">
-                    <div >
-                        <div >
-                            {wrongCreds ? <p className="wrong-login">WRONG LOGIN INFO</p>
-                                : <></>}
-                        </div>
-
-                        <br /><br />
-                    </div>
                     <div className="login">
                         <h1 id="login-h1" style={{ fontSize: "3em" }} >LOGIN</h1>
                         <br /><br />

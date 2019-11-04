@@ -16,12 +16,9 @@
     }
     
     .wrong-login{
-      color: #d30935;
-      margin-left: 60%;
-      width: 100%;
-      font-size: 100%;
-      font-weight: 1400;
-      position: relative;
+     background-color: #d30935;
+     font-size: 50%;
+
     }
     .login-div .login{
        /* background-color: #d30935; */
