@@ -12,7 +12,7 @@ class SessionEditForm extends Component {
         admin_id: 1,
         date: "",
         time: "",
-        home: false,
+        home: true,
         subject: this.props.student.subject,
         location: "",
         instruction: "",
@@ -25,9 +25,28 @@ class SessionEditForm extends Component {
 
     }
     handleChange = (e) => {
-        this.setState({ [e.target.name]: e.target.value })
-    }
 
+        debugger
+        if (e.target.name === "home") {
+            if (e.target.value === 'true') {
+                this.setState({ home: true })
+            }
+            else {
+                this.setState({ home: false })
+            }
+        }
+        else {
+            this.setState({ [e.target.name]: e.target.value })
+        }
+
+    }
+    home = (val) => {
+        val === "yes" ? this.setState({
+            home: true
+        }) : this.setState({
+            home: false
+        })
+    }
 
     availableInstructors = () => {
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.session.subject.toLowerCase() || inst.specialty.toLowerCase() === this.props.session.subject.toLowerCase())
@@ -39,40 +58,41 @@ class SessionEditForm extends Component {
         console.log("Edit Sess", this.props)
         return (
             <div className="edit-session-form">
+                <h4>Edit Session Details </h4>
                 <form onSubmit={this.handleSubmit}>
-                    <label>Student:</label>
-                    <input type="text" onChange={this.handleChange} value={null} placeholder={student.name} />
+                    <label>Student:  </label>
+                    <input type="text" onChange={this.handleChange} value={null} placeholder={`  ${student.name}`} />
                     {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${session.subject} instructor `}></input>) :
                         (<> Instructor: <select onChange={this.handleChange} name="instructor_id">
                             <option value=""> --- </option>
                             {this.availableInstructors()}
                         </select></>
                         )}
-                    <label>Subject:</label>
-                    <input type="text" onChange={this.handleChange} name="subject" value={session.subject} />
-                    <label>Date:</label>
+                    <label>Subject: </label>
+                    <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} />
+                    <label>Date: </label>
                     <input type="date" value={this.state.date} name="date" onChange={this.handleChange} placeholder={session.date} />
-                    <label>Time:</label>
+                    <br />
+                    <label>Time: </label>
                     <input type="time" value={this.state.time} onChange={this.handleChange} name="time" placeholder={this.props.time} />
-                    <label>home?:</label>
-                    <select onChange={this.handleChange} name="home">
-                        <option value=""> --- </option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
+                    <br />
+                    <label>home?: </label>
+                    <select onChange={this.handleChange} name="home" >
+                        <option value={null}> --- </option>
+                        <option value={true}> Yes </option>
+                        <option value={false}> No </option>
                     </select><br />
-                    <label>Subject:</label>
-                    <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
                     {this.state.home ?
                         (<></>) :
-                        (<><label name="location" value={session.location} onChange={this.handleChange}>Location:</label>
+                        (<><label name="location" value={session.location} onChange={this.handleChange}>Location: </label>
                             <input type="text" /></>)}
                     <br />
                     Notes:
-                    <textarea name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
+                    <textarea className="edit-notes-textarea" name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
                     <br />
                     <input style={{ color: "black" }} type="submit"></input>
                     <br />
-                    <button onClick={() => this.props.doWeNeedEditForm()}>Cancel</button>
+                    <button onClick={() => this.props.doWeNeedEditForm()}> Cancel </button>
                 </form>
             </div>
         )

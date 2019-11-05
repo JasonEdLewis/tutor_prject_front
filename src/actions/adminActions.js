@@ -10,7 +10,6 @@ const profileFailed = (error) => ({ type: PROFILE_FAILED, payload: error });
 
 
 export const profileAdmin = (token) => {
-    debugger
     if (token !== undefined) {
         return async dispatch => {
 

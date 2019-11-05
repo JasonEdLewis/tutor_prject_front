@@ -10,13 +10,12 @@ import Dropdown from '../components/dropdown'
 
 
 class Profile extends Component {
-    state ={
-        username:this.props.admin.currentAdmin.username,
-        admin_id:this.props.admin.currentAdmin.id
+    state = {
+        username: this.props.admin.currentAdmin.username,
+        admin_id: this.props.admin.currentAdmin.id
     }
 
     render() {
-        console.log("Profile props", this.props)
         const { admin, history } = this.props
         return (
             <div className="Admin-container">
@@ -24,11 +23,11 @@ class Profile extends Component {
                 <Dropdown history={history} className="dropdown" />
                 <Headers propsFromProfile={this.props} loggedIn={true} />
                 <div className="students">
-                    <h1 style={{textShadow: "2px 1px #006600"}}>Students</h1>
-                    <> <p className="booked" ><strong style={{color: '#006600', textShadow: ".05vh .05vh #717375"}}>Booked:✅  </strong>  |  <strong style={{color:'#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize:"1.35em"}}>BOOK NOW:❗️</strong></p></>
-                    <br/>
+                    <h1 style={{ textShadow: "2px 1px #006600" }}>Students</h1>
+                    <> <p className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked:✅  </strong>  |  <strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize: "1.35em" }}>BOOK NOW:❗️</strong></p></>
+                    <br />
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
-                  
+
                 </div >
 
                 <div className="admin">

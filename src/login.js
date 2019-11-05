@@ -49,7 +49,7 @@ class Login extends Component {
     handleChange = (e) => { this.setState({ [e.target.name]: e.target.value }) }
     renderErrorMessage = () => {
         setTimeout(() => this.setState({ wrongCreds: false, username: "", password:"" }), 2000)
-        return <p className="wrong-login" >Please enter valid Email or Password...</p>
+        return <p className="wrong-email-or-password" >Please enter valid Email or Password...</p>
     }
     // {this.state.errorMessage}
 

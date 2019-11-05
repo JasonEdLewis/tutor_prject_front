@@ -29,9 +29,7 @@ class Students extends Component {
         this.setState({ formSubmitted: false, formClicked: !this.state.formClicked })
     }
     handleSubmit = (e) => {
-
         e.preventDefault()
-        console.log("Plain Students Handle Submit")
         this.setState({
             formSubmitted: !this.state.submitted,
             formClicked: !this.state.clicked
@@ -39,6 +37,10 @@ class Students extends Component {
 
 
     }
+    handleEdit =(student)=>{
+        console.log(student)
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -63,9 +65,7 @@ class Students extends Component {
                 const time = sess.date.replace(/-/g, "/").slice(11, 16)
                 const date = sess.date.replace(/-/g, "/").split("T")[0]
                 const timeInt = parseInt(time)
-
                 const garbage = <li>`Date:${date} Time:${time}`</li>
-                console.log("Its mod 5 and Jack has to do this for me", garbage)
                 return garbage
             })
         }
@@ -75,19 +75,20 @@ class Students extends Component {
         }
 
     }
-    sessionsIds=()=>{
-      return this.props.students.sessions.map(sess=> sess.id)
+    sessionsIds = () => {
+        return this.props.students.sessions.map(sess => sess.id)
     }
-    instructor=(sessionId)=>{
-        let stud
-        return  this.props.students.find(stud => stud.instructors.find( inst=> inst.id === sessionId)).name
-       
+    instructor = (sessionId) => {
+        const session = this.props.sessions.find(sess => sess.id === sessionId)
+        const instructor = this.props.instructors.find(inst => inst.id === session.instructor_id).name
+        return instructor
+
+
     }
 
     singleStudentInfo = (id) => {
-        let sess
+
         const theStudent = this.props.students.find(stu => stu.id === id)
-        // const instructor = this.props.students.find(stud.instructor.find( inst=> inst.id === this.props.student.instructor.id))
 
         return (<div>
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
@@ -99,15 +100,15 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><strong>Instructor:</strong>{this.instructor(sess.id)}</>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
+            <button onClick={()=> this.handleEdit(theStudent)}>Edit Student</button>
         </div>)
     }
 
 
     render() {
 
-        console.log("Students props", this.props)
         const students = this.props.students.map(stu => {
-            return <> <p onClick={() => this.handleClick(stu.id)} style={{textShadow: ".02vh .02vh #717375"}}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
+            return <> <p onClick={() => this.handleClick(stu.id)} style={{ textShadow: ".02vh .02vh #717375" }}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
         })
         return (
             <div>
@@ -123,7 +124,9 @@ class Students extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        students: state.students.students
+        students: state.students.students,
+        sessions: state.sessions.sessions,
+        instructors: state.instructors.instructors
     }
 }
 export default connect(mapStateToProps, { fetchStudents, createStudent })(Students)
