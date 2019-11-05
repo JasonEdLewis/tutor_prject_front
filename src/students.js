@@ -79,8 +79,11 @@ class Students extends Component {
       return this.props.students.sessions.map(sess=> sess.id)
     }
     instructor=(sessionId)=>{
-        let stud
-        return  this.props.students.find(stud => stud.instructors.find( inst=> inst.id === sessionId)).name
+       debugger
+        const session = this.props.sessions.find(sess => sess.id === sessionId )
+        const instructor = this.props.instructors.find(inst => inst.id === session.instructor_id).name
+       return instructor
+       
        
     }
 
@@ -123,7 +126,9 @@ class Students extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        students: state.students.students
+        students: state.students.students,
+        sessions: state.sessions.sessions,
+        instructors: state.instructors.instructors
     }
 }
 export default connect(mapStateToProps, { fetchStudents, createStudent })(Students)

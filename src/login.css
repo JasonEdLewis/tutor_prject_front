@@ -11,7 +11,9 @@
      #login-h1 {
      color: #d30935;
      position: relative;
-     font-size: 3em;
+     font-size: 3.25em;
+     font-weight: 900;
+     text-shadow: #494646 1.5px 1.25px;
      
     }
    #no-login-h1{
@@ -19,14 +21,16 @@
    position: relative;
    font-size: 3em;
    color: rgb(5, 5, 5);
-    opacity: 25%;
+    opacity: 15%;
     
     }
     
-    .wrong-login{
+    .wrong-email-or-password{
       color: #ff0037;
       text-align: center;
-     font-size: 2.5em;
+     font-size: 2.75em;
+     font-weight: 700;
+     text-shadow: #000000 1px 1px;
      margin-top: 10%;
      z-index: -2.0;
 
