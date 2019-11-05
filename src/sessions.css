@@ -54,13 +54,24 @@
    margin: auto;
   }
 
-  .edit-session-form {
+  .edit-session-form  {
     display: block; 
-    margin-left: 32%;
+    margin-left: 7%;
     margin-bottom: 15%;
-    width: 35%;    
+    width: 45%; 
+    padding: 2.5% 20% 5% 20%;
+    border: rgba(156, 154, 154, 0.349);
+    border-width: .01em; 
+    border-style: dotted; 
+    background-color: rgba(246, 241, 228, 0.486); 
 
   }
- .edit-session-form input{
-  color: rgb(153, 145, 145);
+ .edit-session-form input, .edit-notes-textarea {
+  color: rgb(100, 95, 95);
+  padding: 2% 0%;
+  margin: 3% 0%;
+  font-size: 60%;
+  border: rgb(221, 219, 219);
+  border-width: .01em; 
+  border-style: dashed; 
  }
