@@ -35,7 +35,7 @@ export const createInstructor = (instructData) => {
 
 export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
     return function (dispatch) {
-        // debugger
+        debugger
         dispatch({
             type: REDUCE_HOURS,
             payload: id

@@ -14,6 +14,7 @@ export const fetchSessions = () => {
 }
 
 const dispatchNewSession = (session) => ({ type: NEW_SESSION, payload: session })
+
 export const createSession = (session) => {
 
     return async dispatch => {

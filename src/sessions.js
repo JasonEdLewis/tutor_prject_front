@@ -10,7 +10,6 @@ import emojicons from './components/emojicons'
 class Sessions extends Component {
     componentDidMount() {
         this.props.fetchSessions()
-        // localStorage.token  && this.props.history.push('/profile')
     }
 
     state = {
@@ -71,8 +70,7 @@ class Sessions extends Component {
 
 
     render() {
-        // console.log("Sessions props", this.props)
-        console.group("editSessionForm:", this.state.editSessionForm)
+    
 
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0)
 
