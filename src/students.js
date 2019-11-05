@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { fetchStudents, createStudent } from './actions/studentActions';
 import NewStudentForm from './NewStudentForm';
 import './App.css'
@@ -37,7 +38,7 @@ class Students extends Component {
 
 
     }
-    handleEdit =(student)=>{
+    handleEdit = (student) => {
         console.log(student)
     }
 
@@ -100,7 +101,7 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><strong>Instructor:</strong>{this.instructor(sess.id)}</>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
-            <button onClick={()=> this.handleEdit(theStudent)}>Edit Student</button>
+            <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
         </div>)
     }
 
