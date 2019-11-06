@@ -1,16 +1,30 @@
 import React, {Component} from 'react';
 
 
+
 export default class StudentForm extends Component {
     // console.log("General Student form props:", this.props)
 
+state ={
+    student:{}
+}
+
+handleChange=(e)=>{
+    this.setState({[e.target.name]:e.target.value})
+}
+
+handleSubmit=(e)=>{
+    e.preventDefault()
+
+}
 
     render(){
+        console.log("General Student form props:", this.props)
     return (
         <div>
              <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
                         <label>Name:</label>
-                        <input name="name" placeholder='name' className="student-input" value={this.props.student.name} onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
+                        <input name="name" placeholder={this.props.student.name} className="student-input" value={this.props.student.name} onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>School id:</label>
                         <input name="school_id" value={this.props.student.school_id} placeholder="SchoolId" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>Reason:</label>
