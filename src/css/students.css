@@ -1,0 +1,9 @@
+.single-student-card{
+    border: rgba(182, 180, 180, 0.76);
+    border-style: dashed;
+    border-width: .01rem;
+    margin: 0% 1%;
+    padding: 1%;
+    font-size: x-large;
+    background-color: rgba(238, 238, 247, 0.918);
+}

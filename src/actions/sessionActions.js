@@ -21,7 +21,6 @@ export const createSession = (session) => {
 
         dispatch(dispatchNewSession(session))
         try {
-            let data
             const responce = await fetch('http://localhost:3000/sessions', {
                 method: 'POST',
                 headers: {
@@ -30,10 +29,6 @@ export const createSession = (session) => {
                 },
                 body: JSON.stringify(session)
             })
-            data = responce.json()
-
-            return data
-
         }
         catch (error) {
             console.log(error)

@@ -23,7 +23,7 @@ class NewSession extends Component {
     }
 
     handleChange = (e) => {
-        // debugger
+       
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -33,23 +33,25 @@ class NewSession extends Component {
         this.setState({ edit: !this.state.edit })
     }
     availableInstructors = () => {
+      
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
         // console.group(theInstructor)
         return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
     }
     handleSubmit = (e) => {
-        debugger
+       
         e.preventDefault()
-        this.props.createSession(this.state)
+        this.props.createSession(this.state).then(()=> {
             const instHours = this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2
             this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id, instHours)
             this.props.removeForm()
             this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+        })
     }
 
     render() {
 
-        console.log(this.availableInstructors().length)
+        console.log("New Sessions props", this.props)
 
 
         // console.log("New Session state:", this.state) 

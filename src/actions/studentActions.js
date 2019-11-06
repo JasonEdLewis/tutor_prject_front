@@ -1,5 +1,5 @@
 import React from 'react';
-import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT } from './types';
+import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT,ERROR } from './types';
 
 export const fetchStudents = () => {
     return function (dispatch) {
@@ -14,11 +14,14 @@ export const fetchStudents = () => {
     }
 
 }
-
+const dispatchNewStudent=(info)=>({type:NEW_STUDENT, payload:info })
+const dispatchError=(err)=>({type: ERROR, payload: err})
 export const createStudent = (studentInfo) => {
     console.log("creating student....")
-    return function (dispatch) {
 
+    return async dispatch =>{
+        dispatch(dispatchNewStudent(studentInfo))
+        try{
         fetch('http://localhost:3000/students/', {
             method: 'POST',
             headers: {
@@ -27,11 +30,10 @@ export const createStudent = (studentInfo) => {
             },
             body: JSON.stringify(studentInfo)
         })
-            .then(resp => resp.json())
-            .then(student => dispatch({
-                type: NEW_STUDENT,
-                payload: student
-            }))
+    }
+    catch(error){
+        dispatch(dispatchError(error))
+    }
 
     }
 }
