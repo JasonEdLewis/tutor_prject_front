@@ -4,12 +4,12 @@ import '../App.css';
 
 export default class Dropdown extends Component {
 
-  state ={
+  state = {
     showMenu: false,
   }
 
 
-  showMenu =(event)=>{
+  showMenu = (event) => {
     event.preventDefault();
     this.setState({
       showMenu: !this.state.showMenu,
@@ -20,7 +20,7 @@ export default class Dropdown extends Component {
     const { history } = this.props
     return (
       <div className="dropdown">
-        <button onClick={()=> { localStorage.clear(); history.push('/') }} className="drop-btn"> LOGOUT </button>
+        <button onClick={() => { localStorage.clear(); history.push('/') }} className="drop-btn"> LOGOUT </button>
         {/* <button onClick={this.showMenu} className="drop-btn">
             M  E  N  U 
           </button>
