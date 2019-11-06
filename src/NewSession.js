@@ -33,6 +33,7 @@ class NewSession extends Component {
         this.setState({ edit: !this.state.edit })
     }
     availableInstructors = () => {
+        debugger
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
         // console.group(theInstructor)
         return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../src/App.css';
+import StudentForm from './components/StudentForm';
 import { connect } from 'react-redux';
 import { createStudent } from './actions/studentActions'
 
@@ -26,7 +27,6 @@ class NewStudentForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log("Student Form Handle Submit")
-        debugger
         this.props.createStudent(this.state.student)
         this.props.formUnclick()
     }
@@ -79,14 +79,14 @@ class NewStudentForm extends Component {
 
     render() {
 
-        //    console.log("New Student From state after santization:",this.state.student)
+           console.log("New Student From state after santization:",this.state.student)
 
         return (
             <div>
                 <h1>New Student Form</h1>
                 <h3>Student Info</h3>
                 <div>
-                    {/* <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
+                   <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
                         <label>Name:</label>
                         <input name="name" placeholder='name' className="student-input" value={this.state.student.name} onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>School id:</label>
@@ -111,22 +111,22 @@ class NewStudentForm extends Component {
                         </select>
                         <label>Councilor Info:</label>
                         <textarea row="5" col="60" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
-                        {/* <br /> */}
-                        {/*<h3>Guardian Info</h3>
+                         <br /> 
+                        <h3>Guardian Info</h3>
                         <label>Name:</label>
                         <input value={this.state.student.guardian} placeholder="guardian" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>Address:</label>
                         <input value={this.state.student.address} placeholder="address" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>Cell:</label>
-                        <input value={this.state.student.home_no} type="tel" placeholder="Cell Phone" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} name="cell" />
+                        <input value={this.state.student.cell} type="tel" placeholder="Cell Phone" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} name="cell" />
                         <label>Home Phone:</label>
-                        <input value={this.state.student.cell} type="tel" placeholder="Home Phone" className="student-input" onChange={this.handleChange} name="home_no" style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
+                        <input value={this.state.student.home_no} type="text" placeholder="Home Phone" className="student-input" onChange={this.handleChange} name="home_no" style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>Email:</label>
                         <input name="email" value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
-                        {/* <br />
-                        <br /> */}
-                       {/* <input type="submit" className="student-input" onClick={this.handleSubmit} style={{ width: "75%", fontSize: "1em", borderRadius: ".25em" }} />
-                    </form> */}
+                         <br />
+                        <br /> 
+                        <input type="submit" className="student-input" onClick={this.handleSubmit} style={{ width: "75%", fontSize: "1em", borderRadius: ".25em" }} />
+                    </form> 
                 </div>
                 <div>
                     <br />
