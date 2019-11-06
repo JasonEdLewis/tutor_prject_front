@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createInstructor } from './actions/instructorActions';
-import './App.css';
+import './App.css'
 
 class NewInstructorForm extends Component {
 
@@ -30,11 +30,11 @@ class NewInstructorForm extends Component {
                 <h2>New Instructor Form</h2>
                 <form onSubmit={this.handelSubmit} className="new-instructor-form">
                     <label>name: </label>
-                    <input type="text" name="name" placeholder="" value={this.state.name} onChange={this.handleChange} /><br/>
+                    <input type="text" name="name" placeholder="" value={this.state.name} onChange={this.handleChange} /><br />
                     <label>Subject: </label>
                     <input type="text" name="subject" placeholder="" value={this.state.subject} onChange={this.handleChange} />
                     <label>specialty: </label>
-                    <input type="text" name="specialty" placeholder="" value={this.state.specialty} onChange={this.handleChange} /><br/>
+                    <input type="text" name="specialty" placeholder="" value={this.state.specialty} onChange={this.handleChange} /><br />
                     <label>Hours: </label>
                     <input type="number" min="4" name="hours" placeholder="" value={this.state.hours} onChange={this.handleChange} />
                     <br />

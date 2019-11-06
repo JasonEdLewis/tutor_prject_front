@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../src/App.css';
-import StudentForm from './components/StudentForm';
+import './App.css';
+import StudentForm from './components/EditStudentForm';
 import { connect } from 'react-redux';
 import { createStudent } from './actions/studentActions'
 
@@ -79,14 +79,14 @@ class NewStudentForm extends Component {
 
     render() {
 
-           console.log("New Student From state after santization:",this.state.student)
+        console.log("New Student From state after santization:", this.state.student)
 
         return (
             <div>
                 <h1>New Student Form</h1>
                 <h3>Student Info</h3>
                 <div>
-                   <form className="new-student-form" onSubmit={this.handleSubmit} >
+                    <form className="new-student-form" onSubmit={this.handleSubmit} >
                         <label>Name:</label>
                         <input name="name" placeholder='name' className="student-input" value={this.state.student.name} onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>School id:</label>
@@ -111,7 +111,7 @@ class NewStudentForm extends Component {
                         </select>
                         <label>Councilor Info:</label>
                         <textarea row="5" col="60" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
-                         <br /> 
+                        <br />
                         <h3>Guardian Info</h3>
                         <label>Name:</label>
                         <input value={this.state.student.guardian} placeholder="guardian" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
@@ -123,10 +123,10 @@ class NewStudentForm extends Component {
                         <input value={this.state.student.home_no} type="text" placeholder="Home Phone" className="student-input" onChange={this.handleChange} name="home_no" style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>Email:</label>
                         <input name="email" value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
-                         <br />
-                        <br /> 
+                        <br />
+                        <br />
                         <input type="submit" className="student-input" style={{ width: "75%", fontSize: "1em", borderRadius: ".25em" }} />
-                    </form> 
+                    </form>
                 </div>
                 <div>
                     <br />

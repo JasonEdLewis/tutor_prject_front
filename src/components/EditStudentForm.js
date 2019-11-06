@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 
-export default function StudentForm(props) {
+export default class StudentForm extends Component {
     // console.log("General Student form props:", this.props)
+
+
+    render(){
     return (
         <div>
              <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
@@ -48,4 +51,5 @@ export default function StudentForm(props) {
                     </form>
         </div>
     )
+                    }
 }

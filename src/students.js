@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import EditStudentForm from './components/EditStudentForm';
 import { fetchStudents, createStudent } from './actions/studentActions';
 import NewStudentForm from './NewStudentForm';
 import './App.css';
-import './css/students.css'
+import './css/students.css';
 
 class Students extends Component {
 
@@ -14,7 +14,7 @@ class Students extends Component {
         id: '',
         studentInfo: '',
         formSubmitted: false,
-
+        needEditForm: false,
     }
 
     componentDidMount() {
@@ -39,8 +39,9 @@ class Students extends Component {
 
 
     }
-    handleEdit = (student) => {
-        console.log(student)
+    handleEdit = (e) => {
+        console.log(e)
+        this.setState({needEditForm: !this.state.needEditForm, formClicked: !this.state.needEditForm ,studentClicked: !this.state.studentclicked})
     }
 
     handleChange = (e) => {
@@ -102,7 +103,7 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
-            <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
+            <button onClick={this.handleEdit}>Edit Student</button>
         </div>)
     }
 
@@ -110,13 +111,16 @@ class Students extends Component {
     render() {
 
         const students = this.props.students.map(stu => {
-            return <> <p onClick={() => this.handleClick(stu.id)} style={{ textShadow: ".02vh .02vh #717375" }}><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
+            return <> <p onClick={() => this.handleClick(stu.id)} ><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}Name:</strong>{stu.name} </p></>
         })
         return (
-            <div>
+            <div className= {this.state.studentclicked ? "students-blur" : "students"} >
+
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
+                {this.state.needEditForm ?  <EditStudentForm student={this.state.studentInfo} /> : <></> }
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
                 {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
+                
 
             </div>
 

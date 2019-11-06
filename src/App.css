@@ -78,15 +78,6 @@ a {
     monospace;
      background-color: '#000'
 }
-.student-input{
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  margin:5vh;
-  padding: 1vw;
-  width: auto;
-  background-color: rgb(244, 245, 248);
-}
 
 /* Profile  */
 
@@ -163,10 +154,6 @@ h5{
  margin-left: 1.75%;
 }
 
-.new-student-form{
-  margin-left: 35%;
-  width: 35%;
-}
 
 .new-instructor-form{
   display: block; 
