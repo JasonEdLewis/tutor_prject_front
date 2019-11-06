@@ -8,7 +8,6 @@ class NewStudentForm extends Component {
 
 
     state = {
-        students: [],
         student: {},
     }
 
@@ -25,9 +24,10 @@ class NewStudentForm extends Component {
     }
 
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         console.log("Student Form Handle Submit")
-        this.props.createStudent(this.state.student)
+        this.props.createStudent(this.state.student).then(resp => resp.json()).then(data => console.log(data))
         this.props.formUnclick()
     }
     componentDidMount() {
@@ -86,7 +86,7 @@ class NewStudentForm extends Component {
                 <h1>New Student Form</h1>
                 <h3>Student Info</h3>
                 <div>
-                   <form className="new-student-form" handleSubmit={(e) => console.log(e)}>
+                   <form className="new-student-form" onSubmit={this.handleSubmit} >
                         <label>Name:</label>
                         <input name="name" placeholder='name' className="student-input" value={this.state.student.name} onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>School id:</label>
@@ -125,14 +125,14 @@ class NewStudentForm extends Component {
                         <input name="email" value={this.state.student.email} type="email" placeholder="email" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                          <br />
                         <br /> 
-                        <input type="submit" className="student-input" onClick={this.handleSubmit} style={{ width: "75%", fontSize: "1em", borderRadius: ".25em" }} />
+                        <input type="submit" className="student-input" style={{ width: "75%", fontSize: "1em", borderRadius: ".25em" }} />
                     </form> 
                 </div>
                 <div>
                     <br />
                     <br />
                     <br />
-                    <button onClick={(e) => console.log(e)}>Back</button>
+                    <button onClick={this.props.formUnclick}>Back</button>
                 </div>
             </div>
         )

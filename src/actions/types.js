@@ -7,6 +7,7 @@ export const REDUCE_HOURS = 'REDUCE_HOURS';
 export const FETCH_STUDENTS = 'FECTCH_STUDENTS';
 export const NEW_STUDENT = 'NEW_STUDENT';
 export const EDIT_STUDENT = 'EDIT_STUDENT';
+export const ERROR = 'ERROR';
 
 export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const NEW_SESSION = 'NEW_SESSION';

@@ -1,10 +1,11 @@
 import React from 'react';
-import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT } from '../actions/types';
+import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT, ERROR } from '../actions/types';
 
 
 const initialState = {
     students: [],
-    student: {}
+    student: {},
+    errorMessage:""
 }
 
 export default function (state = initialState, action) {
@@ -29,6 +30,12 @@ export default function (state = initialState, action) {
                 state.students.slice(idx + 1)
                 ]
             }
+            case ERROR:
+                debugger
+                return {
+                    ...state,
+                    errorMessage: action.payload
+                }
         default:
             return state
     }

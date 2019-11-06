@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { fetchStudents, createStudent } from './actions/studentActions';
 import NewStudentForm from './NewStudentForm';
-import './App.css'
+import './App.css';
+import './css/students.css'
 
 class Students extends Component {
 
@@ -27,7 +28,7 @@ class Students extends Component {
         })
     }
     unclickNewStudentForm = () => {
-        this.setState({ formSubmitted: false, formClicked: !this.state.formClicked })
+        this.setState({ formSubmitted: false, formClicked: !this.state.formClicked, studentInfo:"" })
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -91,14 +92,14 @@ class Students extends Component {
 
         const theStudent = this.props.students.find(stu => stu.id === id)
 
-        return (<div>
+        return (<div className="single-student-card">
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul>
                 <li><strong>Grade</strong>: {theStudent.grade}th</li>
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><strong>Instructor:</strong>{this.instructor(sess.id)}</>))
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
             <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
