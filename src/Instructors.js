@@ -11,8 +11,8 @@ class Instructors extends Component {
 
     state = {
         needForm: false,
-        showOneInstructor:false,
-        id : ""
+        showOneInstructor: false,
+        id: ""
     }
 
     componentDidMount() {
@@ -30,24 +30,31 @@ class Instructors extends Component {
         })
 
     }
+    editIntructor = (inst) => {
+        console.log(inst)
+    }
 
-    showOneStatus=(id)=>{
-        this.setState({showOneInstructor: !this.state.showOneInstructor, id})
+    showOneStatus = (id) => {
+        this.setState({ showOneInstructor: !this.state.showOneInstructor, id })
         this.state.showOneInstructor && this.showOne()
     }
-    showOne=()=>{
-        const instuct =  this.props.instructors.find(inst => inst.id === this.state.id)
-        return (<p onClick={()=> this.showOneStatus(instuct.id)}><strong>{instuct.name}</strong>/{instuct.subject}: <span onClick={() => this.deleteInstructor(instuct.id)} className="x"> ❌ </span><br/><strong>available hours:</strong>{instuct.hours}</p>)
+    showOne = () => {
+        const instuct = this.props.instructors.find(inst => inst.id === this.state.id)
+        return (<div className="instructors-card-div">
+             <span onClick={() => this.deleteInstructor(instuct.id)} id="trash-icon"> 🗑 </span><span onClick={() => this.editIntructor(instuct)} id="pen"> 🖋 </span><br/>
+            <p onClick={() => this.showOneStatus(instuct.id)} id="single-instructor-name"><strong>{instuct.name}</strong></p>
+            <p><strong>Subject: </strong>{instuct.subject}<br/></p><p><strong>available hours:</strong>{instuct.hours}</p> </div>)
     }
     render() {
         // debugger
         // console.log("Instructors props: ", this.props)
         const { instructors, history } = this.props
-const instructs = instructors.map(inst => <p onClick={()=> this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
-        
+        const instructs = instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
+
         return (
-            <div className="instructors-card-div">
-                { this.state.showOneInstructor ? this.showOne(): instructs }
+            <div>
+
+                {this.state.showOneInstructor ? this.showOne() : instructs}
                 {this.state.needForm ? <NewInstructorForm removeForm={this.addFormToPage} /> : <button onClick={this.addFormToPage}>Add New Instructor</button>}
             </div>
         )

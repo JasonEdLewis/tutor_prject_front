@@ -21,5 +21,21 @@
       border-width: .1rem;
       align-content: center;
   }
- 
+  #pen{
+    font-size: 1rem;
+  
+  }
 
+  #trash-icon{
+   margin-left: 85%;
+    font-size: 1rem;
+    position: relative;
+  }
+#single-instructor-name{
+  font-size: 2.25rem;
+  position: relative;
+  margin-top: -2.5%;
+  margin-left: 5%;
+  font-family: cursive;
+  color:red;
+}
