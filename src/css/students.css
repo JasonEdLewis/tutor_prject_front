@@ -19,7 +19,8 @@
 
 .student-emojicon {
     font-size: 5rem;
-    background: rgb(235, 230, 230);
+    background-color: #d6e2e1;
+    background-image: url("https://www.transparenttextures.com/patterns/robots.png");
     padding: 5% 5% 2% 5%;
     text-shadow: .02vh .03vh #4c5661;
     border-style: solid;
