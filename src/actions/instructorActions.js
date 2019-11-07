@@ -1,4 +1,4 @@
-import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS } from './types';
+import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR,REDUCE_HOURS } from './types';
 
 
 
@@ -31,6 +31,23 @@ export const createInstructor = (instructData) => {
             body: JSON.stringify(instructData)
         })
     }
+}
+export const editInstructor=(info)=>{
+        debugger
+        const id = info.id
+    return function (dispatch) {
+        dispatch({
+            type: EDIT_INSTRUCTOR,
+            payload: info
+        })
+        fetch(`http://localhost:3000/instructors/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                accepts: 'application/json'},
+                body: JSON.stringify(info)
+    })
+}
 }
 
 export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
