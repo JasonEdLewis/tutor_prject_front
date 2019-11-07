@@ -66,9 +66,7 @@ a {
   text-decoration:none;
   color: rgba(4, 91, 149, 0.801);
 }
-.x{
-  font-size: 10px;
-}
+
 .Body{
   display: inline-flexbox;
   padding: 0%;
