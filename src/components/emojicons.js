@@ -2,7 +2,7 @@
 import React from 'react'
 
  export default  (subject)=>{
-    switch(subject) {  
+    switch(subject.toLowerCase()) {  
     case 'math': 
     return <span className="emojicons"  role="img" aria-label="emojicon"> 🤓 </span>;          
     case 'science' ||'biology':           
@@ -18,7 +18,7 @@ import React from 'react'
     case 'writing':            
     return <span className="emojicons"  role="img" aria-label="emojicon"> 📝  </span>; 
     case 'music':            
-    return <span style={{fontSize:"1rem"}} role="img" aria-label="emojicon"> 𝄢 </span>;           
+    return <span style={{fontSize:"2.5rem"}} role="img" aria-label="emojicon">  🎼 </span>;           
     default:           
      return null;}    
     }

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchInstructors, deleteInstructor } from './actions/instructorActions';
-import './App.css';
-import NewInstructorForm from './NewInstructorForm'
+import './css/instructor.css';
+import NewInstructorForm from './NewInstructorForm';
+import Emojicon from './components/emojicons'
 
 
 
@@ -10,6 +11,8 @@ class Instructors extends Component {
 
     state = {
         needForm: false,
+        showOneInstructor:false,
+        id : ""
     }
 
     componentDidMount() {
@@ -27,18 +30,25 @@ class Instructors extends Component {
         })
 
     }
+
+    showOneStatus=(id)=>{
+        this.setState({showOneInstructor: !this.state.showOneInstructor, id})
+        this.state.showOneInstructor && this.showOne()
+    }
+    showOne=()=>{
+        const instuct =  this.props.instructors.find(inst => inst.id === this.state.id)
+        return (<p onClick={()=> this.showOneStatus(instuct.id)}><strong>{instuct.name}</strong>/{instuct.subject}: <span onClick={() => this.deleteInstructor(instuct.id)} className="x"> ❌ </span><br/><strong>available hours:</strong>{instuct.hours}</p>)
+    }
     render() {
         // debugger
         // console.log("Instructors props: ", this.props)
         const { instructors, history } = this.props
-        const instructor = instructors.map(inst => <p><strong>{inst.name}</strong>/{inst.subject}: <span onClick={() => this.deleteInstructor(inst.id)} className="x"> ❌ </span> <br /><strong>available hours:</strong>{inst.hours}  </p>)
+const instructs = instructors.map(inst => <p onClick={()=> this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
+        
         return (
-            <div>
-                {instructor}
+            <div className="instructors-card-div">
+                { this.state.showOneInstructor ? this.showOne(): instructs }
                 {this.state.needForm ? <NewInstructorForm removeForm={this.addFormToPage} /> : <button onClick={this.addFormToPage}>Add New Instructor</button>}
-                <div>
-
-                </div>
             </div>
         )
     }

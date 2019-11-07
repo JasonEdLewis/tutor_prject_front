@@ -9,6 +9,7 @@ import '../App.css';
 import Dropdown from '../components/dropdown'
 
 
+
 class Profile extends Component {
     state = {
         username: this.props.admin.currentAdmin.username,
@@ -23,7 +24,11 @@ class Profile extends Component {
                 <Dropdown history={history} className="dropdown" />
                 <Headers propsFromProfile={this.props} loggedIn={true} />
                 <div className="students">
-                    <h1 style={{ textShadow: "2px 1px #006600" }}>Students</h1>
+                    <h1 className="students-heading">Students</h1>
+                    <div class="line-over-student">____________________</div>
+                    <br/>
+                    <span className="student-emojicon" > 👨🏽‍💻 </span>
+                    <div class="line-under-student">_____________</div>
                     <> <p className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked:✅  </strong>  |  <strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize: "1.35em" }}>BOOK NOW:❗️</strong></p></>
                     <br />
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
@@ -35,8 +40,13 @@ class Profile extends Component {
                     <Sessions history={history} />
                 </div>
 
-                <div className="instructors">
-                    <h1>Instructors</h1>
+                <div className="instructors-div">
+                
+                    <h1 className="instructors-heading">Instructors</h1>
+                    <div class="line-over-instructor">______________________</div>
+                    <br/>
+                    <span className="teacher-emojicon" >👨🏻‍🏫</span>
+                    <div class="line-under-instructor">_____________</div>
                     <Instructors history={history} />
                 </div>
 

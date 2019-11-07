@@ -85,7 +85,7 @@ class SessionEditForm extends Component {
                     {this.state.home ?
                         (<></>) :
                         (<><label name="location" value={session.location} onChange={this.handleChange}>Location: </label>
-                            <input type="text"  name="location" value={this.state.location} onChange={this.handleChange}/></>)}
+                            <input type="text" name="location" value={this.state.location} onChange={this.handleChange} /></>)}
                     <br />
                     Notes:
                     <textarea className="edit-notes-textarea" name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
