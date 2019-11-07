@@ -13,11 +13,13 @@
   .teacher-emojicon{
       font-size: 5rem;
       text-shadow: .02vh .03vh #4c5661;
-      background: rgb(235, 230, 230);
+      background-image: url("https://www.transparenttextures.com/patterns/type.png");
+      background-color:#f7f7f7;
       padding: 5% 5% 2% 5%;
       border: black;
       border-style: solid;
       border-width: .1rem;
       align-content: center;
   }
+ 
 
