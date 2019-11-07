@@ -30,6 +30,8 @@ class Sessions extends Component {
     doWeNeedEditForm = () => {
         this.setState({ editSessionForm: !this.state.editSessionForm })
     }
+    
+  
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
     }

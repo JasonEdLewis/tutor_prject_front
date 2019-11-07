@@ -9,6 +9,7 @@
 }
 
 .students{
+    font-size: 2rem;
     text-shadow: .02vh .03vh #717375;
    
 }
@@ -16,7 +17,17 @@
     background-color: black;
 }
 
-
+.student-emojicon {
+    font-size: 5rem;
+    background: rgb(235, 230, 230);
+    padding: 5% 5% 2% 5%;
+    text-shadow: .02vh .03vh #4c5661;
+    border-style: solid;
+    border-color: black;
+    border-width: .1rem;
+   align-content: center;
+   
+}
 .new-student-form{
     margin-left: 35%;
     width: 35%;
