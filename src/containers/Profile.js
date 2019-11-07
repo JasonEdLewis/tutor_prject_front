@@ -17,7 +17,8 @@ class Profile extends Component {
     }
 
     render() {
-        const { admin, history } = this.props
+        const { admin, history,sessions, students } = this.props
+        
         return (
             <div className="Admin-container">
 
@@ -29,8 +30,9 @@ class Profile extends Component {
                     <br/>
                     <span className="student-emojicon" > 👨🏽‍💻 </span>
                     <div class="line-under-student">_____________</div>
-                    <> <p className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked:✅  </strong>  |  <strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize: "1.35em" }}>BOOK NOW:❗️</strong></p></>
+                     <div className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked: <span id="number-booked">{sessions.length}</span> ✅  </strong> <span className="pipe">|</span><strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize: "1.25em" }}> 🚨BOOK <span id="number-left-to-book">{students.length - sessions.length}</span> NOW🚨</strong></div>
                     <br />
+                    <h6 id="click-student-for-details">click Student to see details</h6>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
 
                 </div >
