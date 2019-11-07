@@ -173,9 +173,10 @@ h5{
   margin: auto;
 }
 .booked{
-  margin: 10% 0% 0% 10%;
+  margin: 10% 0% 0% 5%;
   padding: 1%;
-  width: 80%;
+  width: 85%;
+  text-align: center;
   border-color: #0e0d0d73;
   border-width: .01em;
   border-style: outset;
@@ -239,4 +240,22 @@ h5{
 }
 .admin-username {
   margin:0% 0% 0% 0%;
+}
+#number-booked{
+  font-size: 2.75rem;
+  color:#fff;
+  font-weight: 900;
+  text-shadow: .05rem .2rem #1c1d1d;
+}
+#number-left-to-book {
+  font-size: 3rem;
+  color: #0b73fa;
+  text-shadow: .05rem .2rem #ece0e0;
+}
+#click-student-for-details{
+  color:red;
+}
+.pipe{
+  font-size: 3rem;
+  color: black;
 }

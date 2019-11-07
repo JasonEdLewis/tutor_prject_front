@@ -111,7 +111,7 @@ class Students extends Component {
     render() {
 
         const students = this.props.students.map(stu => {
-            return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? " ✅ " : "❗️ "}</strong>{stu.name} </p></>
+            return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
         return (
             <div className= {this.state.studentclicked ? "students-blur" : "students"} >
