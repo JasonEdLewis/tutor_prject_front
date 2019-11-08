@@ -21,6 +21,7 @@ export default function (state = initialState, action) {
                 students: [action.payload, ...state.students]
             }
         case EDIT_STUDENT:
+            debugger
             const idx = state.students.findIndex(student.id === action.payload)
             const student = state.students[idx]
             return {

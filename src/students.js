@@ -12,9 +12,9 @@ class Students extends Component {
         studentclicked: false,
         formClicked: false,
         id: '',
-        studentInfo: '',
         formSubmitted: false,
         needEditForm: false,
+        student: {}
     }
 
     componentDidMount() {
@@ -28,7 +28,7 @@ class Students extends Component {
         })
     }
     unclickNewStudentForm = () => {
-        this.setState({ formSubmitted: false, formClicked: !this.state.formClicked, studentInfo:"" })
+        this.setState({ formSubmitted: false, formClicked: !this.state.formClicked, studentInfo: "" })
     }
     handleSubmit = (e) => {
         e.preventDefault()
@@ -39,9 +39,9 @@ class Students extends Component {
 
 
     }
-    handleEdit = (e) => {
-        console.log(e)
-        this.setState({needEditForm: !this.state.needEditForm, formClicked: !this.state.needEditForm ,studentClicked: !this.state.studentclicked})
+    handleEdit = (stud) => {
+
+        this.setState({ needEditForm: !this.state.needEditForm, formClicked: !this.state.needEditForm, studentClicked: !this.state.studentclicked, student: stud })
     }
 
     handleChange = (e) => {
@@ -103,7 +103,7 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : `${theStudent.name} has no sessions booked`}
             </ul>
-            <button onClick={this.handleEdit}>Edit Student</button>
+            <button onClick={()=> this.handleEdit(theStudent)}>Edit Student</button>
         </div>)
     }
 
@@ -114,13 +114,13 @@ class Students extends Component {
             return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
         return (
-            <div className= {this.state.studentclicked ? "students-blur" : "students"} >
+            <div className={this.state.studentclicked ? "students-blur" : "students"} >
 
                 {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
-                {this.state.needEditForm ?  <EditStudentForm student={this.state.studentInfo} /> : <></> }
+                {this.state.needEditForm ? <EditStudentForm student={this.state.student} /> : <></>}
                 {this.state.formClicked ? <></> : this.studentQuickForm()}
                 {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
-                
+
 
             </div>
 
