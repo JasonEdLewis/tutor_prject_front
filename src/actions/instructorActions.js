@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR,REDUCE_HOURS } from './types';
 
 

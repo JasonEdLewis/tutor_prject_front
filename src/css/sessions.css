@@ -75,3 +75,15 @@
   border-width: .01em; 
   border-style: dashed; 
  }
+ #edit-sess{
+
+  position: absolute;
+  margin: 1.25% 10% 10% -4% ;
+  text-shadow: .05em .05em rgb(70, 63, 64);
+ }
+ #delete-sess{
+  position: absolute;
+  margin: -.5% 0% 0% -1% ;
+  text-shadow: .03em .03em rgb(233, 167, 177);
+
+}

@@ -1,4 +1,4 @@
-import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION } from './types'
+import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION } from './types'
 
 
 export const fetchSessions = () => {
@@ -55,6 +55,20 @@ export const editSession = (session) => {
         )
     }
 
+}
+
+export const deleteSession =(id)=>{
+ return dispatch =>{
+     debugger
+    dispatch({
+        type: DELETE_SESSION,
+        payload: id
+    })
+    return fetch(`http://localhost:3000/sessions/${id}`,{
+    method: 'DELETE'
+})
+
+ }
 }
 
 
