@@ -24,38 +24,41 @@ class Profile extends Component {
 
                 <Dropdown history={history} className="dropdown" />
                 <Headers propsFromProfile={this.props} loggedIn={true} />
+                {/* STUDENTS */}
+
                 <div className="students">
                     <h1 className="students-heading">Students</h1>
                     <div class="line-over-student">____________________</div>
                     <br/>
                     <span className="student-emojicon" > 👨🏽‍💻 </span>
                     <div class="line-under-student">_____________</div>
-                     <div className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked: <span id="number-booked">{sessions.length}</span> ✅  </strong> <span className="pipe">|</span><strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4", fontSize: "1.25em" }}> 🚨BOOK <span id="number-left-to-book">{students.length - sessions.length}</span> NOW🚨</strong></div>
+                     <div className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked:<span id="number-booked">{sessions.length}</span > <span style={{fontSize: "1.5rem"}}>✅</span>  </strong> <span className="pipe">|</span><strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4",  }}> LEFT:<span id="number-left-to-book">{students.length - sessions.length}</span></strong>❗️</div>
                     <br />
                     <h6 id="click-student-for-details">click Student to see details</h6>
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
-
                 </div >
 
+                {/* ADMIN */}
                 <div className="admin">
                 <h1>WELCOME BACK </h1>
                 <div class="line-over-admin">______________________</div>
                 <h1 className="admin-username"> {this.state.username}</h1>
                 <span className="admin-emojicon" >{this.state.username === ("Jason" || "Hy") ? "👨🏽‍💼" : "👩🏾‍💼"} </span>
-                <br/>
-                    <div class="line-under-admin">_____________</div>
-                   
+                <br/> <div class="line-under-admin">_____________</div>
+
+                        {/* SESSIONS  */}
                     <Sessions history={history} />
                 </div>
-
+                        {/* INSTRUCTORS */}
                 <div className="instructors-div">
-                
                     <h1 className="instructors-heading">Instructors</h1>
                     <div class="line-over-instructor">______________________</div>
                     <br/>
                     <span className="teacher-emojicon" >👩🏻‍🏫</span>
                     <div class="line-under-instructor">_____________</div>
-                    <Instructors history={history} />
+                    <div className="subject-legend"><p>Science:🧪 English:📕 Music: 𝄢 Math:🤓 History:🌍</p>
+                    </div>
+                     <Instructors history={history} />
                 </div>
 
             </div>

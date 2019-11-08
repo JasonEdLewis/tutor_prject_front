@@ -33,14 +33,12 @@ export const createInstructor = (instructData) => {
     }
 }
 export const editInstructor=(info)=>{
-        debugger
-        const id = info.id
     return function (dispatch) {
         dispatch({
             type: EDIT_INSTRUCTOR,
             payload: info
         })
-        fetch(`http://localhost:3000/instructors/${id}`, {
+        fetch(`http://localhost:3000/instructors/${info.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
