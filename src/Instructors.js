@@ -26,12 +26,14 @@ class Instructors extends Component {
     }
 
     addFormToPage = () => {
+        
         this.setState({
             needNewForm: !this.state.needNewForm
         })
 
     }
     editIntructor = () => {
+        
         this.setState({ needEditform: !this.state.needEditform })
     }
 
@@ -41,11 +43,13 @@ class Instructors extends Component {
     }
     showOne = () => {
         const instuct = this.props.instructors.find(inst => inst.id === this.state.id)
-        return this.state.needEditform ? <EditInstructorForm id="edit-inst-form" instructor={instuct} removeForm={this.addFormToPage} /> :
-            (<div className="instructors-card-div">
+        return this.state.needEditform ? <EditInstructorForm id="edit-inst-form" instructor={instuct} removeForm={this.editIntructor} /> :
+            (<div className="instructor-card-div">
                 <span onClick={() => this.deleteInstructor(instuct.id)} id="trash-icon"> 🗑 </span><span onClick={() => this.editIntructor(instuct)} id="pen"> 🖋 </span><br />
                 <p onClick={() => this.showOneStatus(instuct.id)} id="single-instructor-name"><strong>{instuct.name}</strong></p>
-                <p><strong>Subject: </strong>{instuct.subject}<br /></p><p><strong>available hours:</strong>{instuct.hours}</p> </div>)
+                <p><strong>Subject: </strong>{instuct.subject}<br /></p>
+                <p><strong>Specialty: </strong>{instuct.specialty}<br /></p>
+                <p><strong>available hours:</strong>{instuct.hours}</p> </div>)
     }
     render() {
         // debugger
@@ -55,8 +59,7 @@ class Instructors extends Component {
         const instructs = instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
 
         return (
-            <div>
-
+            <div className="instructors-card">
                 {showOneInstructor ? this.showOne() : instructs}
                 {needNewForm && <NewInstructorForm id="new-inst-form" removeForm={this.addFormToPage} />}
                 {!showOneInstructor && !needNewForm && <button onClick={this.addFormToPage}>Add New Instructor</button>}
