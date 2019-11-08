@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSessions } from './actions/sessionActions';
+import { fetchSessions, deleteSession } from './actions/sessionActions';
 import NewSession from './NewSession';
-import './sessions.css';
+import './css/sessions.css';
 import EditSession from './components/sessionEditForm'
 import emojicons from './components/emojicons'
 
@@ -30,8 +30,11 @@ class Sessions extends Component {
     doWeNeedEditForm = () => {
         this.setState({ editSessionForm: !this.state.editSessionForm })
     }
-    
-  
+
+    deleteSession = (id) => {
+        this.props.deleteSession(id);
+        this.setState({ editSessionForm: false })
+    }
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
     }
@@ -60,7 +63,7 @@ class Sessions extends Component {
             <p><strong>Location:</strong> {
                 session.location}</p>
         </div>
-            {this.state.editSessionForm ? <></> : <><button onClick={() => this.doWeNeedEditForm()}>Edit</button> <br /> <br /></>}
+            {this.state.editSessionForm ? <></> : <><span onClick={() => this.doWeNeedEditForm()} id="edit-sess">🖋</span> <br /><span onClick={() => this.deleteSession(session.id)} id="delete-sess">🗑</span> <br /></>}
             {this.state.editSessionForm ? <EditSession session={session} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
     }
     activatePanels = () => {
@@ -72,7 +75,7 @@ class Sessions extends Component {
 
 
     render() {
-    
+
 
         const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0)
 
@@ -103,9 +106,5 @@ const mapPropsToState = (state) => {
         students: state.students.students
     }
 }
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchSessions: () => dispatch(fetchSessions())
-    }
-}
-export default connect(mapPropsToState, mapDispatchToProps)(Sessions)
+
+export default connect(mapPropsToState, { fetchSessions, deleteSession })(Sessions)

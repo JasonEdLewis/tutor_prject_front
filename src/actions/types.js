@@ -16,6 +16,7 @@ export const ERROR = 'ERROR';
 export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const NEW_SESSION = 'NEW_SESSION';
 export const EDIT_SESSION = 'EDIT_SESSION';
+export const DELETE_SESSION = 'DELETE_SESSION';
 
 // ADMINS
 export const FETCH_ADMINS = 'FETCH_ADMINS';

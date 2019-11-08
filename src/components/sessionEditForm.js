@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../sessions.css';
+import '../css/sessions.css';
 import { connect } from 'react-redux';
 import { editSession } from '../actions/sessionActions'
 

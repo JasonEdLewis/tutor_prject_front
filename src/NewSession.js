@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createSession } from './actions/sessionActions';
 import { reduceInstructorsHoursBasedOnSession } from './actions/instructorActions';
-import './sessions.css';
+import './css/sessions.css';
 
 
 
