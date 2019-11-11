@@ -4,7 +4,9 @@ import { fetchInstructors, deleteInstructor, editInstructor } from './actions/in
 import './css/instructor.css';
 import NewInstructorForm from './NewInstructorForm';
 import EditInstructorForm from './components/EditInstructor';
-import Emojicon from './components/emojicons'
+import Emojicon from './components/emojicons';
+import Spinner from './components/spinner'
+
 
 
 
@@ -13,7 +15,8 @@ class Instructors extends Component {
     state = {
         needNewForm: false,
         showOneInstructor: false,
-        needEditform: false
+        needEditform: false,
+
     }
 
     componentDidMount() {
@@ -22,18 +25,19 @@ class Instructors extends Component {
     }
 
     deleteInstructor = (id) => {
-        this.props.deleteInstructor(id)
+        this.props.deleteInstructor(id);
+        this.setState({ showOneInstructor: false })
     }
 
     addFormToPage = () => {
-        
+
         this.setState({
             needNewForm: !this.state.needNewForm
         })
 
     }
     editIntructor = () => {
-        
+
         this.setState({ needEditform: !this.state.needEditform })
     }
 
@@ -42,32 +46,42 @@ class Instructors extends Component {
         this.state.showOneInstructor && this.showOne()
     }
     showOne = () => {
-        const instuct = this.props.instructors.find(inst => inst.id === this.state.id)
-        return this.state.needEditform ? <EditInstructorForm id="edit-inst-form" instructor={instuct} removeForm={this.editIntructor} /> :
+        const instuct = this.props.instructors.instructors.find(inst => inst.id === this.state.id)
+
+        return this.state.needEditform ? <EditInstructorForm id="edit-inst-form" instructor={instuct} removeForm={this.editIntructor} showAll={this.showOneStatus} /> :
             (<div className="instructor-card-div">
                 <span onClick={() => this.deleteInstructor(instuct.id)} id="trash-icon"> 🗑 </span><span onClick={() => this.editIntructor(instuct)} id="pen"> 🖋 </span><br />
                 <p onClick={() => this.showOneStatus(instuct.id)} id="single-instructor-name"><strong>{instuct.name}</strong></p>
                 <p><strong>Subject: </strong>{instuct.subject}<br /></p>
                 <p><strong>Specialty: </strong>{instuct.specialty}<br /></p>
-                <p><strong>available hours:</strong>{instuct.hours}</p> </div>)
+                <p><strong>available hours:</strong>{instuct.hours}</p>
+                <button onClick={() => { this.setState({ showOneInstructor: false }) }}>All Instructors</button>
+            </div>)
     }
     render() {
-        // debugger
-        // console.log("Instructors props: ", this.props)
-        const { instructors, history } = this.props
+
+        console.log("Instructors props: ", this.props)
+        const { instructors, history } = this.props.instructors
         const { showOneInstructor, needEditform, needNewForm } = this.state
+
         const instructs = instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
 
         return (
             <div className="instructors-card">
+                {this.props.isloading || this.props.isEditing ? <Spinner animation="border" /> : null}
                 {showOneInstructor ? this.showOne() : instructs}
                 {needNewForm && <NewInstructorForm id="new-inst-form" removeForm={this.addFormToPage} />}
+                {this.props.isEditing && this.state.showOneInstructor ? null : null}
                 {!showOneInstructor && !needNewForm && <button onClick={this.addFormToPage}>Add New Instructor</button>}
             </div>
         )
     }
 }
 const mapStateToProps = (state) => {
-    return { instructors: state.instructors.instructors }
+    return {
+        instructors: state.instructors,
+        isloading: state.instructors.isLoadingInst,
+        isEditing: state.instructors.isEditing
+    }
 }
 export default connect(mapStateToProps, { fetchInstructors, deleteInstructor, editInstructor })(Instructors)
