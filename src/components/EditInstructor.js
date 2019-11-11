@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editInstructor } from '../actions/instructorActions';
-import '../App.css'
+import '../App.css';
 
 class EditInstructorForm extends Component {
 
@@ -21,9 +21,10 @@ class EditInstructorForm extends Component {
     handelSubmit = (e) => {
         e.preventDefault()
         this.props.editInstructor(this.state)
+        debugger
         this.setState({ name: "", subject: "", specialty: "", hours: "" })
-        this.props.removeForm(e)
-    
+        // this.props.removeForm(e)
+
     }
     render() {
         console.log("Edit Instructor form props:", this.props, "State id", this.state.id)
@@ -32,8 +33,8 @@ class EditInstructorForm extends Component {
         const firstName = name.split(" ")[0]
         return (
             <div>
-                <h6 style={{marginLeft:"-15%", color:"#044891"}}>Edit {firstName}'s Info below</h6>
-                <form onSubmit={this.handelSubmit} className="instructor-card-div" style={{paddingTop:"5%"}}>
+                <h6 style={{ marginLeft: "-15%", color: "#044891" }}>Edit {firstName}'s Info below</h6>
+                <form onSubmit={this.handelSubmit} className="instructor-card-div" style={{ paddingTop: "5%" }}>
                     <label>Name: </label>
                     <input type="text" name="name" placeholder={name} value={this.state.name} onChange={this.handleChange} /><br />
                     <label>Subject: </label>
@@ -44,14 +45,16 @@ class EditInstructorForm extends Component {
                     <input type="number" min="4" name="hours" placeholder={hours} value={this.state.hours} onChange={this.handleChange} />
                     <br />
                     <input type="submit" />
-                    <br/>
+                    <br />
                     <button onClick={removeForm} className="edit-instruc-cancel">Cancel</button>
                 </form>
-                
+
             </div>
         )
     }
 }
+
+
 export default connect(null, { editInstructor })(EditInstructorForm)
 
 

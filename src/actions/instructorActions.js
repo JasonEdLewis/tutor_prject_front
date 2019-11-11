@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR,REDUCE_HOURS } from './types';
+import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR, REDUCE_HOURS, IS_LOADGING_INST, NOT_LOADING_INST, IS_EDITING_INST,
+    NOT_EDITING_INST} from './types';
 
 
 
@@ -19,10 +20,8 @@ export const fetchInstructors = () => {
 
 export const createInstructor = (instructData) => {
     return function (dispatch) {
-        dispatch({
-            type: NEW_INSTRUCTOR,
-            payload: instructData
-        })
+
+        dispatch({ type: IS_LOADGING_INST })
         fetch('http://localhost:3000/instructors/', {
             method: 'POST',
             headers: {
@@ -30,23 +29,40 @@ export const createInstructor = (instructData) => {
                 accepts: 'application/json'
             },
             body: JSON.stringify(instructData)
+        }).then(resp => resp.json()).then(data => {
+            dispatch({
+                type: NEW_INSTRUCTOR,
+                payload: data,
+
+            })
+            dispatch({ type: NOT_LOADING_INST })
         })
     }
 }
-export const editInstructor=(info)=>{
+export const editInstructor = (info) => {
+
     return function (dispatch) {
-        dispatch({
-            type: EDIT_INSTRUCTOR,
-            payload: info
-        })
+        dispatch({ type: IS_EDITING_INST })
+
         fetch(`http://localhost:3000/instructors/${info.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
-                accepts: 'application/json'},
-                body: JSON.stringify(info)
-    })
-}
+                accepts: 'application/json'
+            },
+            body: JSON.stringify(info)
+        }).then(resp => resp.json()).then(data => {
+            debugger
+             dispatch({
+                type: EDIT_INSTRUCTOR,
+                payload: data
+            })
+            dispatch({type:  NOT_EDITING_INST})
+        }
+        
+
+        )
+    }
 }
 
 export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
@@ -72,13 +88,18 @@ export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
 
 export const deleteInstructor = (id) => {
     return function (dispatch) {
-        dispatch({
-            type: DELETE_INSTRUCTOR,
-            payload: id
-        })
+        dispatch({ type: IS_LOADGING_INST })
+
         fetch(`http://localhost:3000/instructors/${id}`, {
             method: 'DELETE'
-        })
+        }).then(
+            dispatch({
+                type: DELETE_INSTRUCTOR,
+                payload: id
+            }),
+            dispatch({ type: NOT_LOADING_INST })
+
+        )
 
     }
 }

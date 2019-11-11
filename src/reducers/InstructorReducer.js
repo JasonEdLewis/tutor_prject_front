@@ -1,7 +1,9 @@
-import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS, EDIT_INSTRUCTOR } from '../actions/types'
+import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS, EDIT_INSTRUCTOR, IS_LOADGING_INST,NOT_LOADING_INST, IS_EDITING_INST, NOT_EDITING_INST } from '../actions/types'
 
 const initialState = {
     instructors: [],
+    isLoadingInst: false,
+    isEditing: false
 };
 
 export default function (state = initialState, action) {
@@ -34,12 +36,32 @@ export default function (state = initialState, action) {
         case EDIT_INSTRUCTOR:
             const indx = state.instructors.findIndex(inst => inst.id === parseInt(action.payload.id))
             const instruct = state.instructors[indx]
-            console.log(indx)
-            return [
+            const instructs = [
                 ...state.instructors.slice(0, indx),
-                Object.assign({}, instruct, { hours: action.payload }),
+                Object.assign({}, instruct, {instruct: action.payload }),
                 ...state.instructors.slice(indx + 1)
-            ]
+            ] 
+            console.log(indx)
+            return  { ... state,
+                instructors : instructs,
+                isEditing:false
+            }
+        case IS_LOADGING_INST:
+            return {...state,
+                isLoadingInst:true}
+        case NOT_LOADING_INST:
+            return{
+                ...state,
+                isLoadingInst: false
+            }
+            case IS_EDITING_INST:
+            return {...state,
+                isEditing:true}
+        case NOT_EDITING_INST:
+            return{
+                ...state,
+                isEditing: false
+            }
         default:
             return state
     }
