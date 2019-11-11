@@ -71,7 +71,7 @@ class Instructors extends Component {
                 {this.props.isloading || this.props.isEditing ? <Spinner animation="border" /> : null}
                 {showOneInstructor ? this.showOne() : instructs}
                 {needNewForm && <NewInstructorForm id="new-inst-form" removeForm={this.addFormToPage} />}
-                {this.props.isEditing && this.state.showOneInstructor ? this.showOne() : null}
+                {this.props.isEditing && this.state.showOneInstructor ? null : null}
                 {!showOneInstructor && !needNewForm && <button onClick={this.addFormToPage}>Add New Instructor</button>}
             </div>
         )

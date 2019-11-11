@@ -38,7 +38,7 @@ export default function (state = initialState, action) {
             const instruct = state.instructors[indx]
             const instructs = [
                 ...state.instructors.slice(0, indx),
-                Object.assign({}, instruct, {instruct: action.payload }),
+                Object.assign({}, instruct, action.payload ),
                 ...state.instructors.slice(indx + 1)
             ] 
             console.log(indx)
