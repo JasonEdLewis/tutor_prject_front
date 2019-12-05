@@ -147,7 +147,7 @@ h5{
 }
 .line-over-instructor{
   width:50%;
-  margin: -10% 0% 0% 8%;
+  margin: -10% 0% 0% 0%;
   padding-bottom: 4% ;
   position: relative;
   color: rgba(0, 0, 0, 0.472);
@@ -155,7 +155,7 @@ h5{
 }
 .line-under-instructor{
   width:50%;
-  margin: 1% 0% 0% 25%;
+  margin: 1% 0% 0% 20%;
  color: rgba(0, 0, 0, 0.267);
   position: relative;
 }
@@ -217,7 +217,7 @@ h5{
   background-color: #dee4f0;
   text-align: center;
   border-radius: .5em;
-  font-size: 1.5em;
+  font-size: 1vw;
 }
 .admin-emojicon{
   font-size: 6rem;

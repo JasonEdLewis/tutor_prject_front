@@ -43,3 +43,8 @@
     width: auto;
     background-color: rgb(244, 245, 248); */
   }
+
+  .edit-student-form{
+      color:black;
+      font-size: 1vw;
+  }

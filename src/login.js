@@ -19,11 +19,13 @@ class Login extends Component {
     }
 
     handleSubmit = (e) => {
-
+        
         e.preventDefault()
+       
         this.setState({ requsting: !this.state.requsting })
+        
         this.props.logginFetch(this.state).then(data => {
-            debugger
+        
             if (!!data.error) {
                 this.setState({ wrongCreds: true, errorMessage: data.error })
             }
@@ -57,7 +59,7 @@ class Login extends Component {
 
     render() {
         const { wrongCreds, errorMessage } = this.state
-        console.log("Project login props:", this.props)
+        console.log("Project login State:", this.state)
         return (
             <>
                 <div>
