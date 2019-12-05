@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR, REDUCE_HOURS, IS_LOADGING_INST, NOT_LOADING_INST, IS_EDITING_INST,
-    NOT_EDITING_INST} from './types';
+import {
+    FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, EDIT_INSTRUCTOR, REDUCE_HOURS, IS_LOADGING_INST, NOT_LOADING_INST, IS_EDITING_INST,
+    NOT_EDITING_INST
+} from './types';
 
 
 
@@ -44,7 +46,7 @@ export const editInstructor = (info) => {
     return function (dispatch) {
         dispatch({ type: IS_EDITING_INST })
 
-        fetch(`http://localhost:3000/instructors/${info.id}`, {
+        return fetch(`http://localhost:3000/instructors/${info.id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -52,14 +54,14 @@ export const editInstructor = (info) => {
             },
             body: JSON.stringify(info)
         }).then(resp => resp.json()).then(data => {
-            debugger
-             dispatch({
+
+            dispatch({
                 type: EDIT_INSTRUCTOR,
                 payload: data
             })
-            dispatch({type:  NOT_EDITING_INST})
+            dispatch({ type: NOT_EDITING_INST })
         }
-        
+
 
         )
     }

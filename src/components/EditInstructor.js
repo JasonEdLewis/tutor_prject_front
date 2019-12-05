@@ -20,10 +20,12 @@ class EditInstructorForm extends Component {
 
     handelSubmit = (e) => {
         e.preventDefault()
-        this.props.editInstructor(this.state)
-        debugger
-        this.setState({ name: "", subject: "", specialty: "", hours: "" })
-        // this.props.removeForm(e)
+        this.props.editInstructor(this.state).then(() => {
+           
+            this.setState({ name: "", subject: "", specialty: "", hours: "" })
+            this.props.removeForm(e)
+        }
+        )
 
     }
     render() {

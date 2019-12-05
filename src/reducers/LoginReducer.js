@@ -19,7 +19,7 @@ const LogginReducer = (state = initialState, action) => {
             return { ...state, requesting: false, errorMessage: action.payload };
         case SUCCESS_LOGGIN:
             debugger
-            return { ...state, currentAdmin: action.payload, username: action.payload.username, loggedIn: true };
+            return { ...state, currentAdmin: action.payload, username: action.payload.username, loggedIn: true, requesting:false };
 
         default:
             return state;

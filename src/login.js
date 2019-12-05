@@ -19,15 +19,18 @@ class Login extends Component {
     }
 
     handleSubmit = (e) => {
-
+        
         e.preventDefault()
+       
         this.setState({ requsting: !this.state.requsting })
+        
         this.props.logginFetch(this.state).then(data => {
-            if (data.error) {
+        
+            if (!!data.error) {
                 this.setState({ wrongCreds: true, errorMessage: data.error })
             }
             else {
-                localStorage.setItem("token", data.token)
+                localStorage.setItem("token", data.data.token)
                 const token = localStorage.token
                 this.props.profileAdmin(token).then(admin => {
                     this.setState({ requsting: this.props.admin.requesting, username: admin.username })
@@ -56,7 +59,7 @@ class Login extends Component {
 
     render() {
         const { wrongCreds, errorMessage } = this.state
-        console.log("Project login props:", this.props)
+        console.log("Project login State:", this.state)
         return (
             <>
                 <div>

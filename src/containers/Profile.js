@@ -27,7 +27,7 @@ class Profile extends Component {
                 {/* STUDENTS */}
 
                 <div className="students">
-                    <h1 className="students-heading">Students</h1>
+                    <h2 className="students-heading">Students</h2>
                     <div class="line-over-student">____________________</div>
                     <br/>
                     <span className="student-emojicon" > 👨🏽‍💻 </span>
@@ -51,7 +51,7 @@ class Profile extends Component {
                 </div>
                         {/* INSTRUCTORS */}
                 <div className="instructors-div">
-                    <h1 className="instructors-heading">Instructors</h1>
+                    <h2 className="instructors-heading">Instructors</h2>
                     <div class="line-over-instructor">______________________</div>
                     <br/>
                     <span className="teacher-emojicon" >👩🏻‍🏫</span>
