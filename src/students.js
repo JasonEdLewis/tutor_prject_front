@@ -51,20 +51,22 @@ class Students extends Component {
             [e.target.name]: e.target.value
         })
     }
-    theForm = () => {
-        return (<div>
-            <h1>FORM WITH INPUTS</h1>
-            <form className="quick-form-inputs">
-                <input>Name:</input>
-                <input>Grade:</input>
-                <input>School:</input>
-                <input></input>
-                <input>Grade:</input>
-                <input></input>
-                <input></input>
 
-            </form>
-        </div>
+    theForm = () => {
+        return (
+            <>
+                <form className="quick-form-inputs">
+                    Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    <br/>
+                    Grade:<input/>
+                    <br/>
+                    School:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    <br/>
+                    Hours:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    <br/>
+                    <input type="submit"/>
+                </form>
+            </>
         )
 
     }
@@ -74,9 +76,9 @@ class Students extends Component {
             <div>
                 <br />
                 <br />
-                <h5 className="student-info-header"><strong>Paste Student Info: </strong></h5>
+                
                 <form className="quick-form" onSubmit={this.handleSubmit}>
-                    <textarea rows="30" cols="40" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
+                    <textarea type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
                     <br /><button >Submit</button>
                 </form>
 
@@ -122,7 +124,6 @@ class Students extends Component {
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
-                {this.theForm()}
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
@@ -149,8 +150,9 @@ class Students extends Component {
                 {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
                 {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
                 {showAllStudents && students}
+                {formClicked && this.theForm()}
+                {formClicked && <h5 className="student-info-header"><strong>Or Copy & Paste </strong></h5>}
                 {formClicked && this.studentQuickFormTextArea()}
-                {/* {!formClicked && this.newStudentForm()} */}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
                 {needEditForm && <EditStudentForm student={this.state.student} />}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
