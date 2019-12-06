@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import EditStudentForm from './components/EditStudentForm';
 import { fetchStudents, createStudent } from './actions/studentActions';
 import NewStudentForm from './NewStudentForm';
-import './App.css';
+// import './App.css';
 import './css/students.css';
 
 class Students extends Component {
@@ -12,9 +12,11 @@ class Students extends Component {
         studentclicked: false,
         formClicked: false,
         id: '',
+        showAllStudents: true,
         formSubmitted: false,
         needEditForm: false,
-        student: {}
+        student: {},
+
     }
 
     componentDidMount() {
@@ -49,19 +51,39 @@ class Students extends Component {
             [e.target.name]: e.target.value
         })
     }
-    studentQuickForm = () => {
+    theForm = () => {
+        return (<div>
+            <h1>FORM WITH INPUTS</h1>
+            <form className="quick-form-inputs">
+                <input>Name:</input>
+                <input>Grade:</input>
+                <input>School:</input>
+                <input></input>
+                <input>Grade:</input>
+                <input></input>
+                <input></input>
+
+            </form>
+        </div>
+        )
+
+    }
+    studentQuickFormTextArea = () => {
 
         return (
-            <>
+            <div>
                 <br />
                 <br />
-                <h3><strong>Add A New Student: </strong></h3>
+                <h5 className="student-info-header"><strong>Paste Student Info: </strong></h5>
                 <form className="quick-form" onSubmit={this.handleSubmit}>
-                    <textarea rows="30" cols="80" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
+                    <textarea rows="30" cols="40" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
                     <br /><button >Submit</button>
                 </form>
-            </>)
+
+            </div>)
+
     }
+
     hasSession = (student) => {
         if (student.sessions.length > 0) {
             student.sessions.map(sess => {
@@ -95,31 +117,44 @@ class Students extends Component {
 
         return (<div className="single-student-card">
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
-            <ul>
+            <ul className="student-ul">
                 <li><strong>Grade</strong>: {theStudent.grade}th</li>
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
+                {this.theForm()}
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
-                    : `${theStudent.name} has no sessions booked`}
+                    : <li>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
-            <button onClick={()=> this.handleEdit(theStudent)}>Edit Student</button>
+            <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
         </div>)
     }
-
+    addNewStudentForm = () => {
+        this.setState({ formClicked: !this.state.formClicked, showAllStudents: !this.state.showAllStudents })
+    }
+    back2All = () => {
+        this.setState({
+            showAllStudents: true, formClicked: false
+        })
+    }
 
     render() {
-
+        const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
             return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
         return (
-            <div className={this.state.studentclicked ? "students-blur" : "students"} >
 
-                {this.state.studentClicked ? this.singleStudentInfo(this.state.id) : students}
-                {this.state.needEditForm ? <EditStudentForm student={this.state.student} /> : <></>}
-                {this.state.formClicked ? <></> : this.studentQuickForm()}
-                {this.state.formSubmitted ? <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} /> : <></>}
+            <div className={this.state.studentclicked ? "students-blur" : "students"} >
+                {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
+                {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
+                {showAllStudents && students}
+                {formClicked && this.studentQuickFormTextArea()}
+                {/* {!formClicked && this.newStudentForm()} */}
+                {studentClicked && this.singleStudentInfo(this.state.id)}
+                {needEditForm && <EditStudentForm student={this.state.student} />}
+                {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
+                {formClicked && <button onClick={this.back2All} className="new-form-cancel-btn">Cancel</button>}
 
 
             </div>

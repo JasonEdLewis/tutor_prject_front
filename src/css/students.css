@@ -4,14 +4,20 @@
     border-width: .01rem;
     margin: 0% 1%;
     padding: 1%;
-    font-size: x-large;
     background-color: rgba(238, 238, 247, 0.918);
+}
+.single-student-card li{
+    font-size: 1vw;
 }
 
 .students{
-    font-size: 2rem;
+    font-size: 1.25vw;
+    font-family: monospace ;
     text-shadow: .02vh .03vh #717375;
    
+}
+.student-info-header{
+    margin-right: 35%;
 }
 .students-blur {
     background-color: black;
@@ -47,4 +53,11 @@
   .edit-student-form{
       color:black;
       font-size: 1vw;
+  }
+  .new-form-cancel-btn{
+
+  }
+
+  .quick-form-inputs{
+      float: right;
   }

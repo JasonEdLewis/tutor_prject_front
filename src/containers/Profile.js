@@ -33,8 +33,9 @@ class Profile extends Component {
                     <span className="student-emojicon" > 👨🏽‍💻 </span>
                     <div class="line-under-student">_____________</div>
                      <div className="booked" ><strong style={{ color: '#006600', textShadow: ".05vh .05vh #717375" }}>Booked:<span id="number-booked">{sessions.length}</span > <span style={{fontSize: "1.5rem"}}>✅</span>  </strong> <span className="pipe">|</span><strong style={{ color: '#b30000', textShadow: ".1vw .2vh #bcc0c4",  }}> LEFT:<span id="number-left-to-book">{students.length - sessions.length}</span></strong>❗️</div>
-                    <br />
-                    <h6 id="click-student-for-details">click Student to see details</h6>
+                  
+                  
+                   
                     <Students handleSubmit={this.handleSubmit} handleChange={this.handleChange} history={history} />
                 </div >
 
