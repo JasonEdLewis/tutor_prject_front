@@ -12,11 +12,11 @@ class Students extends Component {
         studentclicked: false,
         formClicked: false,
         id: '',
-        showAllStudents:true, 
+        showAllStudents: true,
         formSubmitted: false,
         needEditForm: false,
         student: {},
-      
+
     }
 
     componentDidMount() {
@@ -51,6 +51,23 @@ class Students extends Component {
             [e.target.name]: e.target.value
         })
     }
+    theForm = () => {
+        return (<div>
+            <h1>FORM WITH INPUTS</h1>
+            <form className="quick-form-inputs">
+                <input>Name:</input>
+                <input>Grade:</input>
+                <input>School:</input>
+                <input></input>
+                <input>Grade:</input>
+                <input></input>
+                <input></input>
+
+            </form>
+        </div>
+        )
+
+    }
     studentQuickFormTextArea = () => {
 
         return (
@@ -62,12 +79,11 @@ class Students extends Component {
                     <textarea rows="30" cols="40" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
                     <br /><button >Submit</button>
                 </form>
-               
-                </div>)
+
+            </div>)
+
     }
-    studentQuickForm =()=>{
-        
-    }
+
     hasSession = (student) => {
         if (student.sessions.length > 0) {
             student.sessions.map(sess => {
@@ -106,35 +122,37 @@ class Students extends Component {
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
+                {this.theForm()}
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
-            <button onClick={()=> this.handleEdit(theStudent)}>Edit Student</button>
+            <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
         </div>)
     }
-    addNewStudentForm =()=>{
-        this.setState( {formClicked: !this.state.formClicked, showAllStudents: !this.state.showAllStudents })
+    addNewStudentForm = () => {
+        this.setState({ formClicked: !this.state.formClicked, showAllStudents: !this.state.showAllStudents })
     }
-    back2All=()=>{
-        this.setState( {
-          showAllStudents:true, formClicked: false  
+    back2All = () => {
+        this.setState({
+            showAllStudents: true, formClicked: false
         })
     }
 
     render() {
-            const {showAllStudents,formClicked, studentClicked, needEditForm, formSubmitted } = this.state
+        const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
             return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
         return (
-         
+
             <div className={this.state.studentclicked ? "students-blur" : "students"} >
-                  {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
-                 {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
+                {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
+                {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
                 {showAllStudents && students}
                 {formClicked && this.studentQuickFormTextArea()}
+                {/* {!formClicked && this.newStudentForm()} */}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
-                {needEditForm && <EditStudentForm student={this.state.student} /> }
+                {needEditForm && <EditStudentForm student={this.state.student} />}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
                 {formClicked && <button onClick={this.back2All} className="new-form-cancel-btn">Cancel</button>}
 

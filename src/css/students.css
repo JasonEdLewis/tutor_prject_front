@@ -55,5 +55,9 @@
       font-size: 1vw;
   }
   .new-form-cancel-btn{
-      
+
+  }
+
+  .quick-form-inputs{
+      float: right;
   }
