@@ -50,14 +50,24 @@
     background-color: rgb(244, 245, 248); */
   }
 
-  .edit-student-form{
+  .edit-student-form {
+      margin: 0% 0% 0% 5%;
       color:black;
       font-size: 1vw;
   }
-  .new-form-cancel-btn{
+  .new-form-cancel-btn {
 
   }
 
   .quick-form-inputs{
-      float: right;
+      /* float: right; */
+  }
+  .new-forms-div{
+      margin: 10% 0% 0% 0%;
+      padding:0% 5% 0% 20%;
+      border: black;
+      border-style: solid;
+      background-color: rgb(255, 255, 255);
+      width: 75%;
+      
   }
