@@ -60,8 +60,7 @@
   }
 
   .quick-form-inputs{
-      float: right;
-
+      /* float: right; */
   }
   .new-forms-div{
       margin: 10% 0% 0% 0%;
