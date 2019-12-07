@@ -221,7 +221,7 @@ h5{
   font-size: 1vw;
 }
 .admin-emojicon{
-  font-size: 6rem;
+  font-size: 3.5vw;
   background-color: #5f4418;
   background-image: url("https://www.transparenttextures.com/patterns/light-gray.png");
   padding: 3.5% 4% 2% 4%;
@@ -276,6 +276,6 @@ h5{
   color:red;
 }
 .pipe{
-  font-size: 3rem;
+  font-size: 3vh;
   color: black;
 }

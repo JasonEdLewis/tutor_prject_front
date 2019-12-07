@@ -41,10 +41,12 @@ class Profile extends Component {
 
                 {/* ADMIN */}
                 <div className="admin">
-                <h1>WELCOME BACK </h1>
+                <h1>WELCOME BACK {this.state.username}</h1>
+                <h3 className="admin-username"></h3>
                 <div class="line-over-admin">______________________</div>
-                <h1 className="admin-username"> {this.state.username}</h1>
                 <span className="admin-emojicon" >{this.state.username === ("Jason" || "Hy") ? "👨🏽‍💼" : "👩🏾‍💼"} </span>
+               
+               
                 <br/> <div class="line-under-admin">_____________</div>
 
                         {/* SESSIONS  */}
@@ -52,7 +54,7 @@ class Profile extends Component {
                 </div>
                         {/* INSTRUCTORS */}
                 <div className="instructors-div">
-                    <h2 className="instructors-heading">Instructors</h2>
+                    <h3 className="instructors-heading">Instructors</h3>
                     <div class="line-over-instructor">______________________</div>
                     <br/>
                     <span className="teacher-emojicon" >👩🏻‍🏫</span>

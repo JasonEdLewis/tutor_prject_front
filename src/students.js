@@ -15,7 +15,17 @@ class Students extends Component {
         showAllStudents: true,
         formSubmitted: false,
         needEditForm: false,
-        student: {},
+        name:"",
+            grade:"",
+            subject:"",
+            school:"",
+            hours:"",
+            guardian:"",
+            address:"",
+            home_no:"",
+            cell:"",
+            email:"",
+    
 
     }
 
@@ -47,8 +57,7 @@ class Students extends Component {
     }
 
     handleChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
+        this.setState({ [e.target.name]: e.target.value    
         })
     }
 
@@ -56,13 +65,26 @@ class Students extends Component {
         return (
             <>
                 <form className="quick-form-inputs">
-                    Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} value={this.state.name}/>
                     <br/>
-                    Grade:<input/>
+                
+                    Grade:<input type="text" name="grade" onChange={this.handleChange} value={this.state.grade} value={this.state.grade}/>
                     <br/>
-                    School:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    Subject:<input type="text" name="subject" onChange={this.handleChange} value={this.state.subject} value={this.state.subject}/>
                     <br/>
-                    Hours:<input type="text" name="name" onChange={this.handleChange} value={this.state.name}/>
+                    School:<input type="text" name="school" onChange={this.handleChange} value={this.state.school} value={this.state.school}/>
+                    <br/>
+                    Hours:<input type="text" name="hours" onChange={this.handleChange} value={this.state.hours} value={this.state.hours}/>
+                    <br/>
+                    Guardian: <input name="guardian" onChange={this.handleChange} value={this.state.guardian} value={this.state.guardian}/>
+                    <br/>
+                    Address: <input name="address" onChange={this.handleChange} value={this.state.address} value={this.state.address}/>
+                    <br/>
+                    Hoome Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} value={this.state.home_no}/>
+                    <br/>
+                    Cell: <input name="cell" onChange={this.handleChange} value={this.state.cell} value={this.state.cell}/>
+                    <br/>
+                    Email: <input name="email" onChange={this.handleChange} value={this.state.email} value={this.state.email}/>
                     <br/>
                     <input type="submit"/>
                 </form>
@@ -140,6 +162,7 @@ class Students extends Component {
     }
 
     render() {
+        console.log("Students state:", this.state.student)
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
             return <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
