@@ -6,16 +6,22 @@ export const fetchStudents = () => {
         
         fetch('http://localhost:3000/students')
             .then(resp => resp.json())
-            .then(students => dispatch({
+            .then(students => {
+                const obj={}
+                students.forEach(student => obj[student.id]= student.name)
+                dispatch({
                 type: FETCH_STUDENTS,
-                payload: students
+                payload: students,
+                obj
             })
+        }
             )
     }
 
 }
 const dispatchNewStudent=(info)=>({type:NEW_STUDENT, payload:info })
 const dispatchError=(err)=>({type: ERROR, payload: err})
+
 export const createStudent = (studentInfo) => {
     console.log("creating student....")
 

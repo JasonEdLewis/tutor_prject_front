@@ -5,15 +5,18 @@ import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT, ERROR } from '../actions/typ
 const initialState = {
     students: [],
     student: {},
-    errorMessage:""
+    errorMessage: "",
+    studentsKeyName: {}
 }
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_STUDENTS:
+            debugger
             return {
                 ...state,
-                students: action.payload
+                students: action.payload,
+                studentsKeyName: action.obj
             }
         case NEW_STUDENT:
             return {
@@ -31,12 +34,12 @@ export default function (state = initialState, action) {
                 state.students.slice(idx + 1)
                 ]
             }
-            case ERROR:
-                debugger
-                return {
-                    ...state,
-                    errorMessage: action.payload
-                }
+        case ERROR:
+            debugger
+            return {
+                ...state,
+                errorMessage: action.payload
+            }
         default:
             return state
     }

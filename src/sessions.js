@@ -18,7 +18,7 @@ class Sessions extends Component {
         needForm: false,
         showOneSession: false,
         active: true,
-        sessionId: "",
+        sessionId: 0,
         editSessionForm: false,
     }
     handleClick = (student, session) => {
@@ -76,12 +76,18 @@ class Sessions extends Component {
 
     render() {
 
-
-        const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0)
+       const studentsInNeed = this.props.students.filter(student => {
+        console.log(this.props) 
+       return (student.sessions.length === 0 && student || !student.sessions && student)
+        
+          
+            
+           })
 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
         const theSessions = this.props.sessions.map(session => {
+            debugger
             return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
                 <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br />
             </div>)
@@ -94,7 +100,7 @@ class Sessions extends Component {
                 {this.state.showOneSession ? this.singleSession(this.state.sessionId) : theSessions}
 
 
-                {this.state.needForm ? <NewSession student={this.state.student} history={this.props.history} removeForm={this.handleClick} /> : <><h3 style={{ color: "red" }}>Students to be Scheduled</h3> {studentsInNeed.length === 0 ? <h4 style={{ color: "red" }}>There are currently no student to schedule</h4> : scheduleTheseStudents}</>}
+                {this.state.needForm ? <NewSession student={this.state.student} history={this.props.history} removeForm={this.handleClick} /> : <><h3 style={{ color: "red" }}>Students to be Scheduled</h3> {studentsInNeed.length === 0 ? <h4 style={{ color: "red" }}>There are currently no students to be Scheduled</h4> : scheduleTheseStudents}</>}
             </div>
         )
     }
@@ -103,7 +109,8 @@ class Sessions extends Component {
 const mapPropsToState = (state) => {
     return {
         sessions: state.sessions.sessions,
-        students: state.students.students
+        students: state.students.students,
+        names: state.students.studentsKeyName
     }
 }
 
