@@ -76,8 +76,12 @@ class Sessions extends Component {
 
     render() {
 
-
-        const studentsInNeed = this.props.students.filter(student => student.sessions.length === 0)
+debugger
+       const studentsInNeed = this.props.students.filter(student => {
+         return  !student.sessions && student
+       }
+       )
+           
 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
