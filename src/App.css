@@ -1,14 +1,13 @@
 
 
 #root{
-   background-color: #f9f7fa;
-  background-image: url("https://www.transparenttextures.com/patterns/cross-stripes.png");
-  height: 100vh;
+   /* background-color: #f9f7fa; */
+  /* min-height: 100vh; */
 
  }
 
 body{
-  
+  background-image: url("https://www.transparenttextures.com/patterns/cross-stripes.png");
   position: relative;
  
 }
@@ -16,9 +15,9 @@ body{
   text-align: center;
 
 }
-.
+
 .App-logo {
-  height: 40vmin;
+  height: 40vw;
 }
 
 .App-header {
@@ -70,7 +69,6 @@ a {
 .Body{
   display: inline-flexbox;
   padding: 0%;
-
   color: #666675;
   font-family: Consolas, "Courier New",
     monospace;
@@ -87,7 +85,7 @@ a {
   margin-top: 0.5vh;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
-  height:100vh;
+  max-height:100vh;
   text-align: center;
   grid-template-areas: 'headers headers drop'
                       'students admin instructors'
@@ -134,15 +132,19 @@ h5{
 .instructors-div { 
   grid-area: instructors ;
   padding: 5%;
+  margin-bottom: 1%;
   background-color: #e2f0de;
   text-align: center;
   justify-content: left;
   border-radius: .5em;
+  max-height: auto;
   font-size: 2em; /* font size for the .instructors-heading   */
 
 }
 .instructors-heading{
+  margin-top: 0%;
   color: rgb(67, 26, 105);
+  font:bold
  
 }
 .line-over-instructor{
@@ -162,7 +164,7 @@ h5{
 
 .subject-legend{
   margin:10% 0% -10% -4.25%;
-  font-size: 1rem;
+  font-size: 1vw;
   font-weight:bold ;
   color: navy;
   padding: .2%;
@@ -181,6 +183,7 @@ h5{
   text-align: center;
   background-color: #f0dede;
   border-radius: .5em;
+  min-height: fit-content;
   /* font-size: 13em; */
   /* text-shadow: 2px 1px #006600  */
 

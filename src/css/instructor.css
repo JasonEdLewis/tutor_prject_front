@@ -1,7 +1,8 @@
 .instructors{
  color: red;
+ margin: 0% 0% 0% 5%;
  font-family: cursive;
- font-size: 2rem;
+ font-size: 1.5vw;
 
 }
 .instructor-card-div{

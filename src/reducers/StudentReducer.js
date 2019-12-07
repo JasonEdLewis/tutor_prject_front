@@ -1,5 +1,5 @@
 import React from 'react';
-import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT, ERROR } from '../actions/types';
+import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT, DELETE_STUDENT, ERROR } from '../actions/types';
 
 
 const initialState = {
@@ -35,10 +35,15 @@ export default function (state = initialState, action) {
                 ]
             }
         case ERROR:
-            debugger
             return {
                 ...state,
                 errorMessage: action.payload
+            }
+        case DELETE_STUDENT:
+            const students = state.students.filter(student => student.id !== action.id)
+            return {
+                ...state,
+                students
             }
         default:
             return state

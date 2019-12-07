@@ -78,7 +78,7 @@ class Sessions extends Component {
 
        const studentsInNeed = this.props.students.filter(student => {
         console.log(this.props) 
-       return (student.sessions.length === 0 && student || !student.sessions && student)
+       return (!student.sessions || student.sessions.length === 0   && student)
         
           
             
@@ -87,7 +87,6 @@ class Sessions extends Component {
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
         const theSessions = this.props.sessions.map(session => {
-            debugger
             return (<div onClick={() => this.toggleOneSession(session.id)} className="each-session"><span>{emojicons(session.subject)}</span><br /><div key={session.id} ><strong>Student: </strong> {session.student.name}</div>
                 <div > <strong>Subject: </strong>{session.subject}</div> <div><strong>Instructor:</strong> {session.instructor.name}</div><br />
             </div>)

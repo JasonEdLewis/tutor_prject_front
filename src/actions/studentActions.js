@@ -1,5 +1,6 @@
 import React from 'react';
-import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT,ERROR } from './types';
+import { FETCH_STUDENTS, NEW_STUDENT, EDIT_STUDENT,ERROR, DELETE_STUDENT } from './types';
+import axios from 'axios'
 
 export const fetchStudents = () => {
     return function (dispatch) {
@@ -58,4 +59,10 @@ export const editStudent =(info)=>{
     }
     )
     }
+}
+
+export const deleteStudent = (id) => dispatch=>{
+    dispatch( { type: DELETE_STUDENT, id })
+    axios.delete(`http://localhost:3000/students/${id}`)
+
 }
