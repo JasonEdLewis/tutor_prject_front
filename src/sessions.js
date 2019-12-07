@@ -76,7 +76,6 @@ class Sessions extends Component {
 
     render() {
 
-debugger
        const studentsInNeed = this.props.students.filter(student => {
          return  !student.sessions && student
        }

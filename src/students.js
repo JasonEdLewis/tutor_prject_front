@@ -49,8 +49,18 @@ class Students extends Component {
             formClicked: !this.state.clicked
         })
 
-
     }
+    handleSubmitForm=(e)=>{
+        e.preventDefault()
+        const {name, grade, subject, school, hours, guardian, address, home_no, cell, email } = this.state
+       const body =  {name, grade, subject, school, hours, guardian, address, home_no, cell, email }
+        this.props.createStudent(body)
+        this.setState({
+            formSubmitted: !this.state.submitted,
+            formClicked: !this.state.clicked
+        })
+    }
+
     handleEdit = (stud) => {
 
         this.setState({ needEditForm: !this.state.needEditForm, formClicked: !this.state.needEditForm, studentClicked: !this.state.studentclicked, student: stud })
@@ -64,8 +74,8 @@ class Students extends Component {
     theForm = () => {
         return (
             <>
-                <form className="quick-form-inputs">
-                    Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} value={this.state.name}/>
+                <form className="quick-form-inputs" onSubmit={this.handleSubmitForm}>
+                    Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                     <br/>
                 
                     Grade:<input type="text" name="grade" onChange={this.handleChange} value={this.state.grade} value={this.state.grade}/>
@@ -162,11 +172,11 @@ class Students extends Component {
     }
 
     render() {
-        console.log("Students state:", this.state.student)
+        console.log("Students state:", this.state)
         
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
-            debugger
+           
 
         return  stu.sessions &&  <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
