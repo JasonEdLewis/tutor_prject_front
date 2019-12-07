@@ -77,10 +77,12 @@ class Sessions extends Component {
     render() {
 
        const studentsInNeed = this.props.students.filter(student => {
-         return  !student.sessions && student
-       }
-       )
-           
+        console.log(student) 
+       return (student.sessions.length === 0 && student || !student.sessions && student)
+        
+          
+            
+           })
 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
@@ -97,7 +99,7 @@ class Sessions extends Component {
                 {this.state.showOneSession ? this.singleSession(this.state.sessionId) : theSessions}
 
 
-                {this.state.needForm ? <NewSession student={this.state.student} history={this.props.history} removeForm={this.handleClick} /> : <><h3 style={{ color: "red" }}>Students to be Scheduled</h3> {studentsInNeed.length === 0 ? <h4 style={{ color: "red" }}>There are currently no student to schedule</h4> : scheduleTheseStudents}</>}
+                {this.state.needForm ? <NewSession student={this.state.student} history={this.props.history} removeForm={this.handleClick} /> : <><h3 style={{ color: "red" }}>Students to be Scheduled</h3> {studentsInNeed.length === 0 ? <h4 style={{ color: "red" }}>There are currently no students to be Scheduled</h4> : scheduleTheseStudents}</>}
             </div>
         )
     }

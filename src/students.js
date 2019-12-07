@@ -25,7 +25,6 @@ class Students extends Component {
             home_no:"",
             cell:"",
             email:"",
-    
 
     }
 
@@ -176,7 +175,6 @@ class Students extends Component {
         
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
-           
 
         return  stu.sessions &&  <> <p onClick={() => this.handleClick(stu.id)} className="students"><strong>{stu.sessions.length > 0 ? `  ✅ ` : "❗️ "}</strong>{stu.name} </p></>
         })
