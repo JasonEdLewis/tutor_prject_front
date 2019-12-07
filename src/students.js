@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditStudentForm from './components/EditStudentForm';
-import { fetchStudents, createStudent } from './actions/studentActions';
+import { fetchStudents, createStudent,deleteStudent } from './actions/studentActions';
 import NewStudentForm from './NewStudentForm';
 // import './App.css';
 import './css/students.css';
@@ -73,6 +73,7 @@ class Students extends Component {
     theForm = () => {
         return (
             <>
+            <h4>Enter New Student Info:</h4>
                 <form className="quick-form-inputs" onSubmit={this.handleSubmitForm}>
                     Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                     <br/>
@@ -89,7 +90,7 @@ class Students extends Component {
                     <br/>
                     Address: <input name="address" onChange={this.handleChange} value={this.state.address} value={this.state.address}/>
                     <br/>
-                    Hoome Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} value={this.state.home_no}/>
+                    Home Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} value={this.state.home_no}/>
                     <br/>
                     Cell: <input name="cell" onChange={this.handleChange} value={this.state.cell} value={this.state.cell}/>
                     <br/>
@@ -206,4 +207,4 @@ const mapStateToProps = (state) => {
         instructors: state.instructors.instructors
     }
 }
-export default connect(mapStateToProps, { fetchStudents, createStudent })(Students)
+export default connect(mapStateToProps, { fetchStudents, createStudent, deleteStudent })(Students)

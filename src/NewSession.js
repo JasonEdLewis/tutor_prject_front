@@ -36,11 +36,12 @@ class NewSession extends Component {
       
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
         // console.group(theInstructor)
-        return theInstructor.map(intruct => <option value={intruct.id} >{intruct.name}</option>)
+        return theInstructor.map(intruct => <option value={parseInt(intruct.id)} >{intruct.name}</option>)
     }
     handleSubmit = (e) => {
        
         e.preventDefault()
+        debugger
         this.props.createSession(this.state).then(()=> {
             const instHours = this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2
             this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id, instHours)
@@ -67,7 +68,7 @@ class NewSession extends Component {
                 <form className="new-session-form" onSubmit={this.handleSubmit}>
                     Student: <select onChange={this.handleChange} name="student_id">
                         <option value=""> --- </option>
-                        <option value={student.id} >{student.name}</option>
+                        <option value={parseInt(student.id)} >{student.name}</option>
                     </select>
                     <br />
                     {this.availableInstructors().length === 0 ? (<input placeholder={`We Need a ${student.subject} instructor `}></input>) :

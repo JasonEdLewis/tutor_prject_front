@@ -30,6 +30,7 @@ class Login extends Component {
                 this.setState({ wrongCreds: true, errorMessage: data.error })
             }
             else {
+                debugger
                 localStorage.setItem("token", data.data.token)
                 const token = localStorage.token
                 this.props.profileAdmin(token).then(admin => {
