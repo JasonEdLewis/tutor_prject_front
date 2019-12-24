@@ -33,14 +33,14 @@ class Students extends Component {
     }
 
     handleClick = (studentId) => {
-        
+
         this.setState({
             showAllStudents: this.state.studentClicked,
             studentClicked: !this.state.studentClicked,
             id: studentId,
-           
+
         })
-         this.setState( )
+        this.setState()
     }
     unclickNewStudentForm = () => {
         this.setState({ formSubmitted: false, formClicked: !this.state.formClicked, studentInfo: "" })
@@ -83,23 +83,23 @@ class Students extends Component {
                     Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                     <br />
 
-                    Grade:<input type="text" name="grade" onChange={this.handleChange} value={this.state.grade} value={this.state.grade} />
+                    Grade:<input type="text" name="grade" onChange={this.handleChange} value={this.state.grade} />
                     <br />
-                    Subject:<input type="text" name="subject" onChange={this.handleChange} value={this.state.subject} value={this.state.subject} />
+                    Subject:<input type="text" name="subject" onChange={this.handleChange} value={this.state.subject} />
                     <br />
-                    School:<input type="text" name="school" onChange={this.handleChange} value={this.state.school} value={this.state.school} />
+                    School:<input type="text" name="school" onChange={this.handleChange} value={this.state.school} />
                     <br />
-                    Hours:<input type="text" name="hours" onChange={this.handleChange} value={this.state.hours} value={this.state.hours} />
+                    Hours:<input type="text" name="hours" onChange={this.handleChange} value={this.state.hours} />
                     <br />
-                    Guardian: <input name="guardian" onChange={this.handleChange} value={this.state.guardian} value={this.state.guardian} />
+                    Guardian: <input name="guardian" onChange={this.handleChange} value={this.state.guardian} />
                     <br />
-                    Address: <input name="address" onChange={this.handleChange} value={this.state.address} value={this.state.address} />
+                    Address: <input name="address" onChange={this.handleChange}  value={this.state.address} />
                     <br />
-                    Home Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} value={this.state.home_no} />
+                    Home Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} />
                     <br />
-                    Cell: <input name="cell" onChange={this.handleChange} value={this.state.cell} value={this.state.cell} />
+                    Cell: <input name="cell" onChange={this.handleChange} value={this.state.cell} />
                     <br />
-                    Email: <input name="email" onChange={this.handleChange} value={this.state.email} value={this.state.email} />
+                    Email: <input name="email" onChange={this.handleChange} value={this.state.email} />
                     <br />
                     <input type="submit" />
                 </form>
@@ -172,7 +172,7 @@ class Students extends Component {
     }
     back2All = () => {
         this.setState({
-            showAllStudents: true, formClicked: false
+            formClicked: false, needEditForm: false, studentClicked: true
         })
     }
 
@@ -190,9 +190,9 @@ class Students extends Component {
                 {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
                 {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
                 {showAllStudents && students}
-                {formClicked && this.theForm()}
-                {formClicked && <h3 className="student-info-header"><strong>Or Copy & Paste </strong></h3>}
-                {formClicked && this.studentQuickFormTextArea()}
+                {formClicked && !this.state.needEditForm && this.theForm()}
+                {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Or Copy & Paste </strong></h3>}
+                {formClicked && !this.state.needEditForm && this.studentQuickFormTextArea()}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
                 {needEditForm && <EditStudentForm student={this.state.student} />}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}

@@ -77,7 +77,7 @@ class Sessions extends Component {
     render() {
 
        const studentsInNeed = this.props.students.filter(student => {
-        console.log(this.props) 
+        
        return (!student.sessions || student.sessions.length === 0   && student)
         
           

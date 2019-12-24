@@ -51,9 +51,10 @@
   }
 
   .edit-student-form {
-      margin: 0% 0% 0% 5%;
+      margin: 0% 0% 0% 0%;
       color:black;
       font-size: 1vw;
+      display:block;
   }
   .new-form-cancel-btn {
 
