@@ -170,14 +170,19 @@ class Students extends Component {
     addNewStudentForm = () => {
         this.setState({ formClicked: !this.state.formClicked, showAllStudents: !this.state.showAllStudents })
     }
-    back2All = () => {
+     back2OneStudent = () => {
         this.setState({
             formClicked: false, needEditForm: false, studentClicked: true
         })
     }
+    back2All =()=>{
+        this.setState({
+            formClicked: false, needEditForm: false, studentClicked: false, showAllStudents: true
+        })
+    }
 
     render() {
-        console.log("Students state:", this.state)
+        console.log("Students props:", this.props)
 
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
@@ -194,9 +199,9 @@ class Students extends Component {
                 {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Or Copy & Paste </strong></h3>}
                 {formClicked && !this.state.needEditForm && this.studentQuickFormTextArea()}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
-                {needEditForm && <EditStudentForm student={this.state.student} />}
+                {needEditForm && <EditStudentForm student={this.state.student} back={this.back2All}/>}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
-                {formClicked && <button onClick={this.back2All} className="new-form-cancel-btn">Cancel</button>}
+                {formClicked && <button onClick={this.back2OneStudent} className="new-form-cancel-btn">Cancel</button>}
 
 
             </div>
