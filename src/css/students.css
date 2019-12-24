@@ -17,7 +17,7 @@
    
 }
 .student-info-header{
-    margin-right: 35%;
+    margin-right: 0%;
 }
 .students-blur {
     background-color: black;
@@ -60,7 +60,7 @@
   }
 
   .quick-form-inputs{
-      /* float: right; */
+      margin-left: ;
   }
   .new-forms-div{
       margin: 10% 0% 0% 0%;

@@ -55,7 +55,7 @@ class Profile extends Component {
                         {/* INSTRUCTORS */}
                 <div className="instructors-div">
                     <h4 className="instructors-heading">Instructors</h4>
-                    <div class="line-over-instructor">______________________</div>
+                    <div class="line-over-instructor">__________________</div>
                     <br/>
                     <span className="teacher-emojicon" >👩🏻‍🏫</span>
                     <div class="line-under-instructor">_____________</div>
