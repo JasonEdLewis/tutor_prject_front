@@ -164,7 +164,7 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
-            <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>
+           {!this.state.needEditForm && <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>}
         </div>)
     }
     addNewStudentForm = () => {

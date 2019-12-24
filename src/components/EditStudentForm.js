@@ -42,16 +42,16 @@ class StudentForm extends Component {
         // console.log("General Student form props:", this.props.student)
        
         const { } = this.state
-        // const {name, school_id, reason, date, hours, school, grade, sped, counselor_info, guardian, address, home_no, cell,email,subject } = this.props.student
+        const {name, school_id, reason, date, hours, school, grade, sped, counselor_info, guardian, address, home_no, cell,email,subject } = this.props.student
         console.log("Edit student ",this.props)
         return (
             <div>
                 <h6>Edit Student</h6>
                 <form className="edit-student-form" handleSubmit={(e) => console.log(e)}>
                     <label>Name:</label>
-                    <input name="name" placeHolder={this.props.student.name} className="student-input" value={this.state.name} onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} type="text" />
+                
                     <label>School id:</label>
-                    <input type="text" name="school_id" value={this.state.school_id} placeholder={this.props.student.school_id } className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
+                    <input type="number" name="school_id" value={this.state.school_id} placeholder={this.props.student.school_id } className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>Reason:</label>
                     <input type="text" name="reason" value={this.state.reason} placeholder={this.props.student.reason} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>Start Date:</label>
@@ -59,7 +59,7 @@ class StudentForm extends Component {
                     <label>Hours: </label>
                     <input name="hours" value={this.state.hours} type="number" placeholder={this.props.student.hours} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>School: </label>
-                    <input  type="text" name="school" value={this.state.school} placeholder={this.props.student.school} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
+                    <input type="text" name="school" value={this.state.school} placeholder={this.props.student.school} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>Grade:</label>
                     <input name="grade" value={this.state.grade} type="number" min="0" max="12" placeholder={this.props.student.grade} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>Subject:</label>
