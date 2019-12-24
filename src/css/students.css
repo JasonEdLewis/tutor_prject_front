@@ -17,7 +17,7 @@
    
 }
 .student-info-header{
-    margin-right: 35%;
+    margin-right: 0%;
 }
 .students-blur {
     background-color: black;
@@ -51,16 +51,17 @@
   }
 
   .edit-student-form {
-      margin: 0% 0% 0% 5%;
+      margin: 0% 0% 0% 0%;
       color:black;
       font-size: 1vw;
+      display:block;
   }
   .new-form-cancel-btn {
 
   }
 
   .quick-form-inputs{
-      /* float: right; */
+      margin-left: ;
   }
   .new-forms-div{
       margin: 10% 0% 0% 0%;

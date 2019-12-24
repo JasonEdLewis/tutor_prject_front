@@ -12,7 +12,7 @@ const initialState = {
 export default function (state = initialState, action) {
     switch (action.type) {
         case FETCH_STUDENTS:
-            debugger
+
             return {
                 ...state,
                 students: action.payload,

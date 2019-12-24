@@ -137,7 +137,7 @@ h5{
   text-align: center;
   justify-content: left;
   border-radius: .5em;
-  max-height: auto;
+  min-height: fit-content;
   font-size: 2em; /* font size for the .instructors-heading   */
 
 }
@@ -148,11 +148,11 @@ h5{
  
 }
 .line-over-instructor{
-  width:50%;
-  margin: -10% 0% 0% 0%;
+  width: 10%;
+  margin: -10% 0% 0% 0%; 
   padding-bottom: 4% ;
   position: relative;
-  color: rgba(0, 0, 0, 0.472);
+  color: rgba(15, 15, 15, 0.472);
   
 }
 .line-under-instructor{
@@ -184,8 +184,7 @@ h5{
   background-color: #f0dede;
   border-radius: .5em;
   min-height: fit-content;
-  /* font-size: 13em; */
-  /* text-shadow: 2px 1px #006600  */
+
 
 }
 .quick-form{
