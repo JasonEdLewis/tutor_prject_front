@@ -13,6 +13,7 @@ export default function (state = initialState, action) {
                 sessions: action.payload
             }
         case NEW_SESSION:
+
             return {
                 ...state,
                 sessions: [...state.sessions, action.payload]
@@ -28,7 +29,7 @@ export default function (state = initialState, action) {
                 ...state.sessions.slice(idx + 1)
             ];
         case DELETE_SESSION:
-            debugger
+
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)
             return {
                 ...state,

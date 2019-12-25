@@ -16,23 +16,19 @@ export const fetchSessions = () => {
 const dispatchNewSession = (session) => ({ type: NEW_SESSION, payload: session })
 
 export const createSession = (session) => {
-
     return async dispatch => {
+        return fetch('http://localhost:3000/sessions', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json",
+                accept: "application/json"
+            },
+            body: JSON.stringify(session)
+        }).then(resp => resp.json()).then(data => {
+            dispatch(dispatchNewSession(data))
+        }
+        )
 
-        dispatch(dispatchNewSession(session))
-        try {
-            const responce = await fetch('http://localhost:3000/sessions', {
-                method: 'POST',
-                headers: {
-                    "content-type": "application/json",
-                    accept: "application/json"
-                },
-                body: JSON.stringify(session)
-            })
-        }
-        catch (error) {
-            console.log(error)
-        }
 
     }
 }
@@ -57,18 +53,15 @@ export const editSession = (session) => {
 
 }
 
-export const deleteSession =(id)=>{
- return dispatch =>{
-     debugger
-    dispatch({
-        type: DELETE_SESSION,
-        payload: id
-    })
-    return fetch(`http://localhost:3000/sessions/${id}`,{
-    method: 'DELETE'
-})
+export const deleteSession = (id) => {
+    return dispatch => {
+        dispatch({ type: DELETE_SESSION, payload: id })
 
- }
+        return fetch(`http://localhost:3000/sessions/${id}`, {
+            method: 'DELETE'
+        })
+
+    }
 }
 
 

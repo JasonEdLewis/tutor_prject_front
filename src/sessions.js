@@ -39,32 +39,44 @@ class Sessions extends Component {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
     }
     timeAndDate = (sess) => {
-        const theTime = sess.time.replace(/-/g, "/").slice(11, 16)
-        const date = sess.date.replace(/-/g, "/").split("T")[0]
-        const timeInt = parseInt(theTime)
-        const newTime = `${parseInt(theTime.split(":")[0]) % 12}:${theTime.split(":")[1]}`
-        return { newTime, date }
+
+        if (!!sess) {
+            const theTime = sess.time.replace(/-/g, "/").slice(11, 16)
+            const date = sess.date.replace(/-/g, "/").split("T")[0]
+            const timeInt = parseInt(theTime)
+            const newTime = `${parseInt(theTime.split(":")[0]) % 12}:${theTime.split(":")[1]}`
+            return date ? { newTime, date } : newTime
+        }
+        else {
+            this.setState({ showOneSession: false })
+        }
     }
     singleSession = (id) => {
+
         const session = this.props.sessions.find(sess => sess.id === id)
-        const time = this.timeAndDate(session)
-        const emoji = emojicons(session.subject)
-        return (<div className="one-session"><div
-            onClick={() => this.toggleOneSession(session.id)}
-        ><p key={session.id} >
-                <p>{emoji}</p>
-                <strong>Student:
+        if (!!session) {
+            const time = this.timeAndDate(session)
+            const emoji = emojicons(session.subject)
+            return (<div className="one-session"><div
+                onClick={() => this.toggleOneSession(session.id)}
+            ><p key={session.id} >
+                    <p>{emoji}</p>
+                    <strong>Student:
                 </strong> {session.student.name}</p>
-            <p>
-                <strong>Subject: </strong>{session.subject}</p>
-            <p><strong>Instructor:</strong> {session.instructor.name}</p>
-            <strong>Date: </strong>{time.date} <br />
-            <strong>Time: </strong>{time.newTime}
-            <p><strong>Location:</strong> {
-                session.location}</p>
-        </div>
-            {this.state.editSessionForm ? <></> : <><span onClick={() => this.doWeNeedEditForm()} id="edit-sess">🖋</span> <br /><span onClick={() => this.deleteSession(session.id)} id="delete-sess">🗑</span> <br /></>}
-            {this.state.editSessionForm ? <EditSession session={session} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
+                <p>
+                    <strong>Subject: </strong>{session.subject}</p>
+                <p><strong>Instructor:</strong> {session.instructor.name}</p>
+                <strong>Date: </strong>{time.date} <br />
+                <strong>Time: </strong>{time.newTime}
+                <p><strong>Location:</strong> {
+                    session.location}</p>
+            </div>
+                {this.state.editSessionForm ? <></> : <><span onClick={() => this.doWeNeedEditForm()} id="edit-sess">🖋</span> <br /><span onClick={() => this.deleteSession(session.id)} id="delete-sess">🗑</span> <br /></>}
+                {this.state.editSessionForm ? <EditSession session={session} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
+        }
+        else {
+            this.setState({ showOneSession: false })
+        }
     }
     activatePanels = () => {
         console.log(this.state.active)
@@ -76,13 +88,13 @@ class Sessions extends Component {
 
     render() {
 
-       const studentsInNeed = this.props.students.filter(student => {
-        
-       return (!student.sessions || student.sessions.length === 0   && student)
-        
-          
-            
-           })
+        const studentsInNeed = this.props.students.filter(student => {
+
+            return (!student.sessions || student.sessions.length === 0 && student)
+
+
+
+        })
 
         const scheduleTheseStudents = studentsInNeed.map(student => <h3 ><strong>{student.name} </strong><button onClick={() => this.handleClick(student)} >Book</button></h3>)
 
