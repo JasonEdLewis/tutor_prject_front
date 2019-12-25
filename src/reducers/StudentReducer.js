@@ -24,14 +24,13 @@ export default function (state = initialState, action) {
                 students: [action.payload, ...state.students]
             }
         case EDIT_STUDENT:
-            debugger
-            const idx = state.students.findIndex(student.id === action.payload)
+            const idx = state.students.findIndex(student=> student.id === action.payload.id)
             const student = state.students[idx]
             return {
                 ...state,
                 students: [...state.students.slice(0, idx),
-                Object.assign({}, student, { attribute: action.payload }),
-                state.students.slice(idx + 1)
+                Object.assign({}, student, action.payload ),
+                ...state.students.slice(idx + 1)
                 ]
             }
         case ERROR:

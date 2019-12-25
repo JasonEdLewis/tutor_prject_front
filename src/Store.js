@@ -14,11 +14,11 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 
-export const store = createStore(persistedReducer, {},
+export const store = createStore(rootReducer, {},
   compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
   ));
 export const persistor = persistStore(store);
 
-export default { store, persistor }
+export default { store}
 
-//
+//export default { store, persistor }

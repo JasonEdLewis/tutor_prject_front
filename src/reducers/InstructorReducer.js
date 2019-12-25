@@ -1,4 +1,4 @@
-import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS, EDIT_INSTRUCTOR, IS_LOADGING_INST,NOT_LOADING_INST, IS_EDITING_INST, NOT_EDITING_INST } from '../actions/types'
+import { FETCH_INSTRUCTORS, NEW_INSTRUCTOR, DELETE_INSTRUCTOR, REDUCE_HOURS, EDIT_INSTRUCTOR, IS_LOADGING_INST, NOT_LOADING_INST, IS_EDITING_INST, NOT_EDITING_INST } from '../actions/types'
 
 const initialState = {
     instructors: [],
@@ -25,7 +25,7 @@ export default function (state = initialState, action) {
                 instructors: theInsts
             }
         case REDUCE_HOURS:
-            const idx = state.instructors.findIndex(inst => inst.id === parseInt(action.payload.id))
+            const idx = state.instructors.findIndex(inst => inst.id === parseInt(action.payload))
             const instructor = state.instructors[idx]
             console.log(idx)
             return [
@@ -38,27 +38,32 @@ export default function (state = initialState, action) {
             const instruct = state.instructors[indx]
             const instructs = [
                 ...state.instructors.slice(0, indx),
-                Object.assign({}, instruct, action.payload ),
+                Object.assign({}, instruct, action.payload),
                 ...state.instructors.slice(indx + 1)
-            ] 
+            ]
             console.log(indx)
-            return  { ... state,
-                instructors : instructs,
-                isEditing:false
+            return {
+                ...state,
+                instructors: instructs,
+                isEditing: false
             }
         case IS_LOADGING_INST:
-            return {...state,
-                isLoadingInst:true}
+            return {
+                ...state,
+                isLoadingInst: true
+            }
         case NOT_LOADING_INST:
-            return{
+            return {
                 ...state,
                 isLoadingInst: false
             }
-            case IS_EDITING_INST:
-            return {...state,
-                isEditing:true}
+        case IS_EDITING_INST:
+            return {
+                ...state,
+                isEditing: true
+            }
         case NOT_EDITING_INST:
-            return{
+            return {
                 ...state,
                 isEditing: false
             }

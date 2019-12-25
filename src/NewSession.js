@@ -10,7 +10,7 @@ class NewSession extends Component {
 
     state = {
         student_id: 0,
-        instructor_id: "",
+        instructor_id: null,
         admin_id: 1,
         date: "",
         time: "",
@@ -23,7 +23,7 @@ class NewSession extends Component {
     }
 
     handleChange = (e) => {
-       
+
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -33,18 +33,17 @@ class NewSession extends Component {
         this.setState({ edit: !this.state.edit })
     }
     availableInstructors = () => {
-      
+
         const theInstructor = this.props.instructors.filter(inst => inst.subject.toLowerCase() === this.props.student.subject.toLowerCase())
         // console.group(theInstructor)
         return theInstructor.map(intruct => <option value={parseInt(intruct.id)} >{intruct.name}</option>)
     }
     handleSubmit = (e) => {
-       
+
         e.preventDefault()
-        debugger
-        this.props.createSession(this.state).then(()=> {
-            const instHours = this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2
-            this.props.reduceInstructorsHoursBasedOnSession(this.state.instructor_id, instHours)
+        this.props.createSession(this.state).then(() => {
+            const instHours = parseInt(this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2)
+            this.props.reduceInstructorsHoursBasedOnSession(parseInt(this.state.instructor_id), instHours)
             this.props.removeForm()
             this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
         })
@@ -52,7 +51,7 @@ class NewSession extends Component {
 
     render() {
 
-        console.log("New Sessions props", this.props)
+        console.log("New Sessions state", this.state)
 
 
         // console.log("New Session state:", this.state) 
@@ -80,7 +79,7 @@ class NewSession extends Component {
 
                     <br />
                     <label>Date:</label>
-                    <input type="date" value={date} name="date" onChange={this.handleChange} />
+                    <input type="date" value={date} name="date" onChange={this.handleChange} required />
                     <label>Time:</label>
                     <input type="time" value={time} onChange={this.handleChange} name="time" />
                     <label>home?:</label>

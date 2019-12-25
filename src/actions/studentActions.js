@@ -45,11 +45,9 @@ export const createStudent = (studentInfo) => {
     }
 }
 export const editStudent =(info)=>{
-    debugger
+  
     return function (dispatch) {
-        dispatch({type:EDIT_STUDENT, payload:info })
-    
-    fetch(`http://localhost:3000/students/${info.id}`,{
+   return fetch(`http://localhost:3000/students/${info.id}`,{
      method: 'PATCH',
      headers: {
          'content-type': 'application/json',
@@ -57,7 +55,7 @@ export const editStudent =(info)=>{
      },
      body: JSON.stringify(info)
     }
-    )
+    ).then(resp => resp.json()).then(data => dispatch({type:EDIT_STUDENT, payload:info }))
     }
 }
 

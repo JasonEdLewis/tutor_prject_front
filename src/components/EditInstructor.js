@@ -38,7 +38,7 @@ class EditInstructorForm extends Component {
                 <h6 style={{ marginLeft: "-15%", color: "#044891" }}>Edit {firstName}'s Info below</h6>
                 <form onSubmit={this.handelSubmit} className="instructor-card-div" style={{ paddingTop: "5%" }}>
                     <label>Name: </label>
-                    <input type="text" name="name" placeholder={name} value={this.state.name} onChange={this.handleChange} /><br />
+                    <input type="text" name="name" placeholder={name}  onChange={this.handleChange} value={this.state.name}/><br />
                     <label>Subject: </label>
                     <input type="text" name="subject" placeholder={subject} value={this.state.subject} onChange={this.handleChange} />
                     <label>specialty: </label>
