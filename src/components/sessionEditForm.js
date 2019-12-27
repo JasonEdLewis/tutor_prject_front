@@ -26,7 +26,6 @@ class SessionEditForm extends Component {
     }
     handleChange = (e) => {
 
-        debugger
         if (e.target.name === "home") {
             if (e.target.value === 'true') {
                 this.setState({ home: true })

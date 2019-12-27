@@ -46,7 +46,7 @@ class Instructors extends Component {
         this.state.showOneInstructor && this.showOne()
     }
     showOne = () => {
-        const instuct = this.props.instructors.instructors.find(inst => inst.id === this.state.id)
+        const instuct = this.props.instructors.find(inst => inst.id === this.state.id)
 
         return this.state.needEditform ? <EditInstructorForm id="edit-inst-form" instructor={instuct} removeForm={this.editIntructor} showAll={this.showOneStatus} /> :
             (<div className="instructor-card-div">
@@ -60,11 +60,13 @@ class Instructors extends Component {
     }
     render() {
 
-        console.log("Instructors props: ", this.props)
-        const { instructors, history } = this.props.instructors
+        console.log("Instructors props: ", this.props.instructors)
         const { showOneInstructor, needEditform, needNewForm } = this.state
+        debugger
+        if (this.props.instructors) {
+            var instructs = this.props.instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
 
-        const instructs = instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
+        }
 
         return (
             <div className="instructors-card">
@@ -79,7 +81,7 @@ class Instructors extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        instructors: state.instructors,
+        instructors: state.instructors.instructors,
         isloading: state.instructors.isLoadingInst,
         isEditing: state.instructors.isEditing
     }

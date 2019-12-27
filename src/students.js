@@ -93,7 +93,7 @@ class Students extends Component {
                     <br />
                     Guardian: <input name="guardian" onChange={this.handleChange} value={this.state.guardian} />
                     <br />
-                    Address: <input name="address" onChange={this.handleChange}  value={this.state.address} />
+                    Address: <input name="address" onChange={this.handleChange} value={this.state.address} />
                     <br />
                     Home Phone:<input name="home_no" onChange={this.handleChange} value={this.state.home_no} />
                     <br />
@@ -164,18 +164,18 @@ class Students extends Component {
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {sess.date.replace(/-/g, "/").slice(11, 16)}am</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
-           {!this.state.needEditForm && <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>}
+            {!this.state.needEditForm && <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>}
         </div>)
     }
     addNewStudentForm = () => {
         this.setState({ formClicked: !this.state.formClicked, showAllStudents: !this.state.showAllStudents })
     }
-     back2OneStudent = () => {
+    back2OneStudent = () => {
         this.setState({
             formClicked: false, needEditForm: false, studentClicked: true
         })
     }
-    back2All =()=>{
+    back2All = () => {
         this.setState({
             formClicked: false, needEditForm: false, studentClicked: false, showAllStudents: true
         })
@@ -199,7 +199,7 @@ class Students extends Component {
                 {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Or Copy & Paste </strong></h3>}
                 {formClicked && !this.state.needEditForm && this.studentQuickFormTextArea()}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
-                {needEditForm && <EditStudentForm student={this.state.student} back={this.back2All}/>}
+                {needEditForm && <EditStudentForm student={this.state.student} back={this.back2All} />}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
                 {formClicked && <button onClick={this.back2OneStudent} className="new-form-cancel-btn">Cancel</button>}
 

@@ -73,7 +73,7 @@ export const reduceInstructorsHoursBasedOnSession = (id, hours) => {
             type: REDUCE_HOURS,
             payload: id
         })
-        fetch(`http://localhost:3000/instructors/${id}`, {
+       return fetch(`http://localhost:3000/instructors/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',

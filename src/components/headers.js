@@ -7,7 +7,6 @@ class Headers extends Component {
     render() {
         // console.log("headers props:", this.props)
         const { history, loggedIn } = this.props
-        // debugger
         return (
             <div className="header-component">
                 <header >
