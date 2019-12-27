@@ -13,8 +13,6 @@ export const fetchSessions = () => {
         })
     }
 }
-
-
 export const newSession = (session, id, hours) => dispatch => {
     let sessionData, instructorData
     return axios.post('http://localhost:3000/sessions', session)
@@ -29,8 +27,10 @@ export const newSession = (session, id, hours) => dispatch => {
             })
         }
         )
-    
+
 }
+
+
 export const editSession = (session) => {
 
     return function (dispatch) {
@@ -65,3 +65,18 @@ export const deleteSession = (id) => {
 
 
 
+
+
+// AXIOS.ALL THAT DIDNT WORK WITH RAILS API
+// export const newSession = (session, id, hours) => dispatch => {
+//     return axios.all([
+//         axios.post('http://localhost:3000/sessions', session),
+//         axios.patch(`http://localhost:3000/instructors/${id}`, { hours: hours })
+//     ]).then((sessionData, instructorData) => {
+//         console.log("Session resp data:", sessionData)
+//         console.log("Instructor resp data:", instructorData)
+
+//     })
+
+
+// }
