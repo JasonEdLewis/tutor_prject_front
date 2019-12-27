@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createSession } from './actions/sessionActions';
+import { newSession } from './actions/sessionActions';
 import { reduceInstructorsHoursBasedOnSession } from './actions/instructorActions';
 import './css/sessions.css';
 
@@ -41,9 +41,10 @@ class NewSession extends Component {
     handleSubmit = (e) => {
 
         e.preventDefault()
-        this.props.createSession(this.state).then(() => {
-            const instHours = parseInt(this.props.instructors.find(inst => inst.id === parseInt(this.state.instructor_id)).hours - 2)
-            this.props.reduceInstructorsHoursBasedOnSession(parseInt(this.state.instructor_id), instHours)
+        const instId = parseInt(this.state.instructor_id)
+        const instHours = this.props.instructors.find(inst => inst.id === instId).hours - 2
+        this.props.newSession(this.state, instId, instHours).then(() => {
+            console.log("back in submit session")
             this.props.removeForm()
             this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
         })
@@ -113,7 +114,7 @@ const mapStateToProps = (state) => {
         instructors: state.instructors.instructors
     }
 }
-export default connect(mapStateToProps, { createSession, reduceInstructorsHoursBasedOnSession })(NewSession)
+export default connect(mapStateToProps, { reduceInstructorsHoursBasedOnSession, newSession })(NewSession)
 /*
 
 student_id

@@ -24,7 +24,6 @@ class NewStudentForm extends Component {
     }
 
     handleSubmit = (e) => {
-        debugger
         e.preventDefault()
         console.log("Student Form Handle Submit")
         this.props.createStudent(this.state.student).then(resp => resp.json()).then(data => console.log(data))

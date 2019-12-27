@@ -6,7 +6,7 @@ import Dropdown from './dropdown';
 
 
 export default class Resources extends Component {
-    // debugger
+  
 
     state = {
 

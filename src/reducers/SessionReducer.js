@@ -20,14 +20,18 @@ export default function (state = initialState, action) {
             }
         case EDIT_SESSION:
 
-            const idx = state.session.findIndex(session => session.id === action.payload.id)
-            let session = state.sesisons[idx]
-
-            return [
+            const idx = state.sessions.findIndex(session => session.id === action.payload.id)
+            let TheSession = state.sessions[idx]
+            let LastestSesssions = [
                 ...state.sessions.slice(0, idx),
-                Object.assign({}, session, { session: action.payload }),
+                Object.assign({}, TheSession, action.payload),
                 ...state.sessions.slice(idx + 1)
-            ];
+            ]
+            debugger
+            return {
+                ...state,
+                sessions: LastestSesssions
+            };
         case DELETE_SESSION:
 
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)

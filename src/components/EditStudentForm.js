@@ -34,7 +34,6 @@ class StudentForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         this.props.editStudent(this.state).then(data => {
-           debugger
             this.props.back() 
         })
     }
