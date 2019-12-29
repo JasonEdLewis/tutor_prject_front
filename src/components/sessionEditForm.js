@@ -73,9 +73,9 @@ class SessionEditForm extends Component {
                         </select></>
                         )}
                     <label>Subject: </label>
-                    <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} />
+                    <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} /><br />
                     <label>Date: </label>
-
+                    
                     <input type="date" value={this.state.date} name="date" onChange={this.handleChange} />
                     <br />
                     <label>Time: </label>
@@ -96,7 +96,7 @@ class SessionEditForm extends Component {
                     Notes:
                     <textarea className="edit-notes-textarea" name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
                     <br />
-                    <input style={{ color: "black" }} type="submit"></input>
+                    <input id="edit_submit" type="submit"></input>
                     <br />
                     <button onClick={() => this.props.doWeNeedEditForm()}> Cancel </button>
                 </form>

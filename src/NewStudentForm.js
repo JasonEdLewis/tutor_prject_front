@@ -103,10 +103,10 @@ class NewStudentForm extends Component {
                         <label>Subject:</label>
                         <input name="subject" value={this.state.student.subject} type="text" placeholder=" subject" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>SPED: </label>
-                        <select name="sped " value={this.state.student.sped} type="text" placeholder="Special Ed" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
-                            <option value="Yes" > --- </option>
-                            <option value="true" > Yes </option>
-                            <option value="false" > No </option>
+                        <select name="sped "  type="text" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
+                            <option value={null} > --- </option>
+                            <option value={true} > Yes </option>
+                            <option value={false} > No </option>
                         </select>
                         <label>Councilor Info:</label>
                         <textarea row="6" col="40" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} style={{ width: "100%", fontSize: ".50em", borderRadius: ".25em" }} />
