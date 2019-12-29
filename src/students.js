@@ -111,11 +111,9 @@ class Students extends Component {
 
         return (
             <div>
-                <br />
-                <br />
-
+              
                 <form className="quick-form" onSubmit={this.handleSubmit}>
-                    <textarea type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form"> </textarea>
+                    <textarea  rows="10" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form-textarea" required > </textarea>
                     <br /><button >Submit</button>
                 </form>
 
@@ -196,12 +194,12 @@ class Students extends Component {
                 {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
                 {showAllStudents && students}
                 {formClicked && !this.state.needEditForm && this.theForm()}
-                {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Or Copy & Paste </strong></h3>}
+                {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Copy & Paste </strong></h3>}
                 {formClicked && !this.state.needEditForm && this.studentQuickFormTextArea()}
                 {studentClicked && this.singleStudentInfo(this.state.id)}
                 {needEditForm && <EditStudentForm student={this.state.student} back={this.back2All} />}
                 {formSubmitted && <NewStudentForm newStuInfo={this.state.studentInfo} handleSubmit={this.handleSubmit} formUnclick={this.unclickNewStudentForm} />}
-                {formClicked && <button onClick={this.back2OneStudent} className="new-form-cancel-btn">Cancel</button>}
+                {formClicked && <button onClick={this.back2All} className="new-form-cancel-btn">Cancel</button>}
 
 
             </div>

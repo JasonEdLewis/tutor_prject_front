@@ -82,9 +82,9 @@ class StudentForm extends Component {
                 <input value={ this.state.home_no} type="text" placeholder={ home_no} className="student-input" onChange={this.handleChange} name="home_no" style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
                     <label>Email:</label>
                     <input name="email" value={this.state.email} type="email" placeholder={ email} className="student-input" onChange={this.handleChange} style={{ width: "40%", fontSize: ".75vw", borderRadius: ".25em" }} />
-                    {/* <br />
-                        <br /> */}
-                    <input type="submit" className="student-input" style={{ width: "40%", fontSize: "1em", borderRadius: ".25em" }} />
+                    <br />
+                        <br /> 
+                    <input type="submit" className="student-input" style={{ width: "20%", fontSize: "1em", borderRadius: ".25em" }} />
                 </form>
             </div>
         )

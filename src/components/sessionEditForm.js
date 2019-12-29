@@ -19,9 +19,14 @@ class SessionEditForm extends Component {
     }
 
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         console.log(e)
-        this.props.editSession(this.state)
+        this.props.editSession(this.state).then(resp => {
+            console.log(resp)
+            this.props.doWeNeedEditForm()
+        })
+
 
     }
     handleChange = (e) => {
@@ -54,7 +59,7 @@ class SessionEditForm extends Component {
     }
     render() {
         const { student, session } = this.props
-        console.log("Edit Sess", this.props)
+        console.log("Edit Sess state", this.state)
         return (
             <div className="edit-session-form">
                 <h4>Edit Session Details </h4>
@@ -70,10 +75,12 @@ class SessionEditForm extends Component {
                     <label>Subject: </label>
                     <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} />
                     <label>Date: </label>
-                    <input type="date" value={this.state.date} name="date" onChange={this.handleChange} placeholder={session.date} />
+
+                    <input type="date" value={this.state.date} name="date" onChange={this.handleChange} />
                     <br />
                     <label>Time: </label>
-                    <input type="time" value={this.state.time} onChange={this.handleChange} name="time" placeholder={this.props.time} />
+                    {/* <input type="time" value={time} onChange={this.handleChange} name="time" /> */}
+                    <input type="time" value={this.state.time} onChange={this.handleChange} name="time" />
                     <br />
                     <label>home?: </label>
                     <select onChange={this.handleChange} name="home" >

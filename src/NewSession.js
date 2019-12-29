@@ -43,16 +43,16 @@ class NewSession extends Component {
         e.preventDefault()
         const instId = parseInt(this.state.instructor_id)
         const instHours = this.props.instructors.find(inst => inst.id === instId).hours - 2
-        this.props.newSession(this.state, instId, instHours).then(() => {
-            console.log("back in submit session")
-            this.props.removeForm()
-            this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
-        })
+        this.props.newSession(this.state, instId, instHours)
+        this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+        !this.props.isLoading && this.props.removeForm() 
+
     }
 
     render() {
 
         console.log("New Sessions state", this.state)
+        console.log("New Sessions props", this.props.isLoading)
 
 
         // console.log("New Session state:", this.state) 
@@ -91,8 +91,7 @@ class NewSession extends Component {
                     </select><br />
                     <label>Subject:</label>
                     <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
-                    {home ?
-                        (<></>) :
+                    {!home &&
                         (<><label name="location" value={location} onChange={this.handleChange}>Location:</label>
                             <input type="text" /></>)}
                     <br />
@@ -111,7 +110,8 @@ class NewSession extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        instructors: state.instructors.instructors
+        instructors: state.instructors.instructors,
+        isLoading: state.sessions.isLoading
     }
 }
 export default connect(mapStateToProps, { reduceInstructorsHoursBasedOnSession, newSession })(NewSession)

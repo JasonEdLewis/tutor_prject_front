@@ -62,7 +62,7 @@ class Instructors extends Component {
 
         console.log("Instructors props: ", this.props.instructors)
         const { showOneInstructor, needEditform, needNewForm } = this.state
-        debugger
+        
         if (this.props.instructors) {
             var instructs = this.props.instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
 
@@ -70,7 +70,7 @@ class Instructors extends Component {
 
         return (
             <div className="instructors-card">
-                {this.props.isloading || this.props.isEditing ? <Spinner animation="border" /> : null}
+                {(this.props.isloading || this.props.isEditing) && <Spinner animation="border" />}
                 {showOneInstructor ? this.showOne() : instructs}
                 {needNewForm && <NewInstructorForm id="new-inst-form" removeForm={this.addFormToPage} />}
                 {this.props.isEditing && this.state.showOneInstructor ? null : null}

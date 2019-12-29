@@ -22,6 +22,8 @@ export const FETCH_SESSIONS = 'FETCH_SESSIONS';
 export const NEW_SESSION = 'NEW_SESSION';
 export const EDIT_SESSION = 'EDIT_SESSION';
 export const DELETE_SESSION = 'DELETE_SESSION';
+export const IS_LOADING = "IS_LOADING"
+export const FINISH_LOADING = "FINISH_LOADING"
 
 // ADMINS
 export const FETCH_ADMINS = 'FETCH_ADMINS';
