@@ -35,14 +35,14 @@ export default function (state = initialState, action) {
                 Object.assign({}, TheSession, action.payload),
                 ...state.sessions.slice(idx + 1)
             ]
-            debugger
+        
             return {
                 ...state,
                 sessions: LastestSesssions,
 
             };
         case DELETE_SESSION:
-
+                debugger
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)
             return {
                 ...state,

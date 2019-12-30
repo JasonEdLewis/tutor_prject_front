@@ -55,7 +55,9 @@ class Students extends Component {
     }
     handleSubmitForm = (e) => {
         e.preventDefault()
-        const { name, grade, subject, school, hours, guardian, address, home_no, cell, email } = this.state
+        
+        const {name, grade, subject, school, hours, guardian, address, home_no, cell, email, home } = this.state
+        
         const body = { name, grade, subject, school, hours, guardian, address, home_no, cell, email }
         this.props.createStudent(body)
         this.setState({
@@ -120,26 +122,33 @@ class Students extends Component {
             </div>)
 
     }
- formatTime =(time)=>{
-     debugger
-     const rawTime = parseInt(time)
-     if (rawTime > 7 && rawTime < 12){
-       return `${time}am `
-     }
-     else{
-         if(time[0] == 0)
-        return `${time.slice(1)}pm `
-     
-     else{
-         time = `${parseInt(time) % 12 }:${time.split(":")[1]}pm`
-         return time
-     }
+    formatTime =(time)=>{
+        debugger
+        const rawTime = parseInt(time)
+        if (rawTime > 7 && rawTime < 12){
+          return `${time}am `
+        }
+        else{
+            if(time[0] == 0){
+           return `${time.slice(1)}pm `
+            }
+            else if(rawTime % 12 === 0){
+                return `12:${time.split(":")[1]}pm`
+            }
+        else{
+            time = `${parseInt(time) % 12 }:${time.split(":")[1]}pm`
+            return time
+        }
+       }
+      
     }
-   
- }
- formatDate =(date)=>{
 
+ formatDate =(date)=>{
+     debugger
+ const rawDate = date.split("-")
+ return `${rawDate[1]}/${rawDate[2]}/${rawDate[0]}`
  }
+
     hasSession = (student) => {
         if (student.sessions.length > 0) {
             student.sessions.map(sess => {
@@ -175,7 +184,7 @@ class Students extends Component {
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
                 {/* {this.hasSession(theStudent)} */}
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {sess.date.replace(/-/g, "/").split("T")[0]}</li><li><strong>Time:</strong> {this.formatTime(sess.time.split("T")[1].slice(0,5))}</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {this.formatDate(sess.date.split("T")[0])}</li><li><strong>Time:</strong> {this.formatTime(sess.time.split("T")[1].slice(0,5))}</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li style={{color:"red"}}>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
             {!this.state.needEditForm && <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>}

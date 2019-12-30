@@ -32,43 +32,31 @@ export const newSession = (session, id, hours) => dispatch => {
 }
 
 
-export const editSession = (session) => {
-
-    return function (dispatch) {
-        dispatch({ type: IS_LOADING })
-        return fetch(`http://localhost:3000/sessions/${session.id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json'
-            },
-            body: JSON.stringify(session)
-        }
-        ).then(resp => resp.json()).then(() => {
+export const editSession = (session) => dispatch=>{
+    dispatch({ type: IS_LOADING })
+    return axios.patch(`http://localhost:3000/sessions/${session.id}`, session)
+        .then(resp => {
             dispatch({
                 type: EDIT_SESSION,
-                payload: session
+                payload: resp.data
             })
             dispatch({ type: FINISH_LOADING })
         }
         )
     }
 
-}
 
-export const deleteSession = (id) => {
 
-    return dispatch => {
+export const deleteSession = (id) => dispatch => {
+    debugger
         dispatch({ type: IS_LOADING })
-        debugger
         dispatch({ type: DELETE_SESSION, payload: id })
-
-        return fetch(`http://localhost:3000/sessions/${id}`, {
+        return axios.delete(`http://localhost:3000/sessions/${id}`, {
             method: 'DELETE'
         }).then(dispatch({ type: FINISH_LOADING }))
 
     }
-}
+
 
 
 

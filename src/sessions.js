@@ -53,6 +53,27 @@ class Sessions extends Component {
             this.setState({ showOneSession: false })
         }
     }
+    formatTime =(time)=>{
+        debugger
+        const rawTime = parseInt(time)
+        if (rawTime > 7 && rawTime < 12){
+          return `${time}am `
+        }
+        else if(rawTime % 12 === 0){
+            return `12:${time.split(":")[1]}pm`
+        }
+        else{
+            if(time.length > 0 && time[0] == 0){
+           return `${time.slice(1)}pm `
+            }
+           
+        else{
+            time = `${parseInt(time) % 12 }:${time.split(":")[1]}pm`
+            return time
+        }
+       }
+      
+    }
     singleSession = (id) => {
 
         const session = this.props.sessions.find(sess => sess.id === id)
@@ -72,8 +93,8 @@ class Sessions extends Component {
                     <strong>Subject: </strong>{session.subject}</p>
                 <p><strong>Instructor:</strong> {session.instructor.name}</p>
                 <strong>Date: </strong>{sortedDate} <br />
-                <strong>Time: </strong>{ampm > 7 ? `${time.newTime}am ` : `${time.newTime}pm ` }
-                <p><strong>Location:</strong> {
+                <strong>Time: </strong>{this.formatTime(time.newTime)} <p>
+                    <strong>Location:</strong> {
                     session.location}</p>
             </div>
                 {this.state.editSessionForm ? <></> : <><span onClick={() => this.doWeNeedEditForm()} id="edit-sess">🖋</span> <br /><span onClick={() => this.deleteSession(session.id)} id="delete-sess">🗑</span> <br /></>}

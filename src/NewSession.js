@@ -16,7 +16,7 @@ class NewSession extends Component {
         time: "",
         home: true,
         subject: this.props.student.subject,
-        location: "",
+        location: "" || this.props.student.address,
         instruction: "",
         edit: false
 
@@ -102,7 +102,7 @@ class NewSession extends Component {
                     {this.state.home ?
                         (<></>) :
                         (<><label>Location: </label>
-                            <input type="text" name="location" value={location} onChange={this.handleChange} /></>)}
+                            <input type="text" name="location" value={location} onChange={this.handleChange} placeholder={location} /></>)}
                     
                     <br />
                     Notes:
