@@ -137,7 +137,9 @@ class Students extends Component {
     }
    
  }
- make
+ formatDate =(date)=>{
+
+ }
     hasSession = (student) => {
         if (student.sessions.length > 0) {
             student.sessions.map(sess => {
@@ -205,7 +207,7 @@ class Students extends Component {
 
             <div className={this.state.studentclicked ? "students-blur" : "students"} >
                 {!formClicked && <h6 id="click-student-for-details">click Student to see details</h6>}
-                {!formClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
+                {!formClicked && !studentClicked && <button onClick={this.addNewStudentForm}>Add Student</button>}
                 {showAllStudents && students}
                 {formClicked && !this.state.needEditForm && this.theForm()}
                 {formClicked && !this.state.needEditForm && <h3 className="student-info-header"><strong>Copy & Paste </strong></h3>}
