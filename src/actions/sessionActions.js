@@ -48,7 +48,7 @@ export const editSession = (session) => dispatch=>{
 
 
 export const deleteSession = (id) => dispatch => {
-    debugger
+    
         dispatch({ type: IS_LOADING })
         dispatch({ type: DELETE_SESSION, payload: id })
         return axios.delete(`http://localhost:3000/sessions/${id}`, {
