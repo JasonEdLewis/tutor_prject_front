@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../css/sessions.css';
 import { connect } from 'react-redux';
-import { editSession } from '../actions/sessionActions'
+import { editSession } from '../actions/sessionActions';
+import Spinner from './spinner'
 
 class SessionEditForm extends Component {
 
@@ -20,11 +21,12 @@ class SessionEditForm extends Component {
 
     handleSubmit = (e) => {
         debugger
+        const {sessionLoading, editSession, doWeNeedEditForm  } = this.props
         e.preventDefault()
         console.log(e)
-        this.props.editSession(this.state).then(resp => {
+       editSession(this.state).then(resp => {
             console.log(resp)
-            this.props.doWeNeedEditForm()
+           !sessionLoading && doWeNeedEditForm()
         })
 
 
@@ -100,13 +102,15 @@ class SessionEditForm extends Component {
                     <br />
                     <button onClick={() => this.props.doWeNeedEditForm()}> Cancel </button>
                 </form>
+                {this.props.sessionLoading && <Spinner/>}
             </div>
         )
     }
 }
 const mapStateToProps = state => {
     return {
-        instructors: state.instructors.instructors
+        instructors: state.instructors.instructors, 
+        sessionLoading: state.sessions.isLoading
     }
 }
 export default connect(mapStateToProps, { editSession })(SessionEditForm)

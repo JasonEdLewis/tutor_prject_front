@@ -33,9 +33,8 @@ class Sessions extends Component {
     }
 
     deleteSession = (id) => {
-        this.props.deleteSession(id);
-        debugger
-        !this.props.isLoading && this.setState({ editSessionForm: false })
+        this.props.deleteSession(id)
+        .then(!this.props.isLoading && this.setState({ editSessionForm: false }))
     }
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
