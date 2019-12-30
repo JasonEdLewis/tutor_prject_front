@@ -14,7 +14,7 @@ class NewSession extends Component {
         admin_id: 1,
         date: "",
         time: "",
-        home: "",
+        home: true,
         subject: this.props.student.subject,
         location: "",
         instruction: "",
@@ -24,9 +24,17 @@ class NewSession extends Component {
 
     handleChange = (e) => {
 
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        if (e.target.name === "home") {
+            if (e.target.value === 'true') {
+                this.setState({ home: true })
+            }
+            else {
+                this.setState({ home: false })
+            }
+        }
+        else {
+            this.setState({ [e.target.name]: e.target.value })
+        }
 
     }
     isEdit = () => {
@@ -58,7 +66,7 @@ class NewSession extends Component {
         // console.log("New Session state:", this.state) 
         console.log("New Seesion Props: ", this.props)
         const { student } = this.props
-        console.log("Student's subject:", student.subject)
+        console.log("Student's subject:", this.state)
         const { instruction, location, date, time, home } = this.state
         return (
 
@@ -83,17 +91,19 @@ class NewSession extends Component {
                     <input type="date" value={date} name="date" onChange={this.handleChange} required />
                     <label>Time:</label>
                     <input type="time" value={time} onChange={this.handleChange} name="time" />
-                    <label>home?:</label>
-                    <select onChange={this.handleChange} name="home">
-                        <option value=""> --- </option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
-                    </select><br />
                     <label>Subject:</label>
                     <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
-                    {!home &&
-                        (<><label name="location" value={location} onChange={this.handleChange}>Location:</label>
-                            <input type="text" /></>)}
+                    <label>home?: </label>
+                    <select onChange={this.handleChange} name="home" >
+                        <option value={null}> --- </option>
+                        <option value={true}> Yes </option>
+                        <option value={false}> No </option>
+                    </select><br />
+                    {this.state.home ?
+                        (<></>) :
+                        (<><label>Location: </label>
+                            <input type="text" name="location" value={location} onChange={this.handleChange} /></>)}
+                    
                     <br />
                     Notes:
                     <textarea name="instruction" value={instruction} onChange={this.handleChange} />

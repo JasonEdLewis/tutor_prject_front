@@ -59,6 +59,9 @@ class Sessions extends Component {
         if (!!session) {
             const time = this.timeAndDate(session)
             const emoji = emojicons(session.subject)
+            const ampm = parseInt(time.newTime)
+            const raw  = time.date.split("/")
+            const sortedDate = `${raw[1]}/${raw[2]}/${raw[0]}`
             return (<div className="one-session"><div
                 onClick={() => this.toggleOneSession(session.id)}
             ><p key={session.id} >
@@ -68,8 +71,8 @@ class Sessions extends Component {
                 <p>
                     <strong>Subject: </strong>{session.subject}</p>
                 <p><strong>Instructor:</strong> {session.instructor.name}</p>
-                <strong>Date: </strong>{time.date} <br />
-                <strong>Time: </strong>{time.newTime}
+                <strong>Date: </strong>{sortedDate} <br />
+                <strong>Time: </strong>{ampm > 7 ? `${time.newTime}am ` : `${time.newTime}pm ` }
                 <p><strong>Location:</strong> {
                     session.location}</p>
             </div>

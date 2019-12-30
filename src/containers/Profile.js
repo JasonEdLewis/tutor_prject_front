@@ -92,8 +92,3 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, null)(Profile)
-
-/*
-const keys =["name","school_id","reason","date","hours","school","grade","sped","counselor_info","guardian","address","home_no","cell","email", "subject"]
-
-*/

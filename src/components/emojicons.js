@@ -13,6 +13,8 @@ import React from 'react'
     return <span  className="emojicons"  role="img" aria-label="emojicon"> 📕 </span>; 
     case 'social studies':            
     return <span className="emojicons"  role="img" aria-label="emojicon"> 🌍 </span>; 
+    case 'history':            
+    return <span className="emojicons"  role="img" aria-label="emojicon"> 🌍 </span>; 
     case 'film':            
     return <span className="emojicons"  role="img" aria-label="emojicon"> 🎬 </span>; 
     case 'writing':            
