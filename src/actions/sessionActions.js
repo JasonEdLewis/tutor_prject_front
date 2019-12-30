@@ -1,4 +1,4 @@
-import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION, EDIT_INSTRUCTOR } from './types';
+import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION, EDIT_INSTRUCTOR, IS_LOADING, FINISH_LOADING } from './types';
 import axios from 'axios';
 
 
@@ -14,54 +14,49 @@ export const fetchSessions = () => {
     }
 }
 export const newSession = (session, id, hours) => dispatch => {
-    let sessionData, instructorData
+    dispatch({ type: IS_LOADING })
     return axios.post('http://localhost:3000/sessions', session)
         // 
         .then(resp => {
-            sessionData = resp.data
-            axios.patch(`http://localhost:3000/instructors/${id}`, { hours: hours }).then(res => instructorData = res.data).then(() => {
-                debugger
-                dispatch({ type: NEW_SESSION, payload: sessionData })
-                dispatch({ type: EDIT_INSTRUCTOR, payload: instructorData })
+            dispatch({ type: NEW_SESSION, payload: resp.data })
+            return axios.patch(`http://localhost:3000/instructors/${id}`, { hours: hours }).then(res => {
+                dispatch({ type: EDIT_INSTRUCTOR, payload: res.data })
+                dispatch({ type: FINISH_LOADING })
+            }
+            )
 
-            })
         }
         )
+
 
 }
 
 
-export const editSession = (session) => {
-
-    return function (dispatch) {
-        return fetch(`http://localhost:3000/sessions/${session.id}`, {
-            method: 'PATCH',
-            headers: {
-                'content-type': 'application/json',
-                accept: 'application/json'
-            },
-            body: JSON.stringify(session)
-        }
-        ).then(resp => resp.json()).then(
+export const editSession = (session) => dispatch=>{
+    dispatch({ type: IS_LOADING })
+    return axios.patch(`http://localhost:3000/sessions/${session.id}`, session)
+        .then(resp => {
             dispatch({
                 type: EDIT_SESSION,
-                payload: session
+                payload: resp.data
             })
+            dispatch({ type: FINISH_LOADING })
+        }
         )
     }
 
-}
 
-export const deleteSession = (id) => {
-    return dispatch => {
+
+export const deleteSession = (id) => dispatch => {
+    debugger
+        dispatch({ type: IS_LOADING })
         dispatch({ type: DELETE_SESSION, payload: id })
-
-        return fetch(`http://localhost:3000/sessions/${id}`, {
+        return axios.delete(`http://localhost:3000/sessions/${id}`, {
             method: 'DELETE'
-        })
+        }).then(dispatch({ type: FINISH_LOADING }))
 
     }
-}
+
 
 
 

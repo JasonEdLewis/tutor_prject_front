@@ -14,9 +14,9 @@ class NewSession extends Component {
         admin_id: 1,
         date: "",
         time: "",
-        home: "",
+        home: true,
         subject: this.props.student.subject,
-        location: "",
+        location: "" || this.props.student.address,
         instruction: "",
         edit: false
 
@@ -24,9 +24,17 @@ class NewSession extends Component {
 
     handleChange = (e) => {
 
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        if (e.target.name === "home") {
+            if (e.target.value === 'true') {
+                this.setState({ home: true })
+            }
+            else {
+                this.setState({ home: false })
+            }
+        }
+        else {
+            this.setState({ [e.target.name]: e.target.value })
+        }
 
     }
     isEdit = () => {
@@ -43,22 +51,22 @@ class NewSession extends Component {
         e.preventDefault()
         const instId = parseInt(this.state.instructor_id)
         const instHours = this.props.instructors.find(inst => inst.id === instId).hours - 2
-        this.props.newSession(this.state, instId, instHours).then(() => {
-            console.log("back in submit session")
-            this.props.removeForm()
-            this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
-        })
+        this.props.newSession(this.state, instId, instHours)
+        this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
+        !this.props.isLoading && this.props.removeForm() 
+
     }
 
     render() {
 
         console.log("New Sessions state", this.state)
+        console.log("New Sessions props", this.props.isLoading)
 
 
         // console.log("New Session state:", this.state) 
         console.log("New Seesion Props: ", this.props)
         const { student } = this.props
-        console.log("Student's subject:", student.subject)
+        console.log("Student's subject:", this.state)
         const { instruction, location, date, time, home } = this.state
         return (
 
@@ -83,18 +91,19 @@ class NewSession extends Component {
                     <input type="date" value={date} name="date" onChange={this.handleChange} required />
                     <label>Time:</label>
                     <input type="time" value={time} onChange={this.handleChange} name="time" />
-                    <label>home?:</label>
-                    <select onChange={this.handleChange} name="home">
-                        <option value=""> --- </option>
-                        <option value={true}>Yes</option>
-                        <option value={false} >No</option>
-                    </select><br />
                     <label>Subject:</label>
                     <input name="subject" value={student.subject} placeholder={student.subject} onChange={this.handleChange} />
-                    {home ?
+                    <label>home?: </label>
+                    <select onChange={this.handleChange} name="home" >
+                        <option value={null}> --- </option>
+                        <option value={true}> Yes </option>
+                        <option value={false}> No </option>
+                    </select><br />
+                    {this.state.home ?
                         (<></>) :
-                        (<><label name="location" value={location} onChange={this.handleChange}>Location:</label>
-                            <input type="text" /></>)}
+                        (<><label>Location: </label>
+                            <input type="text" name="location" value={location} onChange={this.handleChange} placeholder={location} /></>)}
+                    
                     <br />
                     Notes:
                     <textarea name="instruction" value={instruction} onChange={this.handleChange} />
@@ -111,7 +120,8 @@ class NewSession extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        instructors: state.instructors.instructors
+        instructors: state.instructors.instructors,
+        isLoading: state.sessions.isLoading
     }
 }
 export default connect(mapStateToProps, { reduceInstructorsHoursBasedOnSession, newSession })(NewSession)

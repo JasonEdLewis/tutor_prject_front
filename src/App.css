@@ -1,11 +1,5 @@
 
 
-#root{
-   /* background-color: #f9f7fa; */
-  /* min-height: 100vh; */
-
- }
-
 body{
   background-image: url("https://www.transparenttextures.com/patterns/cross-stripes.png");
   position: relative;
@@ -85,7 +79,7 @@ a {
   margin-top: 0.5vh;
   margin-left: 2.5vw;
   margin-right: 2.5vw;
-  max-height:100vh;
+  min-height:100vh;
   text-align: center;
   grid-template-areas: 'headers headers drop'
                       'students admin instructors'

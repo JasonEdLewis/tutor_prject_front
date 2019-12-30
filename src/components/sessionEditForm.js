@@ -14,14 +14,19 @@ class SessionEditForm extends Component {
         time: "",
         home: true,
         subject: this.props.student.subject,
-        location: "",
+        location: "" || this.props.student.address,
         instruction: "",
     }
 
     handleSubmit = (e) => {
+        debugger
         e.preventDefault()
         console.log(e)
-        this.props.editSession(this.state)
+        this.props.editSession(this.state).then(resp => {
+            console.log(resp)
+            this.props.doWeNeedEditForm()
+        })
+
 
     }
     handleChange = (e) => {
@@ -54,7 +59,7 @@ class SessionEditForm extends Component {
     }
     render() {
         const { student, session } = this.props
-        console.log("Edit Sess", this.props)
+        console.log("Edit Sess state", this.state)
         return (
             <div className="edit-session-form">
                 <h4>Edit Session Details </h4>
@@ -68,12 +73,14 @@ class SessionEditForm extends Component {
                         </select></>
                         )}
                     <label>Subject: </label>
-                    <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} />
+                    <input type="text" onChange={this.handleChange} name="subject" value={`  ${session.subject}`} /><br />
                     <label>Date: </label>
-                    <input type="date" value={this.state.date} name="date" onChange={this.handleChange} placeholder={session.date} />
+                    
+                    <input type="date" value={this.state.date} name="date" onChange={this.handleChange} />
                     <br />
                     <label>Time: </label>
-                    <input type="time" value={this.state.time} onChange={this.handleChange} name="time" placeholder={this.props.time} />
+                    {/* <input type="time" value={time} onChange={this.handleChange} name="time" /> */}
+                    <input type="time" value={this.state.time} onChange={this.handleChange} name="time" />
                     <br />
                     <label>home?: </label>
                     <select onChange={this.handleChange} name="home" >
@@ -84,12 +91,12 @@ class SessionEditForm extends Component {
                     {this.state.home ?
                         (<></>) :
                         (<><label name="location" value={session.location} onChange={this.handleChange}>Location: </label>
-                            <input type="text" name="location" value={this.state.location} onChange={this.handleChange} /></>)}
+                            <input type="text" name="location" value={this.state.location} onChange={this.handleChange} placeholder={session.location}/></>)}
                     <br />
                     Notes:
                     <textarea className="edit-notes-textarea" name="instruction" value={this.state.instruction} onChange={this.handleChange} placeholder={this.props.instruction} />
                     <br />
-                    <input style={{ color: "black" }} type="submit"></input>
+                    <input id="edit_submit" type="submit"></input>
                     <br />
                     <button onClick={() => this.props.doWeNeedEditForm()}> Cancel </button>
                 </form>

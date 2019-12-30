@@ -1,10 +1,11 @@
 .login-div {
-    margin:10% 0% 0% 45%;   
-    /* justify-self: center; */
-    width: 50vw;
+    
+    text-align: center;
+    width: 25vw;
+    margin-left: 37.5%;
     height: 50vh;
     z-index:0.9;
-    
+    background-color: white;
     color: rgb(0, 0, 0);
     
     }
@@ -45,9 +46,11 @@
     
     color: rgb(122, 117, 117);
     }
-    .login-div .login{
-       /* background-color: #d30935; */
-       width: 15vw;
+   .login{
+       background-color: #fff;
+       text-align: center;
+       margin:0% 0% 0% 0% ;
+       width: 25vw;
        
     }
     .login-inputs {

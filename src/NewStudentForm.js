@@ -26,7 +26,7 @@ class NewStudentForm extends Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log("Student Form Handle Submit")
-        this.props.createStudent(this.state.student).then(resp => resp.json()).then(data => console.log(data))
+        this.props.createStudent(this.state.student).then(data => console.log(data))
         this.props.formUnclick()
     }
     componentDidMount() {
@@ -103,13 +103,13 @@ class NewStudentForm extends Component {
                         <label>Subject:</label>
                         <input name="subject" value={this.state.student.subject} type="text" placeholder=" subject" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>SPED: </label>
-                        <select name="sped " value={this.state.student.sped} type="text" placeholder="Special Ed" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
-                            <option value="Yes" > --- </option>
-                            <option value="true" > Yes </option>
-                            <option value="false" > No </option>
+                        <select name="sped "  type="text" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
+                            <option value={null} > --- </option>
+                            <option value={true} > Yes </option>
+                            <option value={false} > No </option>
                         </select>
                         <label>Councilor Info:</label>
-                        <textarea row="5" col="60" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
+                        <textarea row="6" col="40" value={this.state.student.counselor_info} placeholder="Counselor Info" className="student-input" onChange={this.handleChange} style={{ width: "100%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <br />
                         <h3>Guardian Info</h3>
                         <label>Name:</label>
@@ -138,4 +138,6 @@ class NewStudentForm extends Component {
     }
 }
 export default connect(null, { createStudent })(NewStudentForm)
+
+
 

@@ -57,11 +57,15 @@
       display:block;
   }
   .new-form-cancel-btn {
-
+      display: flex;
+    margin: -3%  0%  0%  60% ;
   }
 
   .quick-form-inputs{
       margin-left: ;
+  }
+  .quick-form-textarea{
+      margin-left: 3%
   }
   .new-forms-div{
       margin: 10% 0% 0% 0%;

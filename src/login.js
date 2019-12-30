@@ -81,7 +81,7 @@ class Login extends Component {
                             <input classname="login-inputs" style={{ width: "60%", fontSize: "1.25em", borderRadius: ".25em" }} type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="password" />
                             <br /><br />
                             <input type="submit" style={{ width: "30%", fontSize: "1em", borderRadius: ".25em", borderColor: "grey" }} />
-                            <h4> Forgot password? Reset it  <input type="submit" value="Here" style={{ width: "30%", fontSize: "1em", borderRadius: ".25em" }} /></h4>
+                            
                         </form>
 
                     </div>

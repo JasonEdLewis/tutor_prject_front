@@ -1,12 +1,19 @@
-import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION } from '../actions/types';
+import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION, IS_LOADING, FINISH_LOADING } from '../actions/types';
 
 const initialState = {
     sessions: [],
+    isLoading: null,
 
 };
 
 export default function (state = initialState, action) {
     switch (action.type) {
+        case IS_LOADING:
+            return { ...state, isLoading: true }
+
+        case FINISH_LOADING:
+            return { ...state, isLoading: false }
+
         case FETCH_SESSIONS:
             return {
                 ...state,
@@ -16,7 +23,8 @@ export default function (state = initialState, action) {
 
             return {
                 ...state,
-                sessions: [...state.sessions, action.payload]
+                sessions: [...state.sessions, action.payload],
+
             }
         case EDIT_SESSION:
 
@@ -27,17 +35,19 @@ export default function (state = initialState, action) {
                 Object.assign({}, TheSession, action.payload),
                 ...state.sessions.slice(idx + 1)
             ]
-            debugger
+        
             return {
                 ...state,
-                sessions: LastestSesssions
+                sessions: LastestSesssions,
+
             };
         case DELETE_SESSION:
-
+                debugger
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)
             return {
                 ...state,
-                sessions: sesss
+                sessions: sesss,
+
             }
 
         default:

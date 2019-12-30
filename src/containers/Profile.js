@@ -15,6 +15,17 @@ class Profile extends Component {
         username: this.props.admin.currentAdmin.username,
         admin_id: this.props.admin.currentAdmin.id
     }
+    adminEmoji =()=>{
+        
+        switch(this.state.username){
+            case "Jason":
+                return "👨🏽‍💼";
+            case "Lanee":
+                return  "👩🏾‍💼";
+            default:
+                return "👨🏼‍💼";
+        }
+    }
 
     render() {
         const { admin, history,sessions, students } = this.props
@@ -44,7 +55,7 @@ class Profile extends Component {
                 <h1>WELCOME BACK {this.state.username}</h1>
                 <h3 className="admin-username"></h3>
                 <div class="line-over-admin">______________________</div>
-                <span className="admin-emojicon" >{this.state.username === ("Jason" || "Hy") ? "👨🏽‍💼" : "👩🏾‍💼"} </span>
+                <span className="admin-emojicon" >{this.adminEmoji()} </span>
                
                
                 <br/> <div class="line-under-admin">_____________</div>
@@ -81,8 +92,3 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, null)(Profile)
-
-/*
-const keys =["name","school_id","reason","date","hours","school","grade","sped","counselor_info","guardian","address","home_no","cell","email", "subject"]
-
-*/
