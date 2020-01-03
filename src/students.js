@@ -181,8 +181,11 @@ class Students extends Component {
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul className="student-ul">
                 <li><strong>Grade</strong>: {theStudent.grade}th</li>
+                
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
+                <li style={{color: "green"}}><strong>Subject:</strong> {theStudent.subject.toUpperCase()}</li>
+                
                 {/* {this.hasSession(theStudent)} */}
                 {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {this.formatDate(sess.date.split("T")[0])}</li><li><strong>Time:</strong> {this.formatTime(sess.time.split("T")[1].slice(0,5))}</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
                     : <li style={{color:"red"}}>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}

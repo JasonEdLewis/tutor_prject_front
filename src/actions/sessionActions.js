@@ -15,24 +15,19 @@ export const fetchSessions = () => {
 }
 export const newSession = (session, id, hours) => dispatch => {
     dispatch({ type: IS_LOADING })
-    return axios.post('http://localhost:3000/sessions', session)
-        // 
-        .then(resp => {
-            dispatch({ type: NEW_SESSION, payload: resp.data })
-            return axios.patch(`http://localhost:3000/instructors/${id}`, { hours: hours }).then(res => {
-                dispatch({ type: EDIT_INSTRUCTOR, payload: res.data })
-                dispatch({ type: FINISH_LOADING })
-            }
-            )
 
-        }
-        )
-
+    return axios.patch(`http://localhost:3000/instructors/${id}`, { hours: hours }).then(res => {
+        dispatch({ type: EDIT_INSTRUCTOR, payload: res.data })
+        return axios.post('http://localhost:3000/sessions', session).then(resp => dispatch({ type: NEW_SESSION, payload: resp.data })
+        ).then(dispatch({ type: FINISH_LOADING }))
+    }
+    )
 
 }
 
 
-export const editSession = (session) => dispatch=>{
+
+export const editSession = (session) => dispatch => {
     dispatch({ type: IS_LOADING })
     return axios.patch(`http://localhost:3000/sessions/${session.id}`, session)
         .then(resp => {
@@ -43,19 +38,19 @@ export const editSession = (session) => dispatch=>{
             dispatch({ type: FINISH_LOADING })
         }
         )
-    }
+}
 
 
 
 export const deleteSession = (id) => dispatch => {
-    
-        dispatch({ type: IS_LOADING })
-        dispatch({ type: DELETE_SESSION, payload: id })
-        return axios.delete(`http://localhost:3000/sessions/${id}`, {
-            method: 'DELETE'
-        }).then(dispatch({ type: FINISH_LOADING }))
 
-    }
+    dispatch({ type: IS_LOADING })
+    dispatch({ type: DELETE_SESSION, payload: id })
+    return axios.delete(`http://localhost:3000/sessions/${id}`, {
+        method: 'DELETE'
+    }).then(dispatch({ type: FINISH_LOADING }))
+
+}
 
 
 

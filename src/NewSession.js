@@ -51,7 +51,9 @@ class NewSession extends Component {
         e.preventDefault()
         const instId = parseInt(this.state.instructor_id)
         const instHours = this.props.instructors.find(inst => inst.id === instId).hours - 2
+        
         this.props.newSession(this.state, instId, instHours)
+
         this.setState({ student_id: 0, instructor_id: 0, admin_id: 1, date: "", time: "", home: "", subject: this.props.student.subject, location: "", instruction: "", })
         !this.props.isLoading && this.props.removeForm() 
 

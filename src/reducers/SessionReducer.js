@@ -2,7 +2,7 @@ import { FETCH_SESSIONS, NEW_SESSION, EDIT_SESSION, DELETE_SESSION, IS_LOADING, 
 
 const initialState = {
     sessions: [],
-    isLoading: null,
+    isLoading: false,
 
 };
 
@@ -35,14 +35,14 @@ export default function (state = initialState, action) {
                 Object.assign({}, TheSession, action.payload),
                 ...state.sessions.slice(idx + 1)
             ]
-        
+
             return {
                 ...state,
                 sessions: LastestSesssions,
 
             };
         case DELETE_SESSION:
-                debugger
+            debugger
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)
             return {
                 ...state,
