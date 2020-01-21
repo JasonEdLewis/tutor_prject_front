@@ -42,7 +42,6 @@ export default function (state = initialState, action) {
 
             };
         case DELETE_SESSION:
-            debugger
             const sesss = state.sessions.filter(sess => sess.id !== action.payload)
             return {
                 ...state,

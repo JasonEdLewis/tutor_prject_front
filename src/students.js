@@ -53,11 +53,18 @@ class Students extends Component {
         })
 
     }
+
+    submitStraightForm = e => {
+        e.preventDefault();
+        this.props.createStudent(this.state)
+        this.unclickNewStudentForm()
+        this.setState({ showAllStudents: true })
+    }
     handleSubmitForm = (e) => {
         e.preventDefault()
-        
-        const {name, grade, subject, school, hours, guardian, address, home_no, cell, email, home } = this.state
-        
+
+        const { name, grade, subject, school, hours, guardian, address, home_no, cell, email, home } = this.state
+
         const body = { name, grade, subject, school, hours, guardian, address, home_no, cell, email }
         this.props.createStudent(body)
         this.setState({
@@ -76,12 +83,21 @@ class Students extends Component {
             [e.target.name]: e.target.value
         })
     }
+    handleDelete = (id) => {
+        this.props.deleteStudent(id)
+            .then(data => {
+                this.unclickNewStudentForm()
+                this.setState({ showAllStudents: true })
+
+            })
+
+    }
 
     theForm = () => {
         return (
             <>
                 <h4>Enter New Student Info:</h4>
-                <form className="quick-form-inputs" onSubmit={this.handleSubmitForm}>
+                <form className="quick-form-inputs" onSubmit={this.submitStraightForm}>
                     Name:<input type="text" name="name" onChange={this.handleChange} value={this.state.name} />
                     <br />
 
@@ -113,46 +129,46 @@ class Students extends Component {
 
         return (
             <div>
-              
+
                 <form className="quick-form" onSubmit={this.handleSubmit}>
-                    <textarea  rows="10" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form-textarea" required > </textarea>
+                    <textarea rows="10" cols="60" type="text" onChange={this.handleChange} name="studentInfo" value={this.state.studentInfo} className="quick-form-textarea" required > </textarea>
                     <br /><button >Submit</button>
                 </form>
 
             </div>)
 
     }
-    formatTime =(time)=>{
-        debugger
+    formatTime = (time) => {
+       
         const rawTime = parseInt(time)
-        if (rawTime > 7 && rawTime < 12){
-          return `${time}am `
+        if (rawTime > 7 && rawTime < 12) {
+            return `${time}am `
         }
-        else{
-            if(time[0] == 0){
-           return `${time.slice(1)}pm `
+        else {
+            if (time[0] == 0) {
+                return `${time.slice(1)}pm `
             }
-            else if(rawTime % 12 === 0){
+            else if (rawTime % 12 === 0) {
                 return `12:${time.split(":")[1]}pm`
             }
-        else{
-            time = `${parseInt(time) % 12 }:${time.split(":")[1]}pm`
-            return time
+            else {
+                time = `${parseInt(time) % 12}:${time.split(":")[1]}pm`
+                return time
+            }
         }
-       }
-      
+
     }
 
- formatDate =(date)=>{
-     debugger
- const rawDate = date.split("-")
- return `${rawDate[1]}/${rawDate[2]}/${rawDate[0]}`
- }
+    formatDate = (date) => {
+       
+        const rawDate = date.split("-")
+        return `${rawDate[1]}/${rawDate[2]}/${rawDate[0]}`
+    }
 
     hasSession = (student) => {
         if (student.sessions.length > 0) {
             student.sessions.map(sess => {
-               
+
                 const time = sess.date.replace(/-/g, "/").slice(11, 16)
                 const date = sess.date.replace(/-/g, "/").split("T")[0]
                 const timeInt = parseInt(time)
@@ -160,7 +176,7 @@ class Students extends Component {
                 return garbage
             })
         }
-    
+
     }
     sessionsIds = () => {
         return this.props.students.sessions.map(sess => sess.id)
@@ -174,23 +190,24 @@ class Students extends Component {
     }
 
     singleStudentInfo = (id) => {
-        debugger
+
         const theStudent = this.props.students.find(stu => stu.id === id)
 
         return (<div className="single-student-card">
             <p onClick={() => this.handleClick(theStudent.id)}><strong>{theStudent.name}</strong></p>
             <ul className="student-ul">
                 <li><strong>Grade</strong>: {theStudent.grade}th</li>
-                
+
                 <li><strong>Guardian:</strong> {theStudent.guardian}</li>
                 <li><strong>School:</strong> {theStudent.school}</li>
-                <li style={{color: "green"}}><strong>Subject:</strong> {theStudent.subject.toUpperCase()}</li>
-                
+                <li style={{ color: "green" }}><strong>Subject:</strong> {theStudent.subject.toUpperCase()}</li>
+
                 {/* {this.hasSession(theStudent)} */}
-                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {this.formatDate(sess.date.split("T")[0])}</li><li><strong>Time:</strong> {this.formatTime(sess.time.split("T")[1].slice(0,5))}</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
-                    : <li style={{color:"red"}}>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
+                {theStudent.sessions.length > 0 ? theStudent.sessions.map(sess => (<><li><strong> sessions:</strong> {sess.subject} </li><li><strong>Date:</strong> {this.formatDate(sess.date.split("T")[0])}</li><li><strong>Time:</strong> {this.formatTime(sess.time.split("T")[1].slice(0, 5))}</li><li><strong>Instructor:</strong>{this.instructor(sess.id)}</li></>))
+                    : <li style={{ color: "red" }}>{`*${theStudent.name.split(" ")[0]} has no sessions booked`}</li>}
             </ul>
             {!this.state.needEditForm && <button onClick={() => this.handleEdit(theStudent)}>Edit Student</button>}
+            {!this.state.needEditForm && <button onClick={() => this.handleDelete(theStudent.id)}>Delete Student</button>}
         </div>)
     }
     addNewStudentForm = () => {
@@ -208,7 +225,7 @@ class Students extends Component {
     }
 
     render() {
-        console.log("Students props:", this.props)
+        console.log("Students props:", this.state)
 
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {
