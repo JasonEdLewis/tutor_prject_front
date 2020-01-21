@@ -60,7 +60,6 @@ class Login extends Component {
 
     render() {
         const { wrongCreds, errorMessage } = this.state
-        console.log("Project login State:", this.state)
         return (
             <>
                 <div>

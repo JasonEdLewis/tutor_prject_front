@@ -24,7 +24,6 @@ class NewInstructorForm extends Component {
 
     }
     render() {
-        console.log("New Instructor form props:", this.props)
         return (
             <div>
                 <h4>Add Instructor Below</h4>

@@ -13,16 +13,7 @@ import Resources from './components/resources'
 
 class App extends Component {
 
-  componentDidMount() {
-    console.log("App Mounting again")
-  }
-
-
-
-
   render() {
-    console.log("App props:", this.props)
-
     return (
       <div>
         <body className="Body">

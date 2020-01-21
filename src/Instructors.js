@@ -59,10 +59,8 @@ class Instructors extends Component {
             </div>)
     }
     render() {
-
-        console.log("Instructors props: ", this.props.instructors)
         const { showOneInstructor, needEditform, needNewForm } = this.state
-        
+
         if (this.props.instructors) {
             var instructs = this.props.instructors.map(inst => <p onClick={() => this.showOneStatus(inst.id)} className="instructors"><strong> {inst.name} </strong><span> {Emojicon(inst.subject)}</span></p>)
 

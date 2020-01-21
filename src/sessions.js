@@ -23,7 +23,6 @@ class Sessions extends Component {
         editSessionForm: false,
     }
     handleClick = (student, session) => {
-        // console.log(id)
         this.setState({ student, needForm: !this.state.needForm, editSessionForm: false, showOneSession: false })
     }
 
@@ -34,7 +33,7 @@ class Sessions extends Component {
 
     deleteSession = (id) => {
         this.props.deleteSession(id)
-        .then(!this.props.sessionLoading && this.setState({ editSessionForm: false }))
+            .then(!this.props.sessionLoading && this.setState({ editSessionForm: false }))
     }
     toggleOneSession = (id) => {
         this.setState({ showOneSession: !this.state.showOneSession, sessionId: id })
@@ -52,26 +51,26 @@ class Sessions extends Component {
             this.setState({ showOneSession: false })
         }
     }
-    formatTime =(time)=>{
+    formatTime = (time) => {
         debugger
         const rawTime = parseInt(time)
-        if (rawTime > 7 && rawTime < 12){
-          return `${time}am `
+        if (rawTime > 7 && rawTime < 12) {
+            return `${time}am `
         }
-        else if(rawTime % 12 === 0){
+        else if (rawTime % 12 === 0) {
             return `12:${time.split(":")[1]}pm`
         }
-        else{
-            if(time.length > 0 && time[0] === 0){
-           return `${time.slice(1)}pm `
+        else {
+            if (time.length > 0 && time[0] === 0) {
+                return `${time.slice(1)}pm `
             }
-           
-        else{
-            time = `${parseInt(time) % 12 }:${time.split(":")[1]}pm`
-            return time
+
+            else {
+                time = `${parseInt(time) % 12}:${time.split(":")[1]}pm`
+                return time
+            }
         }
-       }
-      
+
     }
     singleSession = (id) => {
 
@@ -80,7 +79,7 @@ class Sessions extends Component {
             const time = this.timeAndDate(session)
             const emoji = emojicons(session.subject)
             const ampm = parseInt(time.newTime)
-            const raw  = time.date.split("/")
+            const raw = time.date.split("/")
             const sortedDate = `${raw[1]}/${raw[2]}/${raw[0]}`
             return (<div className="one-session"><div
                 onClick={() => this.toggleOneSession(session.id)}
@@ -94,7 +93,7 @@ class Sessions extends Component {
                 <strong>Date: </strong>{sortedDate} <br />
                 <strong>Time: </strong>{this.formatTime(time.newTime)} <p>
                     <strong>Location:</strong> {
-                    session.location}</p>
+                        session.location}</p>
             </div>
                 {this.state.editSessionForm ? <></> : <><span onClick={() => this.doWeNeedEditForm()} id="edit-sess">🖋</span> <br /><span onClick={() => this.deleteSession(session.id)} id="delete-sess">🗑</span> <br /></>}
                 {this.state.editSessionForm ? <EditSession session={session} student={session.student} doWeNeedEditForm={this.doWeNeedEditForm} /> : <></>}</div>)
@@ -104,7 +103,7 @@ class Sessions extends Component {
         }
     }
     activatePanels = () => {
-        console.log(this.state.active)
+
         if (this.state.active) {
             return <div class="panel"> <p>Lorem ipsum...</p> </div>
         }
@@ -112,7 +111,7 @@ class Sessions extends Component {
 
 
     render() {
-        console.log("Sessions props", this.props.sessionLoading)
+
         const studentsInNeed = this.props.students.filter(student => {
 
             return ((!student.sessions || student.sessions.length) === 0 && student)

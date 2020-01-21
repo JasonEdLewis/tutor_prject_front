@@ -61,17 +61,9 @@ class NewSession extends Component {
 
     render() {
 
-        console.log("New Sessions state", this.state)
-        console.log("New Sessions props", this.props.isLoading)
-
-
-        // console.log("New Session state:", this.state) 
-        console.log("New Seesion Props: ", this.props)
         const { student } = this.props
-        console.log("Student's subject:", this.state)
         const { instruction, location, date, time, home } = this.state
         return (
-
 
             <div>
                 <h2 style={{ color: "red" }}>Book {student.subject} for {student.name}</h2>
