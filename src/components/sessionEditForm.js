@@ -23,9 +23,9 @@ class SessionEditForm extends Component {
         debugger
         const {sessionLoading, editSession, doWeNeedEditForm  } = this.props
         e.preventDefault()
-        console.log(e)
+      
        editSession(this.state).then(resp => {
-            console.log(resp)
+            
            !sessionLoading && doWeNeedEditForm()
         })
 
@@ -61,7 +61,6 @@ class SessionEditForm extends Component {
     }
     render() {
         const { student, session } = this.props
-        console.log("Edit Sess state", this.state)
         return (
             <div className="edit-session-form">
                 <h4>Edit Session Details </h4>

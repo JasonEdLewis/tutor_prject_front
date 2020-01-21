@@ -38,10 +38,8 @@ class StudentForm extends Component {
         })
     }
     render() {
-        // console.log("General Student form props:", this.props.student)
-       
         const {name, school_id, reason, date, hours, school, grade, sped, counselor_info, guardian, address, home_no, cell,email,subject } = this.props.student
-        console.log("Edit props: ",this.props)
+       
         return (
             <div>
                 <h6>Edit Student</h6>

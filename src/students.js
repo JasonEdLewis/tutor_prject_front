@@ -139,7 +139,7 @@ class Students extends Component {
 
     }
     formatTime = (time) => {
-       
+
         const rawTime = parseInt(time)
         if (rawTime > 7 && rawTime < 12) {
             return `${time}am `
@@ -160,7 +160,7 @@ class Students extends Component {
     }
 
     formatDate = (date) => {
-       
+
         const rawDate = date.split("-")
         return `${rawDate[1]}/${rawDate[2]}/${rawDate[0]}`
     }
@@ -225,7 +225,6 @@ class Students extends Component {
     }
 
     render() {
-        console.log("Students props:", this.state)
 
         const { showAllStudents, formClicked, studentClicked, needEditForm, formSubmitted } = this.state
         const students = this.props.students.map(stu => {

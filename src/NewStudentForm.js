@@ -13,7 +13,6 @@ class NewStudentForm extends Component {
 
 
     handleChange = (e) => {
-        console.log(this.state.student)
         this.setState({
             student: {
                 ...this.state.student,
@@ -25,9 +24,9 @@ class NewStudentForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault()
-        console.log("Student Form Handle Submit")
-        this.props.createStudent(this.state.student).then(data => console.log(data))
-        this.props.formUnclick()
+        this.props.createStudent(this.state.student).then(
+            this.props.formUnclick()
+        )
     }
     componentDidMount() {
         this.firstCleanOfNewStudent(this.props.newStuInfo)
@@ -78,8 +77,6 @@ class NewStudentForm extends Component {
 
     render() {
 
-        console.log("New Student From state after santization:", this.state.student)
-
         return (
             <div>
                 <h1>New Student Form</h1>
@@ -103,7 +100,7 @@ class NewStudentForm extends Component {
                         <label>Subject:</label>
                         <input name="subject" value={this.state.student.subject} type="text" placeholder=" subject" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} />
                         <label>SPED: </label>
-                        <select name="sped "  type="text" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
+                        <select name="sped " type="text" className="student-input" onChange={this.handleChange} style={{ width: "75%", fontSize: ".50em", borderRadius: ".25em" }} >
                             <option value={null} > --- </option>
                             <option value={true} > Yes </option>
                             <option value={false} > No </option>

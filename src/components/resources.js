@@ -13,7 +13,6 @@ export default class Resources extends Component {
     }
 
     render() {
-        console.log("resources props:", this.props)
         const { history } = this.props
         return (
             <>

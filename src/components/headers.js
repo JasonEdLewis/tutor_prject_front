@@ -5,7 +5,6 @@ import '../css/login.css'
 
 class Headers extends Component {
     render() {
-        // console.log("headers props:", this.props)
         const { history, loggedIn } = this.props
         return (
             <div className="header-component">

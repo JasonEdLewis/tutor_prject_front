@@ -29,7 +29,6 @@ class EditInstructorForm extends Component {
 
     }
     render() {
-        console.log("Edit Instructor form props:", this.props, "State id", this.state.id)
         const { name, subject, specialty, hours } = this.props.instructor
         const { removeForm } = this.props
         const firstName = name.split(" ")[0]
